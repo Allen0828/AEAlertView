@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "AEAlertView"
-  s.version      = "0.6"
+  s.version      = "0.7"
   s.summary      = "Support swift 3.0"
 
   # This description is used to generate tags and improve search results.
