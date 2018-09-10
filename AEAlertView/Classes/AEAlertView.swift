@@ -8,18 +8,18 @@
 
 import UIKit
 
-enum AEAlertActionStyle {
+public enum AEAlertActionStyle {
     case Default,
     Cancel,
     Destructive
 }
 
-enum AEAlertViewStyle {
+public enum AEAlertViewStyle {
     case Default,
     Image
 }
 
-class AEAlertView: UIView {
+public class AEAlertView: UIView {
     
     ///展示 Show
     public func show() {
@@ -37,21 +37,21 @@ class AEAlertView: UIView {
     }
     
     ///弹出标题  Title
-    var title: String? {
+    public var title: String? {
         didSet {
             setTitle(title: title)
         }
     }
 
     ///内容 The message displayed under the alert view's title
-    var message: String? {
+    public var message: String? {
         didSet {
             setMessage(message: message)
         }
     }
     
     ///内容高度如果文字超出 文字可以滚动 Content height can scroll if text exceeds text
-    var messageHeight: Int? {
+    public var messageHeight: Int? {
         didSet {
             guard let height = messageHeight else { return }
             setMessageHeight(height: height)
@@ -64,93 +64,93 @@ class AEAlertView: UIView {
     }
 
     ///alert背景色 The background color of the alert view
-    var alertViewBackgroundColor: UIColor? {
+    public var alertViewBackgroundColor: UIColor? {
         didSet {
             setAlertViewBackgroundColor(color: alertViewBackgroundColor!)
         }
     }
 
     ///Title字体 The font used to display the title in the alert view
-    var titleFont: UIFont! {
+    public var titleFont: UIFont! {
         didSet {
             setTitleFont(font: titleFont)
         }
     }
 
     ///message字体 The font used to display the messsage in the alert view
-    var messageFont: UIFont! {
+    public var messageFont: UIFont! {
         didSet {
             setMessageFont(font: messageFont)
         }
     }
 
     ///Title字体颜色 The color used to display the alert view's title
-    var titleColor: UIColor? {
+    public var titleColor: UIColor? {
         didSet {
             setTitleColor(color: titleColor)
         }
     }
 
     ///message字体颜色 The color used to display the alert view's message
-    var messageColor: UIColor? {
+    public var messageColor: UIColor? {
         didSet {
             setMessageColor(color: messageColor)
         }
     }
 
     ///确定的背景颜色 The background color for the alert view's buttons corresponsing to default style actions
-    var buttonColor: UIColor?
+    public var buttonColor: UIColor?
 
     ///取消按钮的背景颜色 The background color for the alert view's buttons corresponsing to cancel style actions
-    var cancelButtonColor: UIColor?
+    public var cancelButtonColor: UIColor?
 
     ///警告按钮的背景颜色 The background color for the alert view's buttons corresponsing to destructive style actions
-    var destructiveButtonColor: UIColor?
+    public var destructiveButtonColor: UIColor?
 
     ///按钮禁用时背景色 The background color for the alert view's buttons corresponsing to disabled actions
-    var disabledButtonColor: UIColor?
+    public var disabledButtonColor: UIColor?
 
     ///确定按钮标题的颜色 The color used to display the title for buttons corresponsing to default style actions
-    var buttonTitleColor: UIColor?
+    public var buttonTitleColor: UIColor?
 
     ///取消按钮标题的颜色 The color used to display the title for buttons corresponding to cancel style actions
-    var cancelButtonTitleColor: UIColor?
+    public var cancelButtonTitleColor: UIColor?
 
     ///警告按钮标题的颜色 The color used to display the title for buttons corresponsing to destructive style actions
-    var destructiveButtonTitleColor: UIColor?
+    public var destructiveButtonTitleColor: UIColor?
 
     ///禁用状态按钮标题的颜色 The color used to display the title for buttons corresponsing to disabled actions
-    var disabledButtonTitleColor: UIColor?
+    public var disabledButtonTitleColor: UIColor?
     
     ///确定按钮的描边颜色 设置Nil取消描边 default style actions borderColor Set Nil to cancel Border
-    var buttonLayerBorderColor: UIColor?
+    public var buttonLayerBorderColor: UIColor?
     
     ///取消按钮的描边颜色 设置Nil取消描边 color style actions borderColor Set Nil to cancel Border
-    var cancelButtonLayerBorderColor: UIColor?
+    public var cancelButtonLayerBorderColor: UIColor?
     
     ///警告按钮的描边颜色 设置Nil取消描边 destructive style actions  borderColor Set Nil to cancel Border
-    var destructiveButtonLayerBorderColor: UIColor?
+    public var destructiveButtonLayerBorderColor: UIColor?
 
     ///alertView圆角 The radius of the displayed alert view's corners
-    var alertViewCornerRadius: CGFloat?
+    public var alertViewCornerRadius: CGFloat?
     
     ///按钮圆角 默认4 The radius of button corners default is 4.0
-    var buttonCornerRadius: CGFloat?
+    public var buttonCornerRadius: CGFloat?
     
     ///所有按钮
-    private(set) var actions: [AEAlertAction]?
+    public private(set) var actions: [AEAlertAction]?
     
     ///确定按钮字体 The font used for buttons
-    var buttonTitleFont: UIFont!
+    public var buttonTitleFont: UIFont!
     
     ///取消按钮的字体 The font used for cancel buttons
-    var cancelButtonTitleFont: UIFont!
+    public var cancelButtonTitleFont: UIFont!
     
     ///警告按钮的字体 The font used for destructive buttons
-    var destructiveButtonTitleFont: UIFont!
+    public var destructiveButtonTitleFont: UIFont!
     
     ///标题的Padding The leading and trailing distance for title
-    var titleLeadingAndTrailingPadding: Int? {
+    public var titleLeadingAndTrailingPadding: Int? {
         didSet {
             guard let padding = titleLeadingAndTrailingPadding else { return }
             setTitleLeadingAndTrailingPadding(padding: padding)
@@ -158,7 +158,7 @@ class AEAlertView: UIView {
     }
 
     ///内容的Padding The leading and trailing distance for message
-    var messageLeadingAndTrailingPadding: Int? {
+    public var messageLeadingAndTrailingPadding: Int? {
         didSet {
             guard let padding = messageLeadingAndTrailingPadding else { return }
             setMessageLeadingAndTrailingPadding(padding: padding)
@@ -166,7 +166,7 @@ class AEAlertView: UIView {
     }
 
     ///按钮距离下方Margin The bottom distance for buttons
-    var buttonBottomMargin: Int? {
+    public var buttonBottomMargin: Int? {
         didSet {
             guard let margin = buttonBottomMargin else { return }
             setButtonBottomMargin(margin: margin)
@@ -174,7 +174,7 @@ class AEAlertView: UIView {
     }
 
     ///标题距离上方Margin The title top distance
-    var titleTopMargin: Int? {
+    public var titleTopMargin: Int? {
         didSet {
             guard let margin = titleTopMargin else { return }
             setTitleTopMargin(margin: margin)
@@ -182,7 +182,7 @@ class AEAlertView: UIView {
     }
 
     ///内容距离按钮Margin Distance between message and buttons
-    var messageWithButtonMargin: Int? {
+    public var messageWithButtonMargin: Int? {
         didSet {
             guard let margin = messageWithButtonMargin else { return }
             setMessageWithButtonMargin(margin: margin)
@@ -190,7 +190,7 @@ class AEAlertView: UIView {
     }
 
     ///内容Alignment默认是center Default is center
-    var messageAlignment: NSTextAlignment? {
+    public var messageAlignment: NSTextAlignment? {
         didSet {
             guard let alignment = messageAlignment else { return }
             setMessageAlignment(alignment: alignment)
@@ -198,7 +198,7 @@ class AEAlertView: UIView {
     }
 
     ///自定义View距离上方Margin Content view top
-    var contentViewTopMargin: Int? {
+    public var contentViewTopMargin: Int? {
         didSet {
             guard let margin = contentViewBottomMargin else { return }
             setContentViewTopMargin(margin: margin)
@@ -206,7 +206,7 @@ class AEAlertView: UIView {
     }
 
     ///自定义View距离下方Margin Content view bottom
-    var contentViewBottomMargin: Int? {
+    public var contentViewBottomMargin: Int? {
         didSet {
             guard let margin = contentViewBottomMargin else { return }
             setContentViewBottomMargin(margin: margin)
@@ -214,19 +214,19 @@ class AEAlertView: UIView {
     }
     
 
-    convenience init() {
+    public convenience init() {
        self.init(alertViewStyle: .Default, title: nil, message: nil)
     }
     
-    override convenience init(frame: CGRect) {
+    public override convenience init(frame: CGRect) {
         self.init(alertViewStyle: .Default, title: nil, message: nil)
     }
     
-    convenience init(alertViewStyle: AEAlertViewStyle) {
+    public convenience init(alertViewStyle: AEAlertViewStyle) {
         self.init(alertViewStyle: alertViewStyle, title: nil, message: nil)
     }
 
-    init(alertViewStyle: AEAlertViewStyle, title: String?, message: String?) {
+    public init(alertViewStyle: AEAlertViewStyle, title: String?, message: String?) {
         let frame = CGRect(x: 0, y: 0,
                            width: UIScreen.main.bounds.size.width,
                            height: UIScreen.main.bounds.size.height)
@@ -280,7 +280,7 @@ class AEAlertView: UIView {
         addSubview(alertView!)
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -473,24 +473,24 @@ class AEAlertView: UIView {
     
 }
 
-class AEAlertAction: NSObject {
+public class AEAlertAction: NSObject {
     
-    init(title: String, style: AEAlertActionStyle, handler:@escaping (_ action: AEAlertAction)->()) {
+    public init(title: String, style: AEAlertActionStyle, handler:@escaping (_ action: AEAlertAction)->()) {
         self.title = title
         self.style = style
         self.handler = handler
     }
     
-    var title: String?
-    var style: AEAlertActionStyle?
-    var handler:((_ action: AEAlertAction)->())?
-    var enabled: Bool? {
+    public var title: String?
+    public var style: AEAlertActionStyle?
+    public var handler:((_ action: AEAlertAction)->())?
+    public var enabled: Bool? {
         didSet {
             setEnabled(enabled: enabled ?? true)
         }
     }
     
-    weak var actionButton: UIButton?
+    public weak var actionButton: UIButton?
     
     override init() {
         super.init()
