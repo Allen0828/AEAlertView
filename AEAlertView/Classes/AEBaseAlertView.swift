@@ -7,9 +7,6 @@
 //
 
 import UIKit
-import Foundation
-import ObjectiveC
-
 
 enum AEAlertViewButtonType {
     case Filled,

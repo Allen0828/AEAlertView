@@ -1,6 +1,0 @@
-framework module Pods_AEAlertViewDemo {
-  umbrella header "Pods-AEAlertViewDemo-umbrella.h"
-
-  export *
-  module * { export * }
-}
