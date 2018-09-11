@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "AEAlertView"
-  s.version      = "1.0.1"
+  s.version      = "1.0"
   s.summary      = "Support swift 4.0"
 
   # This description is used to generate tags and improve search results.
@@ -24,7 +24,7 @@ Pod::Spec.new do |s|
   #   * Try to keep it short, snappy and to the point.
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
-  s.description  = "Support swift 4.0  If you go to project swift version 4, you can pod >'1.0.1'"
+  s.description  = "Support swift 4.0  If you go to project swift version 4, you can pod >'1.1'"
 
   s.homepage     = "https://github.com/Allen0828/AEAlertView"
   # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
