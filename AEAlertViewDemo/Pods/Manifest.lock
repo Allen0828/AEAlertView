@@ -2,7 +2,7 @@ PODS:
   - AEAlertView (1.0)
 
 DEPENDENCIES:
-  - AEAlertView (~> 1.0)
+  - AEAlertView (= 1.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -11,6 +11,6 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   AEAlertView: 24a58e2a8b3e63f4cfc147267f576753f49ecd2d
 
-PODFILE CHECKSUM: a2bb86936fb2dedfcd87d3716ca51666c608e8f7
+PODFILE CHECKSUM: 881f80cd3c27bdac7b087ef84a856a7a51a72379
 
 COCOAPODS: 1.5.3
