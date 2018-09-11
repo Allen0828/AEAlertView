@@ -31,9 +31,13 @@ let cancel = AEAlertAction(title: "cancel", style: .Cancel) { (action) in
 view.addAction(action: cancel)
             
 let confirm = AEAlertAction(title: "confirm", style: .Default) { (action) in
+
   print("confirm 点击")
+  
 }
+
 view.addAction(action: confirm)
+
 
 
 view.show()
