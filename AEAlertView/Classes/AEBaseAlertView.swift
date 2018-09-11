@@ -146,14 +146,11 @@ class AEBaseAlertView: UIView {
         messageTextView.textAlignment = .center
         messageTextView.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.subheadline)
         
-//            messageTextView.setContentHuggingPriority(
-//                UILayoutPriority(rawValue: 0), for: .vertical)
-//            messageTextView.setContentCompressionResistancePriority(
-//                UILayoutPriority.defaultHigh, for: .vertical)
+            messageTextView.setContentHuggingPriority(
+                UILayoutPriority(rawValue: 0), for: .vertical)
+            messageTextView.setContentCompressionResistancePriority(
+                UILayoutPriority.defaultHigh, for: .vertical)
         
-        messageTextView.setContentHuggingPriority(0, for: .vertical)
-        messageTextView.setContentCompressionResistancePriority(
-            UILayoutPriorityDefaultHigh, for: .vertical)
         messageTextView.allowsEditingTextAttributes = false
         
         messageTextView.isScrollEnabled = false
@@ -165,11 +162,8 @@ class AEBaseAlertView: UIView {
         contentViewContainerView = UIView(frame: CGRect.zero)
         contentViewContainerView.translatesAutoresizingMaskIntoConstraints = false
         
-//            contentView?.setContentCompressionResistancePriority(
-//                UILayoutPriority.required, for: .vertical)
-            
-        contentView?.setContentCompressionResistancePriority(
-                UILayoutPriorityRequired, for: .vertical)
+            contentView?.setContentCompressionResistancePriority(
+                UILayoutPriority.required, for: .vertical)
         
         
         
@@ -177,16 +171,14 @@ class AEBaseAlertView: UIView {
         
         actionButtonContainerView = UIView(frame: CGRect.zero)
         actionButtonContainerView.translatesAutoresizingMaskIntoConstraints = false
-//            actionButtonContainerView.setContentCompressionResistancePriority(UILayoutPriority.required, for: .vertical)
- actionButtonContainerView.setContentCompressionResistancePriority(UILayoutPriorityRequired, for: .vertical)
-        
+            actionButtonContainerView.setContentCompressionResistancePriority(UILayoutPriority.required, for: .vertical)
+      
         alertBackgroundView.addSubview(actionButtonContainerView)
         
         actionButtonContainerView = UIView(frame: CGRect.zero)
         actionButtonContainerView.translatesAutoresizingMaskIntoConstraints = false
-//            actionButtonContainerView.setContentCompressionResistancePriority(UILayoutPriority.required, for: .vertical)
-    actionButtonContainerView.setContentCompressionResistancePriority(UILayoutPriorityRequired, for: .vertical)
-        
+            actionButtonContainerView.setContentCompressionResistancePriority(UILayoutPriority.required, for: .vertical)
+    
         alertBackgroundView.addSubview(actionButtonContainerView)
         
         
@@ -303,18 +295,13 @@ class AEBaseAlertView: UIView {
     }
     
     private func getTextHeigh(text:String,font:UIFont,width:CGFloat) -> CGFloat {
-//        let normalText = text as NSString
-//        let size = CGSize(width: width, height: 1000)
-        
-//            let dictionary = NSDictionary(object: font, forKey: NSAttributedStringKey.font as NSCopying)
-//            let stringSize = normalText.boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: dictionary as? [NSAttributedStringKey : Any], context: nil).size
-//
-//            return stringSize.height
-        let normalText: NSString = text as NSString
+        let normalText = text as NSString
         let size = CGSize(width: width, height: 1000)
-        let dic = NSDictionary(object: font, forKey: NSFontAttributeName as NSCopying)
-        let stringSize = normalText.boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: dic as? [String : AnyObject], context:nil).size
-        return stringSize.height
+        
+            let dictionary = NSDictionary(object: font, forKey: NSAttributedStringKey.font as NSCopying)
+            let stringSize = normalText.boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: dictionary as? [NSAttributedStringKey : Any], context: nil).size
+
+            return stringSize.height
     }
     
     ///Pass through touches outside the backgroundView for the presentation controller to handle dismissal
