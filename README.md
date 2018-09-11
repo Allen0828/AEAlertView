@@ -8,4 +8,7 @@ pod'AEAlertView','1.0'
 ![Image text](https://raw.githubusercontent.com/Allen0828/AEAlertView/master/img-folder/11.gif)
 
 
+代码调用方式 是仿系统的 如果你遇到的需求是 全局使用同样样式的弹窗 你可以封装一个Manger 来管理  代码底层使用VFL 你可以自己修改他的尺寸,
+
+Code calls are system-like if you encounter a requirement that the same style of pop-up windows be used globally you can encapsulate a Manger to manage the underlying code using VFL and you can modify its size yourself.
 
