@@ -12,7 +12,7 @@ pod'AEAlertView','1.0'
 
 Code calls are system-like if you encounter a requirement that the same style of pop-up windows be used globally you can encapsulate a Manger to manage the underlying code using VFL and you can modify its size yourself.
 
-,,, swift
+``` swift
 let view = AEAlertView(alertViewStyle: .Default)
 
 view.title = "Title"
@@ -41,4 +41,4 @@ view.addAction(action: confirm)
 
 
 view.show()
-,,,
+```
