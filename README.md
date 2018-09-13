@@ -16,29 +16,18 @@ Code calls are system-like if you encounter a requirement that the same style of
 let view = AEAlertView(alertViewStyle: .Default)
 
 view.title = "Title"
-
 view.message = "Message"
 
-
 let cancel = AEAlertAction(title: "cancel", style: .Cancel) { (action) in
-
   view.close()
-  
-  print("cancel 点击")
-  
+  print("cancel 点击") 
 }
-
 view.addAction(action: cancel)
             
 let confirm = AEAlertAction(title: "confirm", style: .Default) { (action) in
-
   print("confirm 点击")
-  
 }
-
 view.addAction(action: confirm)
-
-
 
 view.show()
 ```
