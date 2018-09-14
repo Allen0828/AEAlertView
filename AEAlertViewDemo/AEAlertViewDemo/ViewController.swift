@@ -67,6 +67,7 @@ class ViewController: UIViewController {
             view.buttonTitleColor = UIColor.white
             view.buttonLayerBorderColor = nil     //设置为nil 取消描边
             
+            
             let cancel = AEAlertAction(title: "cancel", style: .Cancel) { (action) in
                 view.close()
                 print("cancel 点击")
