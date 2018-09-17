@@ -31,3 +31,63 @@ view.addAction(action: confirm)
 
 view.show()
 ```
+
+
+``` swift
+let view = AEAlertView()
+view.title = "自定义"
+view.message = "自定义距离 颜色 样式 Custom distance color style"
+view.titleFont = UIFont.systemFont(ofSize: 20)
+view.titleColor = UIColor.blue
+view.messageFont = UIFont.systemFont(ofSize: 18)
+view.messageColor = UIColor.orange
+
+view.titleTopMargin = 6
+view.messageWithButtonMargin = 6
+
+view.cancelButtonColor = UIColor.orange
+view.cancelButtonTitleColor = UIColor.white
+view.buttonColor = UIColor.red
+view.buttonTitleColor = UIColor.white
+view.buttonLayerBorderColor = nil     //设置为nil 取消描边
+
+
+let cancel = AEAlertAction(title: "cancel", style: .Cancel) { (action) in
+    view.close()
+    print("cancel 点击")
+}
+view.addAction(action: cancel)
+
+let confirm = AEAlertAction(title: "confirm", style: .Default) { (action) in
+
+    print("confirm 点击")
+}
+view.addAction(action: confirm)
+
+view.show()
+```
+
+
+
+
+``` swift
+let view = AEAlertView()
+view.title = "Too much content"
+view.message = "内容太多时 设置messageHeight 可以让内容超出部分滚动 When messageHeight is too much content, the content can be rolled beyond the part."
+view.messageHeight = 100
+
+let cancel = AEAlertAction(title: "cancel", style: .Cancel) { (action) in
+    view.close()
+    print("cancel 点击")
+}
+view.addAction(action: cancel)
+
+let confirm = AEAlertAction(title: "confirm", style: .Default) { (action) in
+
+    print("confirm 点击")
+}
+view.addAction(action: confirm)
+
+view.show()
+```
+
