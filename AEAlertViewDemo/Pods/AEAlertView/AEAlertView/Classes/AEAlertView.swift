@@ -5,7 +5,6 @@
 //  Created by Allen on 2018/9/7.
 //  Copyright © 2018年 Allen. All rights reserved.
 
-
 import UIKit
 
 public enum AEAlertActionStyle {
@@ -42,7 +41,7 @@ open class AEAlertView: UIView {
             setTitle(title: title)
         }
     }
-
+    
     ///内容 The message displayed under the alert view's title
     open var message: String? {
         didSet {
@@ -62,63 +61,63 @@ open class AEAlertView: UIView {
     open func addAction(action: AEAlertAction) {
         actions?.append(action)
     }
-
+    
     ///alert背景色 The background color of the alert view
     open var alertViewBackgroundColor: UIColor? {
         didSet {
             setAlertViewBackgroundColor(color: alertViewBackgroundColor!)
         }
     }
-
+    
     ///Title字体 The font used to display the title in the alert view
     open var titleFont: UIFont! {
         didSet {
             setTitleFont(font: titleFont)
         }
     }
-
+    
     ///message字体 The font used to display the messsage in the alert view
     open var messageFont: UIFont! {
         didSet {
             setMessageFont(font: messageFont)
         }
     }
-
+    
     ///Title字体颜色 The color used to display the alert view's title
     open var titleColor: UIColor? {
         didSet {
             setTitleColor(color: titleColor)
         }
     }
-
+    
     ///message字体颜色 The color used to display the alert view's message
     open var messageColor: UIColor? {
         didSet {
             setMessageColor(color: messageColor)
         }
     }
-
+    
     ///确定的背景颜色 The background color for the alert view's buttons corresponsing to default style actions
     open var buttonColor: UIColor?
-
+    
     ///取消按钮的背景颜色 The background color for the alert view's buttons corresponsing to cancel style actions
     open var cancelButtonColor: UIColor?
-
+    
     ///警告按钮的背景颜色 The background color for the alert view's buttons corresponsing to destructive style actions
     open var destructiveButtonColor: UIColor?
-
+    
     ///按钮禁用时背景色 The background color for the alert view's buttons corresponsing to disabled actions
     open var disabledButtonColor: UIColor?
-
+    
     ///确定按钮标题的颜色 The color used to display the title for buttons corresponsing to default style actions
     open var buttonTitleColor: UIColor?
-
+    
     ///取消按钮标题的颜色 The color used to display the title for buttons corresponding to cancel style actions
     open var cancelButtonTitleColor: UIColor?
-
+    
     ///警告按钮标题的颜色 The color used to display the title for buttons corresponsing to destructive style actions
     open var destructiveButtonTitleColor: UIColor?
-
+    
     ///禁用状态按钮标题的颜色 The color used to display the title for buttons corresponsing to disabled actions
     open var disabledButtonTitleColor: UIColor?
     
@@ -130,7 +129,7 @@ open class AEAlertView: UIView {
     
     ///警告按钮的描边颜色 默认为空 destructive style actions  borderColor default is nil
     open var destructiveButtonLayerBorderColor: UIColor?
-
+    
     ///alertView圆角 The radius of the displayed alert view's corners
     open var alertViewCornerRadius: CGFloat?
     
@@ -156,7 +155,7 @@ open class AEAlertView: UIView {
             setTitleLeadingAndTrailingPadding(padding: padding)
         }
     }
-
+    
     ///内容的Padding The leading and trailing distance for message
     open var messageLeadingAndTrailingPadding: Int? {
         didSet {
@@ -164,7 +163,7 @@ open class AEAlertView: UIView {
             setMessageLeadingAndTrailingPadding(padding: padding)
         }
     }
-
+    
     ///按钮距离下方Margin The bottom distance for buttons
     open var buttonBottomMargin: Int? {
         didSet {
@@ -172,7 +171,7 @@ open class AEAlertView: UIView {
             setButtonBottomMargin(margin: margin)
         }
     }
-
+    
     ///标题距离上方Margin The title top distance
     open var titleTopMargin: Int? {
         didSet {
@@ -180,7 +179,7 @@ open class AEAlertView: UIView {
             setTitleTopMargin(margin: margin)
         }
     }
-
+    
     ///内容距离按钮Margin Distance between message and buttons
     open var messageWithButtonMargin: Int? {
         didSet {
@@ -188,7 +187,7 @@ open class AEAlertView: UIView {
             setMessageWithButtonMargin(margin: margin)
         }
     }
-
+    
     ///内容Alignment默认是center Default is center
     open var messageAlignment: NSTextAlignment? {
         didSet {
@@ -196,7 +195,7 @@ open class AEAlertView: UIView {
             setMessageAlignment(alignment: alignment)
         }
     }
-
+    
     ///自定义View距离上方Margin Content view top
     open var contentViewTopMargin: Int? {
         didSet {
@@ -204,7 +203,7 @@ open class AEAlertView: UIView {
             setContentViewTopMargin(margin: margin)
         }
     }
-
+    
     ///自定义View距离下方Margin Content view bottom
     open var contentViewBottomMargin: Int? {
         didSet {
@@ -213,9 +212,9 @@ open class AEAlertView: UIView {
         }
     }
     
-
+    
     public convenience init() {
-       self.init(alertViewStyle: .Default, title: nil, message: nil)
+        self.init(alertViewStyle: .Default, title: nil, message: nil)
     }
     
     public override convenience init(frame: CGRect) {
@@ -225,7 +224,7 @@ open class AEAlertView: UIView {
     public convenience init(alertViewStyle: AEAlertViewStyle) {
         self.init(alertViewStyle: alertViewStyle, title: nil, message: nil)
     }
-
+    
     public init(alertViewStyle: AEAlertViewStyle, title: String?, message: String?) {
         let frame = CGRect(x: 0, y: 0,
                            width: UIScreen.main.bounds.size.width,
@@ -259,7 +258,7 @@ open class AEAlertView: UIView {
             destructiveButtonColor = UIColor.white
             destructiveButtonTitleColor = UIColor.blue
         }
-
+        
         alertView = AEBaseAlertView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height))
         alertView?.alertBackgroundView.backgroundColor = UIColor.white
         
@@ -267,7 +266,7 @@ open class AEAlertView: UIView {
         alertView?.messageTextView.text = message
         alertView?.titleLabel.textColor = UIColor.darkGray
         alertView?.messageTextView.textColor = UIColor.lightGray
-
+        
         titleFont = UIFont.systemFont(ofSize: 16)
         titleColor = UIColor.darkGray
         
@@ -284,13 +283,13 @@ open class AEAlertView: UIView {
     
     private var alertView: AEBaseAlertView?
     private var alertViewStyle: AEAlertViewStyle?
-
+    
     
     private func showAlert() {
         
         createActionButtons()
         UIApplication.shared.delegate?.window??.addSubview(self)
-
+        
         alertView?.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
         alertView?.alpha = 0
         
@@ -321,9 +320,9 @@ open class AEAlertView: UIView {
     }
     
     private func createActionButtons() {
-
+        
         let buttons = NSMutableArray()
-
+        
         guard let actionsCount = actions?.count else {
             return
         }
@@ -331,7 +330,7 @@ open class AEAlertView: UIView {
             
             let action = actions![i]
             let button = AEAlertViewButton(type: .custom)
-
+            
             button.contentEdgeInsets = UIEdgeInsetsMake(-15, -15, -15, -15)
             button.tag = i
             button.addTarget(self, action: #selector(actionButtonPressed), for: .touchUpInside)
@@ -342,7 +341,7 @@ open class AEAlertView: UIView {
             button.setTitle(action.title, for: .normal)
             button.setTitleColor(disabledButtonTitleColor, for: .disabled)
             button.setBackgroundColor(color: disabledButtonColor ?? UIColor.darkGray, state: .disabled)
-
+            
             if action.style == AEAlertActionStyle.Cancel {
                 
                 button.setTitleColor(cancelButtonTitleColor, for: .normal)
@@ -350,7 +349,7 @@ open class AEAlertView: UIView {
                 button.setBackgroundColor(color: cancelButtonColor!, state: .normal)
                 button.setBackgroundColor(color: cancelButtonColor!, state: .highlighted)
                 button.titleLabel?.font = cancelButtonTitleFont
-            
+                
                 if cancelButtonLayerBorderColor != nil {
                     button.layer.borderWidth = 1.0
                     button.layer.borderColor = cancelButtonLayerBorderColor?.cgColor
@@ -375,7 +374,7 @@ open class AEAlertView: UIView {
                     button.layer.borderWidth = 0.0
                 }
             } else {
-
+                
                 button.setTitleColor(buttonTitleColor, for: .normal)
                 button.setTitleColor(buttonTitleColor, for: .highlighted)
                 button.setBackgroundColor(color: buttonColor!, state: .normal)
@@ -388,7 +387,7 @@ open class AEAlertView: UIView {
                     button.layer.borderWidth = 0.0
                 }
             }
-
+            
             buttons.add(button)
             action.actionButton = button
         }
@@ -397,7 +396,7 @@ open class AEAlertView: UIView {
     
     
     @objc private func actionButtonPressed(button: AEAlertViewButton) {
-
+        
         let action = self.actions![button.tag]
         if action.handler != nil {
             action.handler!(action)
@@ -427,7 +426,7 @@ open class AEAlertView: UIView {
     private func setMessageColor(color: UIColor?) {
         alertView?.messageTextView.textColor = color
     }
-
+    
     
     private func content(view: UIView, width: NSInteger, height: NSInteger) {
         alertView?.setContentView(contentView: view, width: width, height: height)
@@ -436,35 +435,35 @@ open class AEAlertView: UIView {
     private func setTitleLeadingAndTrailingPadding(padding: Int) {
         alertView?.titleLeadingAndTrailingPadding = NSInteger(padding)
     }
-
+    
     private func setMessageLeadingAndTrailingPadding(padding: Int) {
         alertView?.messageLeadingAndTrailingPadding = NSInteger(padding)
     }
-
+    
     private func setButtonBottomMargin(margin: Int) {
         alertView?.buttonBottomMargin = NSInteger(margin)
     }
-
+    
     private func setTitleTopMargin(margin: Int) {
         alertView?.titleTopMargin = NSInteger(margin)
     }
-
+    
     private func setMessageWithButtonMargin(margin: Int) {
         alertView?.messageWithButtonMargin = NSInteger(margin)
     }
-
+    
     private func setMessageAlignment(alignment: NSTextAlignment) {
         alertView?.messageAlignment = alignment
     }
-
+    
     private func setMessageHeight(height: Int) {
         alertView?.messageHeight = NSInteger(height)
     }
-
+    
     private func setContentViewTopMargin(margin: Int) {
         alertView?.contentViewTopMargin = NSInteger(margin)
     }
-
+    
     private func setContentViewBottomMargin(margin: Int) {
         alertView?.contentViewBottomMargin = NSInteger(margin)
     }
@@ -472,7 +471,7 @@ open class AEAlertView: UIView {
     private func setAlertViewBackgroundColor(color: UIColor) {
         alertView?.alertBackgroundView.backgroundColor = color
     }
-
+    
     
 }
 
@@ -509,18 +508,6 @@ public class AEAlertAction: NSObject {
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
