@@ -59,7 +59,7 @@ class UserView: AEAlertView {
 }
 ```
 
-
+如果是局部调用的话 只要简单实现就可以
 
 ``` swift
 let view = AEAlertView(alertViewStyle: .Default)
