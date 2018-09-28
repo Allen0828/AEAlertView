@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import AEAlertView
+//import AEAlertView
 
 class ViewController: UIViewController {
 
@@ -31,7 +31,7 @@ class ViewController: UIViewController {
     }
 
     @objc private func btnClick(btn: UIButton) {
-        let view = AEAlertView(alertViewStyle: .Default)
+        let view = UserView(alertViewStyle: AEAlertViewStyle.Default, title: "1111", message: "222")
         
         switch btn.tag {
         case 0:
@@ -65,7 +65,7 @@ class ViewController: UIViewController {
             view.cancelButtonTitleColor = UIColor.white
             view.buttonColor = UIColor.red
             view.buttonTitleColor = UIColor.white
-            view.buttonLayerBorderColor = nil     //设置为nil 取消描边
+            
             
             
             let cancel = AEAlertAction(title: "cancel", style: .Cancel) { (action) in
