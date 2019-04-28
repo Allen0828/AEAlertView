@@ -272,6 +272,8 @@ open class AEAlertView: UIView {
         
         messageFont = UIFont.systemFont(ofSize: 15)
         messageColor = UIColor.lightGray
+        alertView?.messageHeight = 40
+        alertView?.titleTopMargin = 16
         
         addSubview(alertView!)
     }
@@ -331,11 +333,11 @@ open class AEAlertView: UIView {
             let action = actions![i]
             let button = AEAlertViewButton(type: .custom)
             
-            button.contentEdgeInsets = UIEdgeInsetsMake(-15, -15, -15, -15)
+            button.contentEdgeInsets = UIEdgeInsets(top: -15, left: -15, bottom: -15, right: -15)
             button.tag = i
             button.addTarget(self, action: #selector(actionButtonPressed), for: .touchUpInside)
             button.isEnabled = action.enabled ?? true
-            button.cornerRadius = buttonCornerRadius
+            button.cornerRadius_new = buttonCornerRadius
             button.type = AEAlertViewButtonType.Bordered
             button.translatesAutoresizingMaskIntoConstraints = false
             button.setTitle(action.title, for: .normal)
