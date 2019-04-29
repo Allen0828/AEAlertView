@@ -4,6 +4,7 @@ If your swift version is less than 4, you can   如果你的swift版本是4.0以
 
 pod'AEAlertView','1.0'
 
+以支持 swift 5.0 如果有什么问题 请联系我 我会及时回复
 
 ![Image text](https://raw.githubusercontent.com/Allen0828/AEAlertView/master/img-folder/11.gif)
 
