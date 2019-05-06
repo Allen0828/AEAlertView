@@ -7,7 +7,7 @@
 //
 
 import UIKit
-//import AEAlertView
+import AEAlertView
 
 ///可以继承自AEAlertView 来保存全局样式统一性
 class UserView: AEAlertView {

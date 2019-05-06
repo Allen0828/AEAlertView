@@ -7,26 +7,26 @@
 //
 
 import UIKit
-//import AEAlertView
+import AEAlertView
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        var btnY = 80.0
-//        
-//        for i in 0..<6 {
-//            let btn = UIButton()
-//            btn.setTitle("Style \(i)", for: .normal)
-//            btn.backgroundColor = UIColor.blue
-//            btn.tag = i
-//            btn.frame = CGRect(x: 100, y: btnY, width: 100, height: 40)
-//            btn.addTarget(self, action: #selector(btnClick), for: .touchUpInside)
-//            
-//            view.addSubview(btn)
-//            btnY += 45
-//        }
+        var btnY = 80.0
+        
+        for i in 0..<6 {
+            let btn = UIButton()
+            btn.setTitle("Style \(i)", for: .normal)
+            btn.backgroundColor = UIColor.blue
+            btn.tag = i
+            btn.frame = CGRect(x: 100, y: btnY, width: 100, height: 40)
+            btn.addTarget(self, action: #selector(btnClick), for: .touchUpInside)
+            
+            view.addSubview(btn)
+            btnY += 45
+        }
         
     }
     
