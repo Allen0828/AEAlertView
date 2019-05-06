@@ -332,7 +332,7 @@ open class AEAlertView: UIView {
             let action = actions![i]
             let button = AEAlertViewButton(type: .custom)
             
-            button.contentEdgeInsets = UIEdgeInsetsMake(-15, -15, -15, -15)
+            button.contentEdgeInsets = UIEdgeInsets(top: -15, left: -15, bottom: -15, right: -15)
             button.tag = i
             button.addTarget(self, action: #selector(actionButtonPressed), for: .touchUpInside)
             button.isEnabled = action.enabled ?? true
