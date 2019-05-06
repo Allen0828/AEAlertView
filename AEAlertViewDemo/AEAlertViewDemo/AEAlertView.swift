@@ -273,6 +273,7 @@ open class AEAlertView: UIView {
         messageFont = UIFont.systemFont(ofSize: 15)
         messageColor = UIColor.lightGray
         
+        
         addSubview(alertView!)
     }
     

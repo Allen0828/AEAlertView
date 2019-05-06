@@ -7,27 +7,42 @@
 //
 
 import UIKit
-import AEAlertView
+//import AEAlertView
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var btnY = 80.0
+//        var btnY = 80.0
+//        
+//        for i in 0..<6 {
+//            let btn = UIButton()
+//            btn.setTitle("Style \(i)", for: .normal)
+//            btn.backgroundColor = UIColor.blue
+//            btn.tag = i
+//            btn.frame = CGRect(x: 100, y: btnY, width: 100, height: 40)
+//            btn.addTarget(self, action: #selector(btnClick), for: .touchUpInside)
+//            
+//            view.addSubview(btn)
+//            btnY += 45
+//        }
         
-        for i in 0..<6 {
-            let btn = UIButton()
-            btn.setTitle("Style \(i)", for: .normal)
-            btn.backgroundColor = UIColor.blue
-            btn.tag = i
-            btn.frame = CGRect(x: 100, y: btnY, width: 100, height: 40)
-            btn.addTarget(self, action: #selector(btnClick), for: .touchUpInside)
-            
-            view.addSubview(btn)
-            btnY += 45
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        let view = AEAlertView(alertViewStyle: .Default)
+        view.title = "title"
+        view.message = "message, message, message, message,-----11111message, message, message"
+//        view.messageHeight = 57
+        
+        let cancel = AEAlertAction(title: "cancel", style: .Cancel) { (action) in
+            view.close()
         }
         
+        view.addAction(action: cancel)
+        view.show()
     }
 
     @objc private func btnClick(btn: UIButton) {

@@ -285,25 +285,6 @@ class AEBaseAlertView: UIView {
                 "V:|-35@750-[titleLabel]-5@750-[messageTextView]-25@750-[contentViewContainerView]-bottom-[actionButtonContainerView]-(13@750)-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: ["titleLabel":titleLabel,"messageTextView":messageTextView,"contentViewContainerView":contentViewContainerView,"actionButtonContainerView":actionButtonContainerView]))
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        if messageHeight ?? 0 == 0 {
-            setMessageHeight(messageHeight: NSInteger(getTextHeigh(text: messageTextView.text, font: messageTextView.font ?? UIFont.preferredFont(forTextStyle: UIFontTextStyle.subheadline), width: alertBackgroundView.frame.width - 40)), isScroll: false)
-        }
-        
-    }
-    
-    private func getTextHeigh(text:String,font:UIFont,width:CGFloat) -> CGFloat {
-        let normalText = text as NSString
-        let size = CGSize(width: width, height: 1000)
-        
-            let dictionary = NSDictionary(object: font, forKey: NSAttributedStringKey.font as NSCopying)
-            let stringSize = normalText.boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: dictionary as? [NSAttributedStringKey : Any], context: nil).size
-
-            return stringSize.height
-    }
-    
     ///Pass through touches outside the backgroundView for the presentation controller to handle dismissal
     override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
         for view in subviews {
@@ -468,6 +449,7 @@ class AEAlertTextView: UITextView {
     }
     private func intrinsicContentCGSize() -> CGSize {
         if self.text.count > 0 {
+            
             return self.contentSize
         } else {
             return CGSize.zero

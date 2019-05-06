@@ -16,15 +16,15 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "AEAlertView"
-  s.version      = "1.6"
-  s.summary      = "Support swift 4.0"
+  s.version      = "1.7"
+  s.summary      = "Support swift 5.0"
 
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
   #   * Try to keep it short, snappy and to the point.
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
-  s.description  = "Support swift 4.0  If you go to project swift version 4, you can pod >'1.1'"
+  s.description  = "Support swift 4.0  If you go to project swift version 4, you can pod >'1.1' swift5.0 > '1.7'"
 
   s.homepage     = "https://github.com/Allen0828/AEAlertView"
   # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
@@ -129,7 +129,7 @@ Pod::Spec.new do |s|
   #  you can include multiple dependencies to ensure it works.
 
   s.requires_arc = true
-  s.swift_version = "4.0"
+  s.swift_version = "5.0"
 
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
   # s.dependency "JSONKit", "~> 1.4"

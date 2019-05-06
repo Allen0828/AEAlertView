@@ -14,7 +14,7 @@ enum AEAlertViewButtonType {
 }
 
 extension UIButton {
-    func setBackgroundColor(color: UIColor, state: UIControl.State) {
+    func setBackgroundColor(color: UIColor, state: UIControlState) {
         setBackgroundImage(imageWithColor(color: color), for: state)
     }
     
@@ -134,7 +134,7 @@ class AEBaseAlertView: UIView {
         titleLabel = UILabel(frame: CGRect.zero)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.numberOfLines = 2
-        titleLabel.font = UIFont.preferredFont(forTextStyle: UIFont.TextStyle.headline)
+        titleLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)
         titleLabel.textAlignment = .center
         titleLabel.textColor = UIColor.white
         titleLabel.text = "Title Label"
@@ -144,7 +144,7 @@ class AEBaseAlertView: UIView {
         messageTextView.translatesAutoresizingMaskIntoConstraints = false
         messageTextView.backgroundColor = UIColor.clear
         messageTextView.textAlignment = .center
-        messageTextView.font = UIFont.preferredFont(forTextStyle: UIFont.TextStyle.subheadline)
+        messageTextView.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.subheadline)
         
             messageTextView.setContentHuggingPriority(
                 UILayoutPriority(rawValue: 0), for: .vertical)
@@ -199,22 +199,22 @@ class AEBaseAlertView: UIView {
         
         
         // 约束750,便于后续修改约束
-        let titleLabelCons = NSLayoutConstraint.constraints(withVisualFormat: "H:|-51@750-[titleLabel]-51@750-|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics:nil, views: ["titleLabel":titleLabel as Any])
+        let titleLabelCons = NSLayoutConstraint.constraints(withVisualFormat: "H:|-51@750-[titleLabel]-51@750-|", options: NSLayoutFormatOptions(rawValue: 0), metrics:nil, views: ["titleLabel":titleLabel])
         alertBackgroundView.addConstraints(titleLabelCons)
         
-        let messageCons = NSLayoutConstraint.constraints(withVisualFormat: "H:|-24@750-[messageTextView]-24@750-|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics:nil, views: ["messageTextView":messageTextView as Any])
+        let messageCons = NSLayoutConstraint.constraints(withVisualFormat: "H:|-24@750-[messageTextView]-24@750-|", options: NSLayoutFormatOptions(rawValue: 0), metrics:nil, views: ["messageTextView":messageTextView])
         alertBackgroundView.addConstraints(messageCons)
         
         
         alertBackgroundView.addConstraints(
             NSLayoutConstraint.constraints(withVisualFormat:
-                "H:|[contentViewContainerView]|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: ["contentViewContainerView":contentViewContainerView as Any]))
+                "H:|[contentViewContainerView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["contentViewContainerView":contentViewContainerView]))
         alertBackgroundView.addConstraints(
             NSLayoutConstraint.constraints(withVisualFormat:
-                "H:|[actionButtonContainerView]|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: ["actionButtonContainerView":actionButtonContainerView as Any]))
+                "H:|[actionButtonContainerView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["actionButtonContainerView":actionButtonContainerView]))
         alertBackgroundView.addConstraints(
             NSLayoutConstraint.constraints(withVisualFormat:
-                "V:|-16@750-[titleLabel]-12@750-[messageTextView]-25@750-[contentViewContainerView]-25@750-[actionButtonContainerView]-(13@750)-|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: ["titleLabel":titleLabel as Any,"messageTextView":messageTextView as Any,"contentViewContainerView":contentViewContainerView as Any,"actionButtonContainerView":actionButtonContainerView as Any]))
+                "V:|-35@750-[titleLabel]-5@750-[messageTextView]-25@750-[contentViewContainerView]-25@750-[actionButtonContainerView]-(13@750)-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["titleLabel":titleLabel,"messageTextView":messageTextView,"contentViewContainerView":contentViewContainerView,"actionButtonContainerView":actionButtonContainerView]))
     }
     
     private var alertBackgroundWidthConstraint: NSLayoutConstraint!
@@ -226,35 +226,35 @@ class AEBaseAlertView: UIView {
         let metrics = ["padding": NSNumber(integerLiteral: Padding)]
         alertBackgroundView.addConstraints(
             NSLayoutConstraint.constraints(withVisualFormat:
-                "H:|-padding-[titleLabel]-padding-|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: metrics, views: ["titleLabel":titleLabel as Any]))
+                "H:|-padding-[titleLabel]-padding-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: ["titleLabel":titleLabel]))
     }
     
     private func setMessageLeadingAndTrailingPadding(Padding: NSInteger) {
         let metrics = ["padding": NSNumber(integerLiteral: Padding)]
         alertBackgroundView.addConstraints(
             NSLayoutConstraint.constraints(withVisualFormat:
-                "H:|-padding-[messageTextView]-padding-|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: metrics, views: ["messageTextView":messageTextView as Any]))
+                "H:|-padding-[messageTextView]-padding-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: ["messageTextView":messageTextView]))
     }
     
     private func setButtonBottomMargin(Margin: NSInteger) {
         let metrics = ["margin": NSNumber(integerLiteral: Margin)]
         alertBackgroundView.addConstraints(
             NSLayoutConstraint.constraints(withVisualFormat:
-                "V:|-35@750-[titleLabel]-5@750-[messageTextView]-25@750-[contentViewContainerView]-25@750-[actionButtonContainerView]-margin-|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: metrics, views: ["titleLabel":titleLabel as Any, "messageTextView":messageTextView as Any, "contentViewContainerView":contentViewContainerView as Any, "actionButtonContainerView":actionButtonContainerView as Any]))
+                "V:|-35@750-[titleLabel]-5@750-[messageTextView]-25@750-[contentViewContainerView]-25@750-[actionButtonContainerView]-margin-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: ["titleLabel":titleLabel,"messageTextView":messageTextView,"contentViewContainerView":contentViewContainerView,"actionButtonContainerView":actionButtonContainerView]))
     }
     
     private func setTitleTopMargin(Margin: NSInteger) {
         let metrics = ["margin": NSNumber(integerLiteral: Margin)]
         alertBackgroundView.addConstraints(
             NSLayoutConstraint.constraints(withVisualFormat:
-                "V:|-margin-[titleLabel]-5@750-[messageTextView]-25@750-[contentViewContainerView]-25@750-[actionButtonContainerView]-(13@750)-|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: metrics, views: ["titleLabel":titleLabel as Any, "messageTextView":messageTextView as Any, "contentViewContainerView":contentViewContainerView as Any, "actionButtonContainerView":actionButtonContainerView as Any]))
+                "V:|-margin-[titleLabel]-5@750-[messageTextView]-25@750-[contentViewContainerView]-25@750-[actionButtonContainerView]-(13@750)-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: ["titleLabel":titleLabel,"messageTextView":messageTextView,"contentViewContainerView":contentViewContainerView,"actionButtonContainerView":actionButtonContainerView]))
     }
     
     private func setMessageWithButtonMargin(Margin: NSInteger) {
         let metrics = ["margin": NSNumber(integerLiteral: Margin)]
         alertBackgroundView.addConstraints(
             NSLayoutConstraint.constraints(withVisualFormat:
-                "V:|-35@750-[titleLabel]-5@750-[messageTextView]-25@750-[contentViewContainerView]-margin-[actionButtonContainerView]-(13@750)-|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: metrics, views: ["titleLabel":titleLabel as Any, "messageTextView":messageTextView as Any, "contentViewContainerView":contentViewContainerView as Any, "actionButtonContainerView":actionButtonContainerView as Any]))
+                "V:|-35@750-[titleLabel]-5@750-[messageTextView]-25@750-[contentViewContainerView]-margin-[actionButtonContainerView]-(13@750)-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: ["titleLabel":titleLabel,"messageTextView":messageTextView,"contentViewContainerView":contentViewContainerView,"actionButtonContainerView":actionButtonContainerView]))
     }
     
     private func setMessageAlignment(Alignment: NSTextAlignment) {
@@ -268,40 +268,21 @@ class AEBaseAlertView: UIView {
         let metrics = ["height": NSNumber(integerLiteral: messageHeight)]
         alertBackgroundView.addConstraints(
             NSLayoutConstraint.constraints(withVisualFormat:
-                "V:|-35@750-[titleLabel]-5@750-[messageTextView(height)]-25@750-[contentViewContainerView]-25@750-[actionButtonContainerView]-(13@750)-|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: metrics, views: ["titleLabel":titleLabel as Any, "messageTextView":messageTextView as Any, "contentViewContainerView":contentViewContainerView as Any, "actionButtonContainerView":actionButtonContainerView as Any]))
+                "V:|-35@750-[titleLabel]-5@750-[messageTextView(height)]-25@750-[contentViewContainerView]-25@750-[actionButtonContainerView]-(13@750)-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: ["titleLabel":titleLabel,"messageTextView":messageTextView,"contentViewContainerView":contentViewContainerView,"actionButtonContainerView":actionButtonContainerView]))
     }
     
     private func setContentViewTopMargin(Margin: NSInteger) {
         let metrics = ["top": NSNumber(integerLiteral: Margin)]
         alertBackgroundView.addConstraints(
             NSLayoutConstraint.constraints(withVisualFormat:
-                "V:|-35@750-[titleLabel]-5@750-[messageTextView]-top-[contentViewContainerView]-25@750-[actionButtonContainerView]-(13@750)-|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: metrics, views: ["titleLabel":titleLabel as Any, "messageTextView":messageTextView as Any, "contentViewContainerView":contentViewContainerView as Any, "actionButtonContainerView":actionButtonContainerView as Any]))
+                "V:|-35@750-[titleLabel]-5@750-[messageTextView]-top-[contentViewContainerView]-25@750-[actionButtonContainerView]-(13@750)-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: ["titleLabel":titleLabel,"messageTextView":messageTextView,"contentViewContainerView":contentViewContainerView,"actionButtonContainerView":actionButtonContainerView]))
     }
     
     private func setContentViewBottomMargin(Margin: NSInteger) {
         let metrics = ["bottom": NSNumber(integerLiteral: Margin)]
         alertBackgroundView.addConstraints(
             NSLayoutConstraint.constraints(withVisualFormat:
-                "V:|-35@750-[titleLabel]-5@750-[messageTextView]-25@750-[contentViewContainerView]-bottom-[actionButtonContainerView]-(13@750)-|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: metrics, views: ["titleLabel":titleLabel as Any, "messageTextView":messageTextView as Any, "contentViewContainerView":contentViewContainerView as Any, "actionButtonContainerView":actionButtonContainerView as Any]))
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        if messageHeight ?? 0 == 0 {
-            setMessageHeight(messageHeight: NSInteger(getTextHeigh(text: messageTextView.text, font: messageTextView.font ?? UIFont.preferredFont(forTextStyle: UIFont.TextStyle.subheadline), width: alertBackgroundView.frame.width - 40)), isScroll: false)
-        }
-        
-    }
-    
-    private func getTextHeigh(text:String,font:UIFont,width:CGFloat) -> CGFloat {
-        let normalText = text as NSString
-        let size = CGSize(width: width, height: 1000)
-        
-        let dictionary = NSDictionary(object: font, forKey: NSAttributedString.Key.font as NSCopying)
-        let stringSize = normalText.boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: dictionary as? [NSAttributedString.Key : Any], context: nil).size
-
-            return stringSize.height
+                "V:|-35@750-[titleLabel]-5@750-[messageTextView]-25@750-[contentViewContainerView]-bottom-[actionButtonContainerView]-(13@750)-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: ["titleLabel":titleLabel,"messageTextView":messageTextView,"contentViewContainerView":contentViewContainerView,"actionButtonContainerView":actionButtonContainerView]))
     }
     
     ///Pass through touches outside the backgroundView for the presentation controller to handle dismissal
@@ -331,11 +312,11 @@ class AEBaseAlertView: UIView {
         
         contentViewContainerView.addConstraints(
             NSLayoutConstraint.constraints(withVisualFormat:
-                "H:[contentView(width)]", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: metrics, views: ["contentView":contentView!]))
+                "H:[contentView(width)]", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: ["contentView":contentView!]))
         
         contentViewContainerView.addConstraints(
             NSLayoutConstraint.constraints(withVisualFormat:
-                "V:|-2-[contentView(height)]-2-|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: metrics, views: ["contentView":contentView!]))
+                "V:|-2-[contentView(height)]-2-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: ["contentView":contentView!]))
         
         contentViewContainerView.addConstraint(NSLayoutConstraint(item: contentView!, attribute: .centerX, relatedBy: .equal, toItem: contentViewContainerView, attribute: .centerX, multiplier: 1.0, constant: 0.0))
         
@@ -368,15 +349,15 @@ class AEBaseAlertView: UIView {
             /// 默认间距是15
             actionButtonContainerView.addConstraints(
                 NSLayoutConstraint.constraints(withVisualFormat:
-                    "H:|-15-[firstButton]-[lastButton]-15-|", options: NSLayoutConstraint.FormatOptions.alignAllCenterY, metrics: nil, views: ["firstButton":firstButton,"lastButton":lastButton]))
+                    "H:|-15-[firstButton]-[lastButton]-15-|", options: NSLayoutFormatOptions.alignAllCenterY, metrics: nil, views: ["firstButton":firstButton,"lastButton":lastButton]))
             
             actionButtonContainerView.addConstraints(
                 NSLayoutConstraint.constraints(withVisualFormat:
-                    "V:|-[firstButton(40)]|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: ["contentViewContainerView":contentViewContainerView as Any,"firstButton":firstButton]))
+                    "V:|-[firstButton(40)]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["contentViewContainerView":contentViewContainerView,"firstButton":firstButton]))
             
             actionButtonContainerView.addConstraints(
                 NSLayoutConstraint.constraints(withVisualFormat:
-                    "V:[lastButton(40)]", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: ["lastButton":lastButton]))
+                    "V:[lastButton(40)]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["lastButton":lastButton]))
             
         }else if buttons.count == 1 {
             //只有一个按钮,按钮的大小要定制
@@ -404,11 +385,11 @@ class AEBaseAlertView: UIView {
             
             actionButtonContainerView.addConstraints(
                 NSLayoutConstraint.constraints(withVisualFormat:
-                    "H:|-51-[theButton]-51-|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: ["theButton":theButton]))
+                    "H:|-51-[theButton]-51-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["theButton":theButton]))
             
             actionButtonContainerView.addConstraints(
                 NSLayoutConstraint.constraints(withVisualFormat:
-                    "V:|-[theButton(40)]", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: ["contentViewContainerView":contentViewContainerView as Any, "theButton":theButton]))
+                    "V:|-[theButton(40)]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["contentViewContainerView":contentViewContainerView, "theButton":theButton]))
             
         }else {
             for i in 0..<buttons.count {
@@ -418,28 +399,28 @@ class AEBaseAlertView: UIView {
                 
                 actionButtonContainerView.addConstraints(
                     NSLayoutConstraint.constraints(withVisualFormat:
-                        "H:|-51-[actionButton]-51-|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: ["actionButton":actionButton]))
+                        "H:|-51-[actionButton]-51-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["actionButton":actionButton]))
                 
                 actionButtonContainerView.addConstraints(
                     NSLayoutConstraint.constraints(withVisualFormat:
-                        "V:[actionButton(40)]", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: ["actionButton":actionButton]))
+                        "V:[actionButton(40)]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["actionButton":actionButton]))
                 
                 
                 if i == 0 {
                     actionButtonContainerView.addConstraints(
                         NSLayoutConstraint.constraints(withVisualFormat:
-                            "V:|-[actionButton]", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: ["contentViewContainerView":contentViewContainerView as Any, "actionButton":actionButton]))
+                            "V:|-[actionButton]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["contentViewContainerView":contentViewContainerView, "actionButton":actionButton]))
                 }else {
                     let previousButton = buttons[i - 1]
                     actionButtonContainerView.addConstraints(
                         NSLayoutConstraint.constraints(withVisualFormat:
-                            "V:[previousButton]-[actionButton]", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: ["previousButton":previousButton, "actionButton":actionButton]))
+                            "V:[previousButton]-[actionButton]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["previousButton":previousButton, "actionButton":actionButton]))
                 }
                 
                 if i == buttons.count - 1 {
                     actionButtonContainerView.addConstraints(
                         NSLayoutConstraint.constraints(withVisualFormat:
-                            "V:[actionButton]|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: ["actionButton":actionButton]))
+                            "V:[actionButton]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["actionButton":actionButton]))
                 }
                 
             }
@@ -468,6 +449,7 @@ class AEAlertTextView: UITextView {
     }
     private func intrinsicContentCGSize() -> CGSize {
         if self.text.count > 0 {
+            
             return self.contentSize
         } else {
             return CGSize.zero
@@ -480,9 +462,9 @@ class AEAlertTextView: UITextView {
 class AEAlertViewButton: UIButton {
     
     var type: AEAlertViewButtonType?
-    var cornerRadius_new: CGFloat? {
+    var cornerRadius: CGFloat? {
         didSet {
-            setCornerRadius(cornerRadius: cornerRadius_new ?? 0)
+            setCornerRadius(cornerRadius: cornerRadius ?? 0)
         }
     }
     
@@ -499,7 +481,7 @@ class AEAlertViewButton: UIButton {
         layer.rasterizationScale = UIScreen.main.scale
         layer.shouldRasterize = true
         layer.borderWidth = 0.0
-        cornerRadius_new = 4.0
+        cornerRadius = 4.0
         clipsToBounds = true
         setTitleColor(UIColor.white, for: .normal)
         setTitleColor(UIColor.white, for: .highlighted)
