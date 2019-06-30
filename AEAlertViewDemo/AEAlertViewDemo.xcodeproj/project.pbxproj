@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,9 +14,6 @@
 		9F1CEA802146BA60001280FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F1CEA7F2146BA60001280FE /* Assets.xcassets */; };
 		9F1CEA832146BA60001280FE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F1CEA812146BA60001280FE /* LaunchScreen.storyboard */; };
 		9F781DBF215E253B00C2228F /* AlertViewManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F781DBE215E253B00C2228F /* AlertViewManger.swift */; };
-		9F8A937A22C8890400A3B91B /* AEAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8A937722C8890400A3B91B /* AEAlertView.swift */; };
-		9F8A937B22C8890400A3B91B /* AEBaseAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8A937822C8890400A3B91B /* AEBaseAlertView.swift */; };
-		9F8A937C22C8890400A3B91B /* AEUIAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8A937922C8890400A3B91B /* AEUIAlertView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,9 +27,6 @@
 		9F1CEA822146BA60001280FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9F1CEA842146BA60001280FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9F781DBE215E253B00C2228F /* AlertViewManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewManger.swift; sourceTree = "<group>"; };
-		9F8A937722C8890400A3B91B /* AEAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AEAlertView.swift; sourceTree = "<group>"; };
-		9F8A937822C8890400A3B91B /* AEBaseAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AEBaseAlertView.swift; sourceTree = "<group>"; };
-		9F8A937922C8890400A3B91B /* AEUIAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AEUIAlertView.swift; sourceTree = "<group>"; };
 		DFA71EB5287F7B3F0B1D5FAA /* Pods_AEAlertViewDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AEAlertViewDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -78,7 +72,6 @@
 		9F1CEA772146BA5F001280FE /* AEAlertViewDemo */ = {
 			isa = PBXGroup;
 			children = (
-				9F8A937622C8890400A3B91B /* Classes */,
 				9F1CEA782146BA5F001280FE /* AppDelegate.swift */,
 				9F1CEA7A2146BA5F001280FE /* ViewController.swift */,
 				9F1CEA7C2146BA5F001280FE /* Main.storyboard */,
@@ -88,17 +81,6 @@
 				9F781DBE215E253B00C2228F /* AlertViewManger.swift */,
 			);
 			path = AEAlertViewDemo;
-			sourceTree = "<group>";
-		};
-		9F8A937622C8890400A3B91B /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				9F8A937722C8890400A3B91B /* AEAlertView.swift */,
-				9F8A937822C8890400A3B91B /* AEBaseAlertView.swift */,
-				9F8A937922C8890400A3B91B /* AEUIAlertView.swift */,
-			);
-			name = Classes;
-			path = ../../AEAlertView/Classes;
 			sourceTree = "<group>";
 		};
 		CB35DBFBA562D20CA18AD396 /* Frameworks */ = {
@@ -120,6 +102,7 @@
 				9F1CEA712146BA5F001280FE /* Sources */,
 				9F1CEA722146BA5F001280FE /* Frameworks */,
 				9F1CEA732146BA5F001280FE /* Resources */,
+				D7EEA1B6DB64B005073172CB /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -195,6 +178,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		D7EEA1B6DB64B005073172CB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AEAlertViewDemo/Pods-AEAlertViewDemo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AEAlertViewDemo/Pods-AEAlertViewDemo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AEAlertViewDemo/Pods-AEAlertViewDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -203,11 +203,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F1CEA7B2146BA5F001280FE /* ViewController.swift in Sources */,
-				9F8A937A22C8890400A3B91B /* AEAlertView.swift in Sources */,
 				9F781DBF215E253B00C2228F /* AlertViewManger.swift in Sources */,
 				9F1CEA792146BA5F001280FE /* AppDelegate.swift in Sources */,
-				9F8A937B22C8890400A3B91B /* AEBaseAlertView.swift in Sources */,
-				9F8A937C22C8890400A3B91B /* AEUIAlertView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

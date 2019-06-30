@@ -7,7 +7,7 @@
 //
 
 import UIKit
-//import AEAlertView
+import AEAlertView
 //import AEUIAlertView
 
 class ViewController: UIViewController {

@@ -16,8 +16,8 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "AEAlertView"
-  s.version      = "1.9"
-  s.summary      = "Support swift 5.0"
+  s.version      = "2.0"
+  s.summary      = "new UIAlertView"
 
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
@@ -89,7 +89,7 @@ Pod::Spec.new do |s|
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = "AEAlertView/Classes/*.{swift,swift}"
+  s.source_files  = "AEAlertView/Classes/*.{swift,swift,swift}"
   # s.exclude_files = "Classes/Exclude"
 
   # s.public_header_files = "Classes/**/*.h"
