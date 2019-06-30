@@ -33,7 +33,7 @@ extension UIButton {
 }
 
 
-class AEBaseAlertView: UIView {
+open class AEBaseAlertView: UIView {
     
     var titleLabel: UILabel!
     var messageTextView: AEAlertTextView!
@@ -48,52 +48,53 @@ class AEBaseAlertView: UIView {
         }
     }
     
+    public var actionButtonContainerView: UIView!
     private(set) var alertBackgroundView: UIView!
     private(set) var backgroundViewVerticalCenteringConstraint: NSLayoutConstraint!
     
     
-    public func setContentView(contentView: UIView, width: NSInteger, height: NSInteger) {
+    open func setContentView(contentView: UIView, width: NSInteger, height: NSInteger) {
         self.contentView(view: contentView, width: width, height: height)
     }
     
-    var maximumWidth: CGFloat = 0 {
+    open var maximumWidth: CGFloat = 0 {
         didSet {
             if maximumWidth != 0 {
                 setMaximumWidth(maximumWidth: maximumWidth)
             }
         }
     }
-    var titleTopMargin: NSInteger? {
+    open var titleTopMargin: NSInteger? {
         didSet {
             setTitleTopMargin(Margin: titleTopMargin ?? 0)
         }
     }
-    var titleLeadingAndTrailingPadding: NSInteger? {
+    open var titleLeadingAndTrailingPadding: NSInteger? {
         didSet {
             setTitleLeadingAndTrailingPadding(Padding: titleLeadingAndTrailingPadding ?? 0)
         }
     }
-    var messageLeadingAndTrailingPadding: NSInteger? {
+    open var messageLeadingAndTrailingPadding: NSInteger? {
         didSet {
             setMessageLeadingAndTrailingPadding(Padding: messageLeadingAndTrailingPadding ?? 0)
         }
     }
-    var buttonBottomMargin: NSInteger? {
+    open var buttonBottomMargin: NSInteger? {
         didSet {
             setButtonBottomMargin(Margin: buttonBottomMargin ?? 0)
         }
     }
-    var messageWithButtonMargin: NSInteger? {
+    open var messageWithButtonMargin: NSInteger? {
         didSet {
             setMessageWithButtonMargin(Margin: messageWithButtonMargin ?? 0)
         }
     }
-    var messageAlignment: NSTextAlignment? {
+    open var messageAlignment: NSTextAlignment? {
         didSet {
             setMessageAlignment(Alignment: messageAlignment ?? .center)
         }
     }
-    var messageHeight: NSInteger? {
+    open var messageHeight: NSInteger? {
         didSet {
             guard let height = messageHeight else {
                 return
@@ -101,12 +102,12 @@ class AEBaseAlertView: UIView {
             setMessageHeight(messageHeight: height, isScroll: true)
         }
     }
-    var contentViewTopMargin: NSInteger? {
+    open var contentViewTopMargin: NSInteger? {
         didSet {
             setContentViewTopMargin(Margin: contentViewTopMargin ?? 0)
         }
     }
-    var contentViewBottomMargin: NSInteger? {
+    open var contentViewBottomMargin: NSInteger? {
         didSet {
             setContentViewBottomMargin(Margin: contentViewBottomMargin ?? 0)
         }
@@ -118,7 +119,7 @@ class AEBaseAlertView: UIView {
         super.init(frame: frame)
         commonInit()
     }
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -219,7 +220,6 @@ class AEBaseAlertView: UIView {
     
     private var alertBackgroundWidthConstraint: NSLayoutConstraint!
     private var contentViewContainerView: UIView!
-    private var actionButtonContainerView: UIView!
     
     
     private func setTitleLeadingAndTrailingPadding(Padding: NSInteger) {
@@ -286,7 +286,7 @@ class AEBaseAlertView: UIView {
     }
     
     ///Pass through touches outside the backgroundView for the presentation controller to handle dismissal
-    override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+    override open func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
         for view in subviews {
             if (view.hitTest(self.convert(point, to: view), with: event) != nil) {
                 return true

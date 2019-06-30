@@ -7,7 +7,8 @@
 //
 
 import UIKit
-import AEAlertView
+//import AEAlertView
+//import AEUIAlertView
 
 class ViewController: UIViewController {
 
@@ -32,16 +33,22 @@ class ViewController: UIViewController {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
-        let view = AEAlertView(alertViewStyle: .Default)
-        view.title = "title"
-        view.message = "message, message, message, message,-----11111message, message, message"
-//        view.messageHeight = 57
-        
+        let view = AEUIAlertView(title: "第一次", message: "好怕~~~~~~~")
+        view.buttonTitleColor = UIColor.red
+        view.titleColor = UIColor.red
+
         let cancel = AEAlertAction(title: "cancel", style: .Cancel) { (action) in
             view.close()
         }
         
         view.addAction(action: cancel)
+        
+        let submit = AEAlertAction(title: "submit", style: .Default) { (action) in
+            
+            print("tijiao")
+        }
+        view.addAction(action: submit)
+        
         view.show()
     }
 
