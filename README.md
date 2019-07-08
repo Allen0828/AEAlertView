@@ -4,16 +4,26 @@ If your swift version is less than 4, you can   如果你的swift版本是4.0以
 
 pod'AEAlertView','1.0'
 
-以支持 swift 5.0 如果有什么问题 请联系我 我会及时回复  
+以支持 swift 5.0 如果有什么问题 请联系我 我会及时回复  VX:qifengnanshen 
 
-2.0.1 新增 UIAlertView  并且将baseView开放出来， 如果你有特殊需求可直接继承 AEBaseAlertView 更能完善你的弹窗。
-在所以弹窗类型中添加了 textfield类型 具体可以看演示代码 下面放上图
+在2.0.1中 开放了AEBaseAlertView 如果你的需求 AEAlertView和AEUIAlertView中没有 你可以继承AEBaseAlertView 来实现属于你自己的AlertView  
 
-![Image text](https://raw.githubusercontent.com/Allen0828/AEAlertView/master/img-folder/11.gif)
+![Image text](https://github.com/Allen0828/AEAlertView/blob/master/img-folder/11.gif)
 
-![Image text](https://github.com/Allen0828/AEAlertView/blob/master/img-folder/001.jpeg) ![Image text](https://github.com/Allen0828/AEAlertView/blob/master/img-folder/002.jpeg)
+在2.0.1中 新增了 仿原生UIAlertView 已经添加弹窗中 TextField类型 具体请看下图
+![Image text](https://github.com/Allen0828/AEAlertView/blob/master/img-folder/8.png)
 
+扩充了 在AEAlertView中 可以设置2个按钮也为竖排显示 
+![Image text](https://github.com/Allen0828/AEAlertView/blob/master/img-folder/9.png)
 
+在新增的版本中 支持一句调用AEUIAlertView
+```swift
+AEUIAlertView.showAlertTextField(nil, "输入框", "输入文字", ["知道了", "enen"]) { (text) in
+            
+}
+```
+
+----以下是1.0版本时的说明-----
 代码调用方式 是仿系统的 如果你遇到的需求是 全局使用同样样式的弹窗 你可以封装一个Manger 来管理  代码底层使用VFL 你可以自己修改他的尺寸,
 
 Code calls are system-like if you encounter a requirement that the same style of pop-up windows be used globally you can encapsulate a Manger to manage the underlying code using VFL and you can modify its size yourself.
