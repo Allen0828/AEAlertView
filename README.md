@@ -4,9 +4,14 @@ If your swift version is less than 4, you can   如果你的swift版本是4.0以
 
 pod'AEAlertView','1.0'
 
-以支持 swift 5.0 如果有什么问题 请联系我 我会及时回复  推荐大家使用时  添加一句 messageWithButtonMargin = -10  会更加美观 thanks
+以支持 swift 5.0 如果有什么问题 请联系我 我会及时回复  
+
+2.0.1 新增 UIAlertView  并且将baseView开放出来， 如果你有特殊需求可直接继承 AEBaseAlertView 更能完善你的弹窗。
+在所以弹窗类型中添加了 textfield类型 具体可以看演示代码 下面放上图
 
 ![Image text](https://raw.githubusercontent.com/Allen0828/AEAlertView/master/img-folder/11.gif)
+
+![Image text](https://github.com/Allen0828/AEAlertView/blob/master/img-folder/001.jpeg) ![Image text](https://github.com/Allen0828/AEAlertView/blob/master/img-folder/002.jpeg)
 
 
 代码调用方式 是仿系统的 如果你遇到的需求是 全局使用同样样式的弹窗 你可以封装一个Manger 来管理  代码底层使用VFL 你可以自己修改他的尺寸,
