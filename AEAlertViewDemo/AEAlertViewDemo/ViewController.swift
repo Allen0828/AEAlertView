@@ -33,23 +33,9 @@ class ViewController: UIViewController {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
-        let view = AEUIAlertView(title: "第一次", message: "好怕~~~~~~~")
-        view.buttonTitleColor = UIColor.red
-        view.titleColor = UIColor.red
-
-        let cancel = AEAlertAction(title: "cancel", style: .Cancel) { (action) in
-            view.close()
-        }
-        
-        view.addAction(action: cancel)
-        
-        let submit = AEAlertAction(title: "submit", style: .Default) { (action) in
+        AEUIAlertView.showAlertTextField(nil, "我是输入框", "我是输入框", ["111"]) { (text) in
             
-            print("tijiao")
         }
-        view.addAction(action: submit)
-        
-        view.show()
     }
 
     @objc private func btnClick(btn: UIButton) {
