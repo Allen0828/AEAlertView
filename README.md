@@ -1,27 +1,32 @@
 # AEAlertView
 Custom AlertView supports multiple modes 自定义AlertView 支持多种模式弹窗 
-If your swift version is less than 4, you can   如果你的swift版本是4.0以下, 你可以
 
-pod'AEAlertView','1.0'
+If your swift version is less than 4, you can  pod'AEAlertView','1.0'
 
-以支持 swift 5.0 如果有什么问题 请联系我 我会及时回复  VX:qifengnanshen 
+If swift 4.0 above 5.0 below you can  pod'AEAlertView','1.7' 
 
-在2.0.1中 开放了AEBaseAlertView 如果你的需求 AEAlertView和AEUIAlertView中没有 你可以继承AEBaseAlertView 来实现属于你自己的AlertView  
+# 如果你的swift版本是4.0以下, 你可以 pod'AEAlertView','1.0' 
 
-![Image text](https://github.com/Allen0828/AEAlertView/blob/master/img-folder/11.gif)
+# 如果是 swift 4.0 以上 5.0 以下  你可以 pod'AEAlertView','1.7' 
 
-在2.0.1中 新增了 仿原生UIAlertView 已经添加弹窗中 TextField类型 具体请看下图
-![Image text](https://github.com/Allen0828/AEAlertView/blob/master/img-folder/8.png)
+# 如果是 swift 5.0 使用最新版即可
 
-扩充了 在AEAlertView中 可以设置2个按钮也为竖排显示 
-![Image text](https://github.com/Allen0828/AEAlertView/blob/master/img-folder/9.png)
 
-在新增的版本中 支持一句调用AEUIAlertView
-```swift
-AEUIAlertView.showAlertTextField(nil, "输入框", "输入文字", ["知道了", "enen"]) { (text) in
-            
-}
-```
+- **在最新版本中 新增了 仿UI的弹窗,  开放了AEBaseAlertView 如果你的需求 AEAlertView和AEUIAlertView中没有 你可以继承AEBaseAlertView 来实现属于你自己的AlertView **
+
+先看新版的图片 
+
+<view> <img src="https://github.com/Allen0828/AEAlertView/blob/master/img-folder/alertView_GIF.gif" width="200"></img>  <img src="https://github.com/Allen0828/AEAlertView/blob/master/img-folder/uiAlertView_GIF.gif" width="200"> </img> </view>
+
+演示的样式 在Demo中都有  所有的属性都有说明 希望大家可以支持一下. 
+
+# 如果有 你有任何问题 或者 好的建议 欢迎联系我  - email: allen.zhang0828@gmail.com -
+
+
+-------------------
+*** 控件支持 设置左右 上下间距  本来想提供 类方法来一句话调用, 但是每个项目的主题色不同 所有需要你 自己设置自己的主题色***
+
+
 
 ----以下是1.0版本时的说明-----
 代码调用方式 是仿系统的 如果你遇到的需求是 全局使用同样样式的弹窗 你可以封装一个Manger 来管理  代码底层使用VFL 你可以自己修改他的尺寸,
