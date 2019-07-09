@@ -16,9 +16,7 @@ If swift 4.0 above 5.0 below you can  pod'AEAlertView','1.7'
 
 先看新版的图片 
 
-<view>
-<img src="https://github.com/Allen0828/AEAlertView/blob/master/img-folder/alertView_GIF.gif" width="200" >  </img>  <img src="https://github.com/Allen0828/AEAlertView/blob/master/img-folder/uiAlertView_GIF.gif" width="200">  </img>
-</view>
+<view> <img src="https://github.com/Allen0828/AEAlertView/blob/master/img-folder/alertView_GIF.gif" width="200"></img>  <img src="https://github.com/Allen0828/AEAlertView/blob/master/img-folder/uiAlertView_GIF.gif" width="200"> </img> </view>
 
 演示的样式 在Demo中都有  所有的属性都有说明 希望大家可以支持一下. 
 
