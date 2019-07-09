@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "AEAlertView"
-  s.version      = "2.0.1"
+  s.version      = "2.0.2"
   s.summary      = "new UIAlertView add TextField"
 
   # This description is used to generate tags and improve search results.
