@@ -223,6 +223,7 @@ open class AEBaseAlertView: UIView {
         
         self.addConstraint(NSLayoutConstraint(item: alertBackgroundView!, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1.0, constant: 0.0))
         
+        // MARK: 此处是弹窗 默认的宽度
         var alertBackgroundViewWidth = (UIApplication.shared.keyWindow?.bounds.width ?? UIScreen.main.bounds.size.width) - (38 * 2)
         if (alertBackgroundViewWidth > maximumWidth) {
             alertBackgroundViewWidth = maximumWidth
@@ -472,7 +473,7 @@ open class AEBaseAlertView: UIView {
                 if i == buttons.count - 1 {
                     actionButtonContainerView.addConstraints(
                         NSLayoutConstraint.constraints(withVisualFormat:
-                            "V:[actionButton]|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: ["actionButton":actionButton]))
+                            "V:[actionButton]-|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: ["actionButton":actionButton]))
                 }
                 
             }
