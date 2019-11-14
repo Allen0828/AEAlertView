@@ -2,6 +2,7 @@
 Custom AlertView supports multiple modes 自定义AlertView 支持多种模式弹窗 
 
 If your swift version is less than 4, you can  pod'AEAlertView','1.0'
+
 If swift 4.0 above 5.0 below you can  pod'AEAlertView','1.7' 
 
 # 如果你的swift版本是4.0以下, 你可以 pod'AEAlertView','1.0' 
@@ -9,9 +10,11 @@ If swift 4.0 above 5.0 below you can  pod'AEAlertView','1.7'
 # 如果是 swift 5.0 使用最新版即可
 
 新增了动画弹窗
+
 <view>
-<img src="https://github.com/Allen0828/AEAlertView/blob/master/img-folder/alert2.1.gif" width="200"></img>  <img src="https://github.com/Allen0828/AEAlertView/blob/master/img-folder/uiAlertView2.1.gif" width="200"></img>  <img src="https://github.com/Allen0828/AEAlertView/blob/master/img-folder/succees2.1.gif" width="200"></img> <img src="https://github.com/Allen0828/AEAlertView/blob/master/img-folder/error2.1.gif" width="200"> </img>
+<img src="https://github.com/Allen0828/AEAlertView/blob/master/img-folder/alert2.1.gif" width="160"></img>  <img src="https://github.com/Allen0828/AEAlertView/blob/master/img-folder/uiAlertView2.1.gif" width="160"></img>  <img src="https://github.com/Allen0828/AEAlertView/blob/master/img-folder/succees2.1.gif" width="200"></img> <img src="https://github.com/Allen0828/AEAlertView/blob/master/img-folder/error2.1.gif" width="200"> </img>
 </view>
+
 
 -  重新优化了baseAlert 简化了使用方法 
 -  base的布局方式
