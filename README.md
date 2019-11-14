@@ -11,7 +11,7 @@ If swift 4.0 above 5.0 below you can  pod'AEAlertView','1.7'
 
 新增了动画弹窗
 
-<view><img src="https://github.com/Allen0828/AEAlertView/blob/master/img-folder/alert2.1.gif" width="160"></img> <img src="https://github.com/Allen0828/AEAlertView/blob/master/img-folder/uiAlertView2.1.gif" width="160"></img> <img src="https://github.com/Allen0828/AEAlertView/blob/master/img-folder/succees2.1.gif" width="200"></img><img src="https://github.com/Allen0828/AEAlertView/blob/master/img-folder/error2.1.gif" width="200"></img></view>
+<view><img src="https://github.com/Allen0828/AEAlertView/blob/master/img-folder/alert2.1.gif" width="160"></img> <img src="https://github.com/Allen0828/AEAlertView/blob/master/img-folder/uiAlertView2.1.gif" width="160"></img> <img src="https://github.com/Allen0828/AEAlertView/blob/master/img-folder/succees2.1.gif" width="160"></img><img src="https://github.com/Allen0828/AEAlertView/blob/master/img-folder/error2.1.gif" width="160"></img></view>
 
 
 -  重新优化了baseAlert 简化了使用方法 
