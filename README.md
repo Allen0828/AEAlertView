@@ -16,7 +16,7 @@ If swift 4.0 above 5.0 below you can  pod'AEAlertView','1.7'
 
 -  重新优化了baseAlert 简化了使用方法 
 -  base的布局方式
-<img src="https://github.com/Allen0828/AEAlertView/blob/master/img-folder/base2.1.jpeg" width = "120">
+<img src="https://github.com/Allen0828/AEAlertView/blob/master/img-folder/base2.1.jpeg" width = "220">
 
 # 如果有 你有任何问题 或者 好的建议 欢迎联系我  - email: allen.zhang0828@gmail.com -
 
