@@ -1,5 +1,5 @@
 PODS:
-  - AEAlertView (2.0.2)
+  - AEAlertView (2.1)
 
 DEPENDENCIES:
   - AEAlertView
@@ -9,7 +9,7 @@ SPEC REPOS:
     - AEAlertView
 
 SPEC CHECKSUMS:
-  AEAlertView: 796d2790cf3833710de92c6b02e343a2b11951b7
+  AEAlertView: 174ec3aa9a5b2d535bbac127a5e08ed7a42453d0
 
 PODFILE CHECKSUM: 28a4fc484a489d5b5d605fdffee9b34ca8768646
 

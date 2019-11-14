@@ -260,7 +260,7 @@ extension AELineSuccessAnimation: CAAnimationDelegate {
 
 // MARK: - 线条动画 失败 ❌
 /// 动画 失败 ❌
-class AELineFailAnimation: UIView {
+public class AELineFailAnimation: UIView {
     
     /// 失败❌ 动画
     /// - Parameter view: 承载的view
