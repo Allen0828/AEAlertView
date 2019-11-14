@@ -4,355 +4,255 @@
 //
 //  代码地址: https://github.com/Allen0828/AEAlertView
 //  Copyright © 2017年 Allen. All rights reserved.
-//  默认按钮是带圆角的 其他无差异
+//  默认按钮是带圆角的
+
+//   ----------------------
+//  |        title         |
+//  |       message        |
+//  |    animationView     |
+//  |     contentView      |
+//  |                      |
+//  | ┌──────┐   ┌──────┐  |
+//  | └──────┙   └──────┙  |
+//   ----------------------
 
 import UIKit
 
-/// 弹窗样式
+/// style
 public enum AEAlertViewStyle {
-    case Default,
-    TextField,
-    Image
+    case defaulted,
+    textField
 }
-
 
 open class AEAlertView: UIView {
     
-    /// 展示
-    open func show() { showAlert() }
-    /// 关闭
-    open func close() { closeAlert() }
-    /// 弹窗左右距离屏幕的最大宽度 默认左右34 如果小于150或大于屏幕宽 会自动使用默认值
-    open var maximumWidth: Int? {
-        didSet { setMaximumWidth(width: maximumWidth ?? 0) }
+    public func show() {
+        showAlert()
+    }
+    public func dismiss() {
+        dismissAlert()
     }
     
-    /// 展示时 动画的时间 如果设置0 等于不需要动画 默认0.5秒动画
-    open var animationTime: CGFloat = 0.5
-    
-    /// 推荐宽度为maximumWidth 默认 UIScreen.main.bounds.size.width - (38 * 2)
-    open func setContentView(contentView: UIView, width: CGFloat, height: CGFloat) {
-        if width > UIScreen.main.bounds.size.width || width < 149 {
-            content(view: contentView, width: NSInteger(UIScreen.main.bounds.size.width - (38 * 2)), height: NSInteger(height))
-        } else {
-            content(view: contentView, width: NSInteger(width), height: NSInteger(height))
-        }
+    /// 添加action
+    public func addAction(action: AEAlertAction) {
+        actions.append(action)
+    }
+    // 手动重置按钮
+    public func resetActions() {
+        createActions()
+    }
+    /// AEAlertAction 无法满足使用时 也可以使用 AEAlertViewButton 优先使用actions -> buttons
+    public func addButton(button: AEAlertViewButton) {
+        buttons.append(button)
+    }
+    /// 设置animationView 推荐宽小于等于 UIScreen.main.bounds.size.width - (24 * 2)
+    public func set(animation: UIView, width: CGFloat, height: CGFloat) {
+        alertView.setAnimation(view: animation, width: width, height: height)
+    }
+    /// 设置contentView 推荐宽小于等于 UIScreen.main.bounds.size.width - (24 * 2)
+    public func set(content: UIView, width: CGFloat, height: CGFloat) {
+        alertView.setContent(view: content, width: width, height: height)
     }
     
-    /// 弹出标题
-    open var title: String? {
-        didSet { setTitle(title: title) }
+    // MARK: -属性
+    /// show动画时间 默认 0.5 如果为0 取消动画
+    public var showDuration: CGFloat = 0.5
+    /// dismiss动画时间 默认 0.25 如果为0 取消动画
+    public var dismissDuration: CGFloat = 0.25
+    /// 弹窗最大宽度
+    public var alertMaximumWidth: CGFloat = UIScreen.main.bounds.size.width - (24 * 2) {
+        didSet { alertView.maximumWidth = alertMaximumWidth }
     }
-    /// 内容
-    open var message: String? {
-        didSet { setMessage(message: message) }
+    /// 点击灰色区域 结束编辑
+    public var isClickFinishEditing: Bool = true
+    /// 是否监听键盘的事件
+    public var isObserverKeyboard: Bool = true
+    
+    /// title
+    public var title: String? {
+        didSet { alertView.titleLabel.text = title }
     }
-    /// 内容高度如果文字超出 文字可以滚动 不可以设置为0
-    open var messageHeight: Int? {
+    public var titleFont: UIFont? {
+        didSet { alertView.titleLabel.font = titleFont ?? UIFont.init() }
+    }
+    public var titleColor: UIColor? {
+        didSet { alertView.titleLabel.textColor = titleColor }
+    }
+    public var titleBackgroundColor: UIColor? {
+        didSet { alertView.titleLabel.backgroundColor = titleBackgroundColor }
+    }
+    public var titleAlignment: NSTextAlignment = .center {
+        didSet { alertView.titleLabel.textAlignment = titleAlignment }
+    }
+    // titleLabel 距离alert背景框 上方间距 默认8
+    public var titlePadding: CGFloat = 8 {
+        didSet { alertView.titlePadding = titlePadding }
+    }
+    // titleLabel 距离alert背景框 左右的距离 默认16
+    public var titleTopMargin: CGFloat = 8 {
+        didSet { alertView.titleTopMargin = titleTopMargin }
+    }
+    
+    /// message
+    public var message: String? {
+        didSet { alertView.messageTextView.text = message ?? "" }
+    }
+    public var messageFont: UIFont? {
+        didSet { alertView.messageTextView.font = messageFont }
+    }
+    public var messageColor: UIColor? {
+        didSet { alertView.messageTextView.textColor = messageColor }
+    }
+    public var messageBackgroundColor: UIColor? {
+        didSet { alertView.messageTextView.backgroundColor = messageBackgroundColor }
+    }
+    public var messageAlignment: NSTextAlignment = .center {
+        didSet { alertView.messageTextView.textAlignment = messageAlignment }
+    }
+    /// 内容高度 如果内容超出设置的高 内容可以滑动 不设置会自动计算文字高度
+    public var messageHeight: CGFloat = 0 {
+        didSet { alertView.messageHeight = messageHeight }
+    }
+    /// 内容距离alert背景框 左右的距离 默认16
+    public var messagePadding: CGFloat = 16 {
+        didSet { alertView.messagePadding = messagePadding }
+    }
+    /// 内容top 距离 标题bottom 间距
+    public var messageTopMargin: CGFloat = 6 {
+        didSet { alertView.messageTopMargin = messageTopMargin }
+    }
+    
+    /// 动画View Top 距离内容bottom 的间距
+    public var animationViewTopMargin: CGFloat = 0 {
+        didSet { alertView.animationViewTopMargin = animationViewTopMargin }
+    }
+    /// 自定义View Top 距离动画ViewBottom 的间距
+    public var contentViewTopMargin: CGFloat = 0 {
+        didSet { alertView.contentViewTopMargin = contentViewTopMargin }
+    }
+    /// 放置按钮的View top 距离自定义ViewBottom 的间距
+    public var actionViewTopMargin: CGFloat = 0 {
+        didSet { alertView.actionViewTopMargin = actionViewTopMargin }
+    }
+    /// 放置按钮的View botton 距离alertBotton 的间距
+    public var actionViewBottomMargin: CGFloat = 0 {
+        didSet { alertView.actionViewBottomMargin = actionViewBottomMargin }
+    }
+    
+    /// action 可以手动设置为空 用于动画展示
+    public var actions: [AEAlertAction] = []
+    public var buttons: [AEAlertViewButton] = []
+    public var actionHeight: CGFloat = 40 {
+        didSet { alertView.actionHeight = actionHeight }
+    }
+    public var actionPadding: CGFloat = 8 {
+        didSet { alertView.actionPadding = actionPadding }
+    }
+    public var actionMargin: CGFloat = 8 {
+        didSet { alertView.actionMargin = actionMargin }
+    }
+    /// 两个按钮时 排列方式
+    public var actionArrangementMode: AEButtonArrangementMode = .horizontal {
         didSet {
-            guard let height = messageHeight else { return }
-            setMessageHeight(height: height)
+            alertView.actionArrangementMode = actionArrangementMode
         }
     }
-    
-    /// 添加action AddAction
-    open func addAction(action: AEAlertAction) {
-        actions?.append(action)
-    }
-    /// alert背景色
-    open var alertViewBackgroundColor: UIColor? {
-        didSet { setAlertViewBackgroundColor(color: alertViewBackgroundColor!) }
-    }
-    
-    /// Title字体
-    open var titleFont: UIFont! {
-        didSet { setTitleFont(font: titleFont) }
-    }
-    /// Title字体颜色
-    open var titleColor: UIColor? {
-        didSet { setTitleColor(color: titleColor) }
-    }
-    /// Title背景颜色
-    open var titleBackgroundColor: UIColor? {
-        didSet { setTitleBackgroundColor(color: titleBackgroundColor) }
-    }
-    
-    /// message字体
-    open var messageFont: UIFont! {
-        didSet { setMessageFont(font: messageFont) }
-    }
-    /// message字体颜色
-    open var messageColor: UIColor? {
-        didSet { setMessageColor(color: messageColor) }
-    }
-    /// Message背景颜色
-    open var messageBackgroundColor: UIColor? {
-        didSet { setMessageBackgroundColor(color: messageBackgroundColor) }
-    }
-    
-    
-    // MARK: textField
-    /// 新增TextField样式 继承AEUIAlertView可自己设置属性
-    open var textField: UITextField = UITextField()
-    /// TextField键盘弹窗时 页面向上移动的距离 默认180
-    open var textFieldBecomeMargin: Int = 180
-    /// textField 是否需要圆角
-    open var textFieldRadius: CGFloat? {
-        didSet {
-            textField.layer.cornerRadius = textFieldRadius ?? 4
-            textField.layer.masksToBounds = true
-        }
-    }
-    /// textField tintColor
-    open var textFieldTintColor: UIColor? {
-        didSet { textField.tintColor = textFieldTintColor }
-    }
-    /// TextField->leftView
-    open var textFieldLeftView: UIView? {
-        didSet {
-            textField.leftView = textFieldLeftView
-            textField.leftViewMode = .always
-        }
-    }
-    /// TextField 占位文本
-    open var placeholder: String? {
-        didSet { textField.placeholder = placeholder }
-    }
-    /// TextField 文字
-    open var textFieldText: String? {
-        get {
-            return textField.text
-        }
-        set {
-            textField.text = textFieldText
-        }
-    }
-    /// TextField Size 默认距离 宽maximumWidth-左右20 高40
-    open var textFieldSize: CGSize? {
-        didSet { setTextFieldSize(size: textFieldSize) }
-    }
-
-    // MARK: 按钮相关
-    /// 所有按钮
-    open private(set) var actions: [AEAlertAction]?
-    /// 确定的背景颜色
-    open var buttonColor: UIColor?
-    /// 取消按钮的背景颜色
-    open var cancelButtonColor: UIColor?
-    /// 其他按钮的背景颜色
-    open var destructiveButtonColor: UIColor?
-    /// 禁用时背景色
-    open var disabledButtonColor: UIColor?
-    /// 确定按钮标题的颜色
-    open var buttonTitleColor: UIColor?
-    /// 取消按钮标题的颜色
-    open var cancelButtonTitleColor: UIColor?
-    /// 其他按钮标题的颜色
-    open var destructiveButtonTitleColor: UIColor?
-    /// 禁用状态按钮标题的颜色
-    open var disabledButtonTitleColor: UIColor?
-    /// 确定按钮的描边颜色 默认为空
-    open var buttonLayerBorderColor: UIColor?
-    /// 取消按钮的描边颜色 默认为空
-    open var cancelButtonLayerBorderColor: UIColor?
-    /// 其他按钮的描边颜色 默认为空
-    open var destructiveButtonLayerBorderColor: UIColor?
+    // MARK: actionType
     /// 按钮圆角 默认4
-    open var buttonCornerRadius: CGFloat?
+    public var actionCornerRadius: CGFloat = 6
+    /// defaulted 字体
+    public var buttonTitleFont: UIFont = UIFont.systemFont(ofSize: 15)
+    /// defaulted 背景颜色
+    public var buttonColor: UIColor? = UIColor.red
+    /// defaulted 标题的颜色
+    public var buttonTitleColor: UIColor? = UIColor.white
+    /// defaulted 描边颜色 默认为空
+    public var buttonLayerBorderColor: UIColor?
+    /// defaulted 描边宽度
+    public var buttonLayerBorderWidth: CGFloat = 0
     
-    /// 确定按钮字体
-    open var buttonTitleFont: UIFont!
-    /// 取消按钮的字体
-    open var cancelButtonTitleFont: UIFont!
-    /// 其他按钮的字体
-    open var destructiveButtonTitleFont: UIFont!
+    /// cancel 字体
+    public var cancelButtonTitleFont: UIFont = UIFont.systemFont(ofSize: 15)
+    /// cancel 背景颜色
+    public var cancelButtonColor: UIColor? = UIColor.white
+    /// cancel 标题的颜色
+    public var cancelButtonTitleColor: UIColor? = UIColor.red
+    /// cancel 描边颜色 默认为空
+    public var cancelButtonLayerBorderColor: UIColor? = UIColor.red
+    /// cancel 描边宽度
+    public var cancelButtonLayerBorderWidth: CGFloat = 1
     
-    // MARK: 设置位置
-    /// 标题距离上方间距
-    open var titleTopMargin: Int? {
-        didSet {
-            setTitleTopMargin(margin: titleTopMargin ?? 0)
-        }
-    }
-    /// 标题距离alertView左右的间距
-    open var titleLeadingAndTrailingPadding: Int? {
-        didSet {
-            setTitleLeadingAndTrailingPadding(padding: titleLeadingAndTrailingPadding ?? 0)
-        }
-    }
-    /// 内容距离标题的间距
-    open var messageTopMargin: Int? {
-        didSet { setMessageTopMargin(margin: messageTopMargin ?? 0) }
-    }
-    /// 内容距离alertView左右的间距
-    open var messageLeadingAndTrailingPadding: Int? {
-        didSet {
-            setMessageLeadingAndTrailingPadding(padding: messageLeadingAndTrailingPadding ?? 0)
-        }
-    }
+    /// destructive 字体
+    public var destructiveButtonTitleFont: UIFont = UIFont.systemFont(ofSize: 15)
+    /// destructive 背景色
+    public var destructiveButtonColor: UIColor? = UIColor.red
+    /// destructive 标题的颜色
+    public var destructiveButtonTitleColor: UIColor? = UIColor.white
+    /// destructive 描边颜色 默认为空
+    public var destructiveButtonLayerBorderColor: UIColor?
+    /// destructive 描边宽度
+    public var destructiveButtonLayerBorderWidth: CGFloat = 0
     
-    /// 按钮距离AlertView底部的间距
-    open var buttonBottomMargin: Int? {
-        didSet {
-            setButtonBottomMargin(margin: buttonBottomMargin ?? 0)
-        }
-    }
-    /// 内容距离按钮Margin Distance between message and buttons
-    open var messageWithButtonMargin: Int? {
-        didSet {
-            setMessageWithButtonMargin(margin: messageWithButtonMargin ?? 0)
-        }
-    }
-    /// 内容Alignment默认是center Default is center
-    open var messageAlignment: NSTextAlignment? {
-        didSet {
-            guard let alignment = messageAlignment else { return }
-            setMessageAlignment(alignment: alignment)
-        }
-    }
-    /// 自定义View距离message间距
-    open var contentViewTopMargin: Int? {
-        didSet {
-            setContentViewTopMargin(margin: contentViewTopMargin ?? 0)
-        }
-    }
-    /// 自定义view距离message底部的间距
-    open var contentViewBottomMargin: Int? {
-        didSet {
-            setContentViewBottomMargin(margin: contentViewBottomMargin ?? 0)
-        }
-    }
     
-    // MARK: 按钮相关的操作
-    /// 按钮距离父控件的上下间距
-    open var buttonSuperMargin: Int? {
-        didSet {
-            alertView.buttonSuperMargin = buttonSuperMargin ?? 0
-        }
-    }
-    /// 2个按钮时距离左右的间距
-    open var buttonsSuperPadding: Int? {
-        didSet {
-            alertView.buttonsSuperPadding = buttonsSuperPadding ?? 0
-        }
-    }
-    /// 1个和多个按钮时距离左右的间距
-    open var buttonSuperPadding: Int? {
-        didSet {
-            alertView.buttonSuperPadding = buttonSuperPadding ?? 0
-        }
-    }
-    /// 2个按钮时排列方式
-    open var buttonArrangement: AEAlertViewButtonArrangement? {
-        didSet {
-            guard let type = buttonArrangement else { return }
-            alertView.buttonArrangement = type
-        }
-    }
     
-
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
+    // MARK: TextFiled
+    // IF style==textField样式下 生效
+    public var textFiled: UITextField = UITextField()
+    /// 默认为 animationWidth-40 高36
+    public var textFiledSize: CGSize?
+    /// textField 是否跟随键盘移动
+    public var textFieldFollowKeyboard: Bool = true
+    /// textField距离键盘的间距 默认距离键盘 100
+    public var textFieldBottomMargin: CGFloat = 100
+    // ENDIF
     
     // MARK: init
-    public convenience init() {
-        self.init(alertViewStyle: .Default, title: nil, message: nil)
-    }
-    
     public override convenience init(frame: CGRect) {
-        self.init(alertViewStyle: .Default, title: nil, message: nil)
+        self.init(style: .defaulted, title: nil, message: nil)
+    }
+    public convenience init(style: AEAlertViewStyle) {
+        self.init(style: style, title: nil, message: nil)
     }
     
-    public convenience init(alertViewStyle: AEAlertViewStyle) {
-        self.init(alertViewStyle: alertViewStyle, title: nil, message: nil)
-    }
-    
-    public init(alertViewStyle: AEAlertViewStyle, title: String?, message: String?) {
+    public init(style: AEAlertViewStyle, title: String?, message: String?) {
         let frame = CGRect(x: 0, y: 0,
-                           width: UIScreen.main.bounds.size.width,
-                           height: UIScreen.main.bounds.size.height)
+                       width: UIScreen.main.bounds.size.width,
+                       height: UIScreen.main.bounds.size.height)
         super.init(frame: frame)
         
-        alertView = AEBaseAlertView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height))
+        alertView = AEBaseAlertView(frame: frame)
+        alertView.titleLabel.text = title
+        alertView.messageTextView.text = message ?? ""
+        alertView.alertStyle = .custom
         alertView.alertBackgroundView.backgroundColor = UIColor.white
         
-        self.alertViewStyle = alertViewStyle
-        actions = NSArray() as? [AEAlertAction]
-        buttonTitleFont = UIFont.systemFont(ofSize: 14)
-        cancelButtonTitleFont = UIFont.systemFont(ofSize: 14)
-        destructiveButtonTitleFont = UIFont.systemFont(ofSize: 14)
-        buttonCornerRadius = 4.0
-        
-        if alertViewStyle == AEAlertViewStyle.Default {
-            buttonColor = UIColor.white
-            buttonTitleColor = UIColor.red
-            buttonLayerBorderColor = UIColor.red
-            
-            cancelButtonColor = UIColor.white
-            cancelButtonTitleColor = UIColor.darkGray
-            cancelButtonLayerBorderColor = UIColor.darkGray
-            
-            destructiveButtonColor = UIColor.white
-            destructiveButtonTitleColor = UIColor.darkGray
-            destructiveButtonLayerBorderColor = UIColor.darkGray
-            
-        }else if alertViewStyle == .Image {
-            buttonColor = UIColor.orange
-            buttonTitleColor = UIColor.white
-            
-            cancelButtonColor = UIColor.lightGray
-            cancelButtonTitleColor = UIColor.white
-            
-            destructiveButtonColor = UIColor.white
-            destructiveButtonTitleColor = UIColor.blue
-            
-        } else if alertViewStyle == .TextField {
-            buttonColor = UIColor.white
-            buttonTitleColor = UIColor.red
-            buttonLayerBorderColor = UIColor.red
-            
-            cancelButtonColor = UIColor.white
-            cancelButtonTitleColor = UIColor.darkGray
-            cancelButtonLayerBorderColor = UIColor.darkGray
-            
-            destructiveButtonColor = UIColor.white
-            destructiveButtonTitleColor = UIColor.darkGray
-            destructiveButtonLayerBorderColor = UIColor.darkGray
-
-            textField.font = UIFont.systemFont(ofSize: 15)
-            textField.backgroundColor = UIColor(red: 220/255, green: 220/255, blue: 220/255, alpha: 1.0)
-            textField.textColor = UIColor(red: 153/255, green: 153/255, blue: 153/255, alpha: 1.0)
-            textField.placeholder = "请输入内容"
-            
-            textFieldSize = CGSize(width: Int(UIScreen.main.bounds.size.width) - 68 - 40, height: 40)
-            setTextFieldSize(size: textFieldSize)
-            // 监听键盘弹出 收起
-            NotificationCenter.default.addObserver(self, selector: #selector(keyBoardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-            NotificationCenter.default.addObserver(self, selector: #selector(keyBoardWillShow), name: UIResponder.keyboardWillHideNotification, object: nil)
-        }
-        
-        alertView.titleLabel.text = title
-        alertView.titleLabel.textColor = UIColor.black
-        alertView.titleLabel.font = UIFont.systemFont(ofSize: 16)
-        
-        alertView.messageTextView.text = message
-        alertView.messageTextView.textColor = UIColor.darkGray
-        alertView.messageTextView.font = UIFont.systemFont(ofSize: 14)
-        
         addSubview(alertView)
+        
+        if style == .textField {
+            textFiled = UITextField(frame: CGRect(x: 0, y: 0, width: alertMaximumWidth - 24, height: 36))
+            textFiled.borderStyle = .roundedRect
+            textFiled.backgroundColor = UIColor(white: 0.899, alpha: 1.0)
+            textFiled.placeholder = "请输入..."
+            alertView.setAnimation(view: textFiled, width: alertMaximumWidth - 24, height: 36)
+        }
     }
-    
-    required public init?(coder aDecoder: NSCoder) {
+
+    required public init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.endEditing(true)
+    public var alertView: AEBaseAlertView!
+}
+
+extension AEAlertView {
+    open override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if isClickFinishEditing {
+            self.endEditing(true)
+        }
     }
     
-    /// 键盘通知
-    @objc private func keyBoardWillShow(_notification: Notification){
+    @objc private func keyBoardWillShow(_notification: Notification) {
+        if !textFieldFollowKeyboard { return }
         let dict = _notification.userInfo
         guard (dict?["UIKeyboardFrameBeginUserInfoKey"] as? CGRect) != nil else {
             return
@@ -361,37 +261,55 @@ open class AEAlertView: UIView {
             return
         }
         if _notification.name.rawValue == "UIKeyboardWillShowNotification" {
-            self.transform = CGAffineTransform(translationX: 0, y: CGFloat(-textFieldBecomeMargin))
+            self.transform = CGAffineTransform(translationX: 0, y: CGFloat(-textFieldBottomMargin))
         }else {
             self.transform = CGAffineTransform(translationX: 0, y: 0)
         }
     }
-    
-    private var alertView: AEBaseAlertView!
-    private var alertViewStyle: AEAlertViewStyle!
-    
+}
+
+extension AEAlertView {
     private func showAlert() {
+        createActions()
+        if #available(iOS 13, *) {
+            UIApplication.shared.keyWindow?.addSubview(self)
+        } else {
+            UIApplication.shared.delegate?.window??.addSubview(self)
+        }
+        if isObserverKeyboard {
+            NotificationCenter.default.addObserver(self, selector: #selector(keyBoardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(keyBoardWillShow), name: UIResponder.keyboardWillHideNotification, object: nil)
+        }
         
-        createActionButtons()
-        UIApplication.shared.delegate?.window??.addSubview(self)
-        
+        if showDuration == 0.0 {
+            self.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+            return
+        }
         alertView.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
         alertView.alpha = 0
         
-        UIView.animate(withDuration: TimeInterval(animationTime),
+        UIView.animate(withDuration: TimeInterval(showDuration),
                        delay: 0,
                        usingSpringWithDamping: 0.7,
                        initialSpringVelocity: 0.5,
                        options: .curveEaseInOut,
                        animations: {
-                        self.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
-                        self.alertView.transform = CGAffineTransform(scaleX: 1, y: 1)
-                        self.alertView.alpha = 1
-        },
-                       completion: nil)
+                    self.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+                    self.alertView.transform = CGAffineTransform(scaleX: 1, y: 1)
+                    self.alertView.alpha = 1
+        }, completion: nil)
     }
-    
-    private func closeAlert() {
+    private func dismissAlert() {
+        if !Thread.isMainThread { return }
+        NotificationCenter.default.removeObserver(self)
+        
+        if dismissDuration == 0.0 {
+            for view in self.subviews {
+                view.removeFromSuperview()
+            }
+            self.removeFromSuperview()
+            return
+        }
         UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveEaseIn, animations: {
             self.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
             self.alertView.alpha = 0
@@ -404,185 +322,66 @@ open class AEAlertView: UIView {
         }
     }
     
-    private func createActionButtons() {
-        
-        let buttons = NSMutableArray()
-        
-        guard let actionsCount = actions?.count else {
+    private func createActions() {
+        if actions.count == 0 {
+            alertView.actionList = buttons
             return
         }
-        for i in 0..<actionsCount {
-            
-            let action = actions![i]
-            let button = AEAlertViewButton(type: .custom)
-            
-            button.contentEdgeInsets = UIEdgeInsets(top: -15, left: -15, bottom: -15, right: -15)
-            button.tag = i
-            button.addTarget(self, action: #selector(actionButtonPressed), for: .touchUpInside)
-            button.isEnabled = action.enabled ?? true
-            button.radiusCorner = buttonCornerRadius
-            button.type = AEAlertViewButtonType.Bordered
-            button.translatesAutoresizingMaskIntoConstraints = false
-            button.setTitle(action.title, for: .normal)
-            button.setTitleColor(disabledButtonTitleColor, for: .disabled)
-            button.setBackgroundColor(color: disabledButtonColor ?? UIColor.darkGray, state: .disabled)
-            
-            if action.style == AEAlertActionStyle.Cancel {
-                
-                button.setTitleColor(cancelButtonTitleColor, for: .normal)
-                button.setTitleColor(cancelButtonTitleColor, for: .highlighted)
-                button.setBackgroundColor(color: cancelButtonColor!, state: .normal)
-                button.setBackgroundColor(color: cancelButtonColor!, state: .highlighted)
-                button.titleLabel?.font = cancelButtonTitleFont
-                
+        var alertButtons: [AEAlertViewButton] = []
+        for (idx, action) in actions.enumerated() {
+            let btn = AEAlertViewButton(type: .custom)
+            btn.tag = idx
+            btn.contentEdgeInsets = UIEdgeInsets(top: -15, left: -15, bottom: -15, right: -15)
+            btn.addTarget(self, action: #selector(actionPressed), for: .touchUpInside)
+            btn.isEnabled = action.enabled ?? true
+            btn.setTitle(action.title, for: .normal)
+            btn.layer.cornerRadius = actionCornerRadius
+            if action.style == .defaulted {
+                btn.setTitleColor(buttonTitleColor, for: .normal)
+                btn.setTitleColor(buttonTitleColor, for: .highlighted)
+                btn.setBackgroundColor(color: buttonColor ?? UIColor.red, state: .normal)
+                btn.setBackgroundColor(color: buttonColor ?? UIColor.red, state: .highlighted)
+                btn.titleLabel?.font = buttonTitleFont
+                if buttonLayerBorderColor != nil {
+                    btn.layer.borderWidth = buttonLayerBorderWidth
+                    btn.layer.borderColor = buttonLayerBorderColor?.cgColor
+                }else {
+                    btn.layer.borderWidth = 0.0
+                }
+            } else if action.style == .cancel {
+                btn.setTitleColor(cancelButtonTitleColor, for: .normal)
+                btn.setTitleColor(cancelButtonTitleColor, for: .highlighted)
+                btn.setBackgroundColor(color: cancelButtonColor ?? UIColor.white, state: .normal)
+                btn.setBackgroundColor(color: cancelButtonColor ?? UIColor.white, state: .highlighted)
+                btn.titleLabel?.font = cancelButtonTitleFont
                 if cancelButtonLayerBorderColor != nil {
-                    button.layer.borderWidth = 1.0
-                    button.layer.borderColor = cancelButtonLayerBorderColor?.cgColor
+                    btn.layer.borderWidth = cancelButtonLayerBorderWidth
+                    btn.layer.borderColor = cancelButtonLayerBorderColor?.cgColor
                 }else {
-                    button.layer.borderWidth = 0.0
-                }
-                
-            }else if action.style == AEAlertActionStyle.Destructive {
-                
-                button.setTitleColor(destructiveButtonTitleColor, for: .normal)
-                button.setTitleColor(destructiveButtonTitleColor, for: .highlighted)
-                button.setBackgroundColor(color: destructiveButtonColor!, state: .normal)
-                button.setBackgroundColor(color: destructiveButtonColor!, state: .highlighted)
-                button.titleLabel?.font = destructiveButtonTitleFont
-                if alertViewStyle == AEAlertViewStyle.Image {
-                    button.type = AEAlertViewButtonType.Filled
-                }
-                if destructiveButtonLayerBorderColor != nil {
-                    button.layer.borderWidth = 1.0
-                    button.layer.borderColor = destructiveButtonLayerBorderColor?.cgColor
-                }else {
-                    button.layer.borderWidth = 0.0
+                    btn.layer.borderWidth = 0.0
                 }
             } else {
-                
-                button.setTitleColor(buttonTitleColor, for: .normal)
-                button.setTitleColor(buttonTitleColor, for: .highlighted)
-                button.setBackgroundColor(color: buttonColor!, state: .normal)
-                button.setBackgroundColor(color: buttonColor!, state: .highlighted)
-                button.titleLabel?.font = buttonTitleFont
-                if buttonLayerBorderColor != nil {
-                    button.layer.borderWidth = 1.0
-                    button.layer.borderColor = buttonLayerBorderColor?.cgColor
+                btn.setTitleColor(destructiveButtonTitleColor, for: .normal)
+                btn.setTitleColor(destructiveButtonTitleColor, for: .highlighted)
+                btn.setBackgroundColor(color: destructiveButtonColor ?? UIColor.red, state: .normal)
+                btn.setBackgroundColor(color: destructiveButtonColor ?? UIColor.red, state: .highlighted)
+                btn.titleLabel?.font = destructiveButtonTitleFont
+                if destructiveButtonLayerBorderColor != nil {
+                    btn.layer.borderWidth = destructiveButtonLayerBorderWidth
+                    btn.layer.borderColor = destructiveButtonLayerBorderColor?.cgColor
                 }else {
-                    button.layer.borderWidth = 0.0
+                    btn.layer.borderWidth = 0.0
                 }
             }
-            
-            buttons.add(button)
-            action.actionButton = button
+            action.actionButton = btn
+            alertButtons.append(btn)
         }
-        alertView.actionButtons = buttons as? [AEAlertViewButton]
+        alertView.actionList = alertButtons
     }
-    
-    @objc private func actionButtonPressed(button: AEAlertViewButton) {
-        
-        let action = self.actions![button.tag]
-        if action.handler != nil {
-            action.handler!(action)
+    @objc private func actionPressed(button: AEAlertViewButton) {
+        if button.tag < actions.count {
+            actions[button.tag].handler?(actions[button.tag])
         }
     }
-}
-
-// MARK: func
-extension AEAlertView {
-    
-    /// 标题
-    private func setTitle(title: String?) {
-        alertView.titleLabel.text = title
-    }
-    /// 内容
-    private func setMessage(message: String?) {
-        alertView.messageTextView.text = message
-    }
-    /// 标题字体
-    private func setTitleFont(font: UIFont) {
-        alertView.titleLabel.font = font
-    }
-    /// 内容字体
-    private func setMessageFont(font: UIFont) {
-        alertView.messageTextView.font = font
-    }
-    /// 标题颜色
-    private func setTitleColor(color: UIColor?) {
-        alertView.titleLabel.textColor = color
-    }
-    /// 内容字体颜色
-    private func setMessageColor(color: UIColor?) {
-        alertView.messageTextView.textColor = color
-    }
-    /// 标题背景颜色
-    private func setTitleBackgroundColor(color: UIColor?) {
-        alertView.titleLabel.backgroundColor = color
-    }
-    /// 内容背景颜色
-    private func setMessageBackgroundColor(color: UIColor?) {
-        alertView.messageTextView.backgroundColor = color
-    }
-    
-    /// 设置content
-    private func content(view: UIView, width: NSInteger, height: NSInteger) {
-        alertView.setContentView(contentView: view, width: width, height: height)
-    }
-    /// 内容距离标题底部
-    private func setMessageTopMargin(margin: Int) {
-        alertView.messageTopMargin = margin
-    }
-    /// 标题左右间距
-    private func setTitleLeadingAndTrailingPadding(padding: Int) {
-        alertView.titleLeadingAndTrailingPadding = NSInteger(padding)
-    }
-    /// 内容左右间距
-    private func setMessageLeadingAndTrailingPadding(padding: Int) {
-        alertView.messageLeadingAndTrailingPadding = NSInteger(padding)
-    }
-    
-    private func setButtonBottomMargin(margin: Int) {
-        alertView.buttonBottomMargin = NSInteger(margin)
-    }
-    
-    private func setTitleTopMargin(margin: Int) {
-        alertView.titleTopMargin = NSInteger(margin)
-    }
-    
-    private func setMessageWithButtonMargin(margin: Int) {
-        alertView.messageWithButtonMargin = NSInteger(margin)
-    }
-    
-    private func setMessageAlignment(alignment: NSTextAlignment) {
-        alertView.messageAlignment = alignment
-    }
-    
-    private func setMessageHeight(height: Int) {
-        alertView.messageHeight = NSInteger(height)
-    }
-    
-    private func setContentViewTopMargin(margin: Int) {
-        alertView.contentViewTopMargin = NSInteger(margin)
-    }
-    
-    private func setContentViewBottomMargin(margin: Int) {
-        alertView.contentViewBottomMargin = NSInteger(margin)
-    }
-    
-    private func setAlertViewBackgroundColor(color: UIColor) {
-        alertView.alertBackgroundView.backgroundColor = color
-    }
-    
-    private func setMaximumWidth(width: Int) {
-        if width < 149 || CGFloat(width) > UIScreen.main.bounds.size.width { return }
-        alertView.maximumWidth = CGFloat(width)
-    }
-    
-    // 新增TextField 方法
-    private func setTextFieldSize(size: CGSize?) {
-        guard size != nil else { return }
-        alertView.setContentView(contentView: textField, width: Int(size!.width), height: Int(size!.height))
-    }
-    
 }
 

@@ -66,3 +66,8 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots/**/*.png
 fastlane/test_output
+AEAlertViewDemo/Pods/AEAlertView/AEAlertAction.swift
+AEAlertViewDemo/Pods/AEAlertView/AEAlertView.swift
+AEAlertViewDemo/Pods/AEAlertView/AEBaseAlertView.swift
+AEAlertViewDemo/Pods/AEAlertView/AEPathAnimation.swift
+AEAlertViewDemo/Pods/AEAlertView/AEUIAlertView.swift
