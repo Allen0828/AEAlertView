@@ -92,16 +92,17 @@ class ViewController: UIViewController {
             view.addAction(action: action_one)
             view.show()
         } else if tag == 4 {
+//            UITextField
             let textView = AEAlertView(style: .textField, title: "自定义", message: "自定义的样式")
-            textView.textFiled.placeholder = "自定义"
+            textView.textField.placeholder = "自定义"
             let action_one = AEAlertAction(title: "取消", style: .cancel) { (action) in
                 textView.dismiss()
             }
             let action_two = AEAlertAction(title: "知道了", style: .defaulted) { (action) in
-                print("输入框的文字是----\(textView.textFiled.text ?? "")")
+                print("输入框的文字是----\(textView.textField.text ?? "")")
             }
             let action_t = AEAlertAction(title: "测试3个按钮", style: .defaulted) { (action) in
-                print("输入框的文字是----\(textView.textFiled.text ?? "")")
+                print("输入框的文字是----\(textView.textField.text ?? "")")
             }
             textView.addAction(action: action_one)
             textView.addAction(action: action_two)
@@ -151,7 +152,7 @@ class ViewController: UIViewController {
         } else {
             let animV = AEAlertView(style: .textField, title: "请输入密码", message: nil)
             animV.titleTopMargin = 0
-            animV.textFiled.placeholder = "密码"
+            animV.textField.placeholder = "密码"
             
             let action_one = AEAlertAction(title: "取消", style: .cancel) { (action) in
                 animV.dismiss()
@@ -164,7 +165,7 @@ class ViewController: UIViewController {
                 let anim = AEBeginLineAnimation.initShow(in: animation.bounds, lineWidth: 4, lineColor: UIColor.blue)
                 animation.addSubview(anim)
                 
-                animV.textFiled.isHidden = true
+                animV.textField.isHidden = true
                 animV.set(animation: animation, width: 80, height: 80)
                 
                 // 模拟失败
@@ -223,15 +224,15 @@ class ViewController: UIViewController {
             view.show()
         }else if tag == 5 {
             let textView = AEUIAlertView(style: .textField, title: "自定义", message: "自定义的样式")
-            textView.textFiled.placeholder = "自定义"
+            textView.textField.placeholder = "自定义"
             let action_one = AEAlertAction(title: "取消", style: .cancel) { (action) in
                 textView.dismiss()
             }
             let action_two = AEAlertAction(title: "知道了", style: .defaulted) { (action) in
-                print("输入框的文字是----\(textView.textFiled.text ?? "")")
+                print("输入框的文字是----\(textView.textField.text ?? "")")
             }
             let action_t = AEAlertAction(title: "测试3个按钮", style: .defaulted) { (action) in
-                print("输入框的文字是----\(textView.textFiled.text ?? "")")
+                print("输入框的文字是----\(textView.textField.text ?? "")")
             }
             textView.addAction(action: action_one)
             textView.addAction(action: action_two)
@@ -266,7 +267,7 @@ class ViewController: UIViewController {
             view.show()
         } else {
             let animV = AEUIAlertView(style: .textField, title: "请输入密码", message: nil)
-            animV.textFiled.placeholder = "密码"
+            animV.textField.placeholder = "密码"
             
             let action_one = AEAlertAction(title: "取消", style: .cancel) { (action) in
                 animV.dismiss()
@@ -279,10 +280,10 @@ class ViewController: UIViewController {
                 let anim = AEBeginLineAnimation.initShow(in: animation.bounds, lineWidth: 4, lineColor: UIColor.blue)
                 animation.addSubview(anim)
                 
-                animV.textFiled.isHidden = true
+                animV.textField.isHidden = true
                 animV.set(animation: animation, width: 80, height: 80)
                 
-                // 模拟失败
+                
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
                     anim.paused()
                     anim.removeFromSuperview()
