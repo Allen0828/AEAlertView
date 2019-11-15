@@ -16,8 +16,8 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "AEAlertView"
-  s.version      = "2.1.1"
-  s.summary      = "add animation for 2.1.1"
+  s.version      = "2.1.2"
+  s.summary      = "Correct typos for 2.1.2"
 
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
