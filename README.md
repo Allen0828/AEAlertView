@@ -6,22 +6,19 @@ If your swift version is less than 4, you can  pod'AEAlertView','1.0'
 If swift 4.0 above 5.0 below you can  pod'AEAlertView','1.7' 
 
 # 如果你的swift版本是4.0以下, 你可以 pod'AEAlertView','1.0' 
-
 # 如果是 swift 4.0 以上 5.0 以下  你可以 pod'AEAlertView','1.7' 
-
 # 如果是 swift 5.0 使用最新版即可
 
+新增了动画弹窗
 
-- **在最新版本中 新增了 仿UI的弹窗,  开放了AEBaseAlertView 如果你的需求 AEAlertView和AEUIAlertView中没有 你可以继承AEBaseAlertView 来实现属于你自己的AlertView **
+<view><img src="https://github.com/Allen0828/AEAlertView/blob/master/img-folder/alert2.1.gif" width="160"></img> <img src="https://github.com/Allen0828/AEAlertView/blob/master/img-folder/uiAlertView2.1.gif" width="160"></img> <img src="https://github.com/Allen0828/AEAlertView/blob/master/img-folder/succees2.1.gif" width="160"></img><img src="https://github.com/Allen0828/AEAlertView/blob/master/img-folder/error2.1.gif" width="160"></img></view>
 
-先看新版的图片 
 
-<view> <img src="https://github.com/Allen0828/AEAlertView/blob/master/img-folder/alertView_GIF.gif" width="200"></img>  <img src="https://github.com/Allen0828/AEAlertView/blob/master/img-folder/uiAlertView_GIF.gif" width="200"> </img> </view>
-
-演示的样式 在Demo中都有  所有的属性都有说明 希望大家可以支持一下. 
+-  重新优化了baseAlert 简化了使用方法 
+-  base的布局方式
+<img src="https://github.com/Allen0828/AEAlertView/blob/master/img-folder/base2.1.jpeg" width = "320">
 
 # 如果有 你有任何问题 或者 好的建议 欢迎联系我  - email: allen.zhang0828@gmail.com -
-
 
 -------------------
 *** 控件支持 设置左右 上下间距  本来想提供 类方法来一句话调用, 但是每个项目的主题色不同 所有需要你 自己设置自己的主题色***
