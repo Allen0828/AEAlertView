@@ -195,11 +195,11 @@ open class AEAlertView: UIView {
     
     
     
-    // MARK: TextFiled
+    // MARK: textField
     // IF style==textField样式下 生效
-    public var textFiled: UITextField = UITextField()
+    public var textField: UITextField = UITextField()
     /// 默认为 animationWidth-40 高36
-    public var textFiledSize: CGSize?
+    public var textFieldSize: CGSize?
     /// textField 是否跟随键盘移动
     public var textFieldFollowKeyboard: Bool = true
     /// textField距离键盘的间距 默认距离键盘 100
@@ -229,11 +229,11 @@ open class AEAlertView: UIView {
         addSubview(alertView)
         
         if style == .textField {
-            textFiled = UITextField(frame: CGRect(x: 0, y: 0, width: alertMaximumWidth - 24, height: 36))
-            textFiled.borderStyle = .roundedRect
-            textFiled.backgroundColor = UIColor(white: 0.899, alpha: 1.0)
-            textFiled.placeholder = "请输入..."
-            alertView.setAnimation(view: textFiled, width: alertMaximumWidth - 24, height: 36)
+            textField = UITextField(frame: CGRect(x: 0, y: 0, width: alertMaximumWidth - 24, height: 36))
+            textField.borderStyle = .roundedRect
+            textField.backgroundColor = UIColor(white: 0.899, alpha: 1.0)
+            textField.placeholder = "请输入..."
+            alertView.setAnimation(view: textField, width: alertMaximumWidth - 24, height: 36)
         }
     }
 
