@@ -12,12 +12,12 @@ import UIKit
 public enum AEAlertActionStyle {
     case defaulted,
     cancel,
-    destructive
+    other
 }
 
 open class AEAlertAction: NSObject {
     
-    public init(title: String, style: AEAlertActionStyle, handler:@escaping (_ action: AEAlertAction)->()) {
+    public init(title: String, style: AEAlertActionStyle, handler: @escaping (_ action: AEAlertAction)->()) {
         self.title = title
         self.style = style
         self.handler = handler
@@ -27,16 +27,25 @@ open class AEAlertAction: NSObject {
     public var style: AEAlertActionStyle = .defaulted
     public var handler:((_ action: AEAlertAction)->())?
     public var enabled: Bool? {
-        didSet {
-            setEnabled(enabled: enabled ?? true)
+        didSet { setEnabled(enabled: enabled ?? true) }
+    }
+    /// 默认为所有按钮中的下标 除非你手动设置
+    public var tag: Int {
+        get {
+            return _tag
+        }
+        set {
+            _tag = newValue
         }
     }
+    private var _tag: Int = -1
     
     public weak var actionButton: UIButton?
     
     override init() {
         super.init()
         enabled = true
+        
     }
     
     private func setEnabled(enabled: Bool) {

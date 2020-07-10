@@ -1,11 +1,14 @@
-//  AEAlertView
+//  AETextFieldAlertView
 //  代码地址: https://github.com/Allen0828/AEAlertView
 //  Copyright © 2017年 Allen. All rights reserved.
 
 import UIKit
 
+// 此弹窗会将baseAlert中的 contentView 设置为TextField 所以使用此弹窗 无法设置 contentView.
+// 如果你有自定义View需要添加 请使用 set(custom: UIView, width: CGFloat, height: CGFloat)
+
 /// style 主要在于按钮展示的样式不同
-public enum AEAlertViewStyle {
+public enum AETextFieldAlertViewStyle {
     case defaulted,
     custom
 }
@@ -14,8 +17,8 @@ public enum AEAlertViewStyle {
 //   ----------------------
 //  |        title         |
 //  |       message        |
-//  |     contentView      |
-//  |       customView     |
+//  |       TextField      |
+//  |      contentView     |
 //  |                      |
 //  | ┌──────┐   ┌──────┐  |
 //  | └──────┙   └──────┙  |
@@ -24,26 +27,27 @@ public enum AEAlertViewStyle {
 //  ┌──────────────────────┐
 //  |        title         |
 //  |       message        |
+//  |       TextField      |
 //  |      contentView     |
-//  |      customView      |
 //  |                      |
 //  |──────────┯───────────|
 //  └──────────┷───────────┙
 
-
-/// 提供快速的使用
-extension AEAlertView {
-    /// 快速创建一个AlertView
+extension AETextFieldAlertView {
+    
+    /// 返回已经初始化的AETextFieldAlertView 由于有输入框 需要使用者自行关闭alertView
     /// - Parameters:
     ///   - title: 标题
-    ///   - actions: 按钮 默认数组第一个为AEAlertActionStyle.cancel样式
-    ///   - message: 内容 没设置高度 会根据文字高度改变弹窗的高度
-    ///   - bgImage: 背景图片 (默认当图比内容高时 使用图的高 当内容比图高时 使用内容的高)
+    ///   - message: 内容
+    ///   - bgImage: 背景图 (默认当图比内容高时 使用图的高 当内容比图高时 使用内容的高)
     ///   - bgImageBottomMargin: 如果设置了 背景图片会自适应高度 当图片过小时 可能会导致文字显示不完整
+    ///   - titleColor: 标题颜色
+    ///   - messageColor: 内容颜色
     ///   - defaultActionColor: default按钮的文字颜色 默认深蓝
-    ///   - handler: 按钮的回调 action.tag 对应数组的下标 在回调结束后 自动关闭alertView
-    static public func show(title: String?, actions: [String], message: String?, bgImage: UIImage? = UIImage(), bgImageBottomMargin: CGFloat = -1, titleColor: UIColor? = UIColor.black, messageColor: UIColor? = UIColor.darkGray, defaultActionColor: UIColor? = nil, handler: ((AEAlertAction)->())?) {
-        let alert = AEAlertView(style: .defaulted, title: title, message: message)
+    ///   - placeholder: 输入框提示文本
+    ///   - text: 直接显示在输入框的文字
+    static public func show(title: String?, message: String?, bgImage: UIImage? = UIImage(), bgImageBottomMargin: CGFloat = -1, titleColor: UIColor? = UIColor.black, messageColor: UIColor? = UIColor.darkGray, defaultActionColor: UIColor? = nil, placeholder: String? = nil, text: String = "") -> AETextFieldAlertView {
+        let alert = AETextFieldAlertView(style: .defaulted, title: title, message: message)
         alert.alertView.backgroundImage.image = bgImage
         if bgImageBottomMargin != -1 {
             alert.backgroundImageBottomMargin = bgImageBottomMargin
@@ -53,22 +57,12 @@ extension AEAlertView {
         if defaultActionColor != nil {
             alert.buttonTitleColor = defaultActionColor
         }
-        for (idx,item) in actions.enumerated() {
-            if idx == 0 {
-                let cancel = AEAlertAction.init(title: item, style: .cancel) { (action) in
-                    handler?(action)
-                    alert.dismiss()
-                }
-                alert.addAction(action: cancel)
-            } else {
-                let def = AEAlertAction.init(title: item, style: .defaulted) { (action) in
-                    handler?(action)
-                    alert.dismiss()
-                }
-                alert.addAction(action: def)
-            }
+        alert.textField.placeholder = placeholder ?? "请输入"
+        if text.count > 0 {
+            alert.textField.text = text
         }
-        alert.show()
+        
+        return alert
     }
     
     public func show() {
@@ -89,33 +83,25 @@ extension AEAlertView {
     public func addButton(button: AEAlertViewButton) {
         buttons.append(button)
     }
-    /// 设置contentView 推荐宽小于等于 UIScreen.main.bounds.size.width - (24 * 2)
-    public func set(content: UIView, width: CGFloat, height: CGFloat) {
-        alertView.setContent(view: content, width: width, height: height)
-    }
     /// 设置customView 推荐宽小于等于 UIScreen.main.bounds.size.width - (24 * 2)
     public func set(custom: UIView, width: CGFloat, height: CGFloat) {
         alertView.setCustom(view: custom, width: width, height: height)
     }
 }
 
-
-open class AEAlertView: UIView {
+open class AETextFieldAlertView: UIView {
 
     /// show动画时间 默认 0.5 如果为0 取消动画
     public var showDuration: CGFloat = 0.5
     /// dismiss动画时间 默认 0.25 如果为0 取消动画
     public var dismissDuration: CGFloat = 0.25
     
-    //MARK: 如果自定义了输入框
-    /// 点击灰色区域 结束编辑
-    public var isClickFinishEditing: Bool = true
-    /// 是否监听键盘的事件  注: 当你设置contentView或customView时 包含输入框 可能会使用到该属性
-    public var isObserverKeyboard: Bool = true
-    /// textField 是否跟随键盘移动 注: 当你设置contentView或customView时 包含输入框 可能会使用到该属性
-    public var textFieldFollowKeyboard: Bool = true
-    /// textField距离键盘的间距 默认距离键盘 100 注: 当你设置contentView或customView时 包含输入框 可能会使用到该属性
-    public var textFieldBottomMargin: CGFloat = 100
+    /// textField 可自行设置属性
+    private(set) var textField: UITextField!
+    /// 当前输入的文字
+    public var textFieldText: String {
+        return textField.text ?? ""
+    }
     
     // MARK: 设置文字属性
     /// title
@@ -250,9 +236,19 @@ open class AEAlertView: UIView {
     /// other 圆角 默认4
     public var otherButtonCornerRadius: CGFloat = 4
     
+    //MARK: 输入框监听
+    /// 点击灰色区域 结束编辑
+    public var isClickFinishEditing: Bool = true
+    /// 是否监听键盘的事件
+    public var isObserverKeyboard: Bool = true
+    /// textField 是否跟随键盘移动
+    public var textFieldFollowKeyboard: Bool = true
+    /// textField距离键盘的间距 默认距离键盘 100
+    public var textFieldBottomMargin: CGFloat = 100
+    
     
     /// baseAlert
-    private(set) var alertView: AEBaseAlertView!
+    private var alertView: AEBaseAlertView!
     private var actions: [AEAlertAction] = []
     private var buttons: [AEAlertViewButton] = []
     private var alertStyle: AEAlertViewStyle = .defaulted
@@ -277,14 +273,24 @@ open class AEAlertView: UIView {
             alertView.alertStyle = .apple
         }
         addSubview(alertView)
+        
+        textField = UITextField()
+        textField.layer.cornerRadius = 6
+        textField.placeholder = "请输入"
+        textField.font = UIFont.systemFont(ofSize: 15)
+        textField.textColor = UIColor.darkGray
+        textField.backgroundColor = UIColor(white: 0.9, alpha: 1)
+        let leftV = UIView(frame: CGRect(x: 0, y: 0, width: 8, height: 12))
+        textField.leftView = leftV
+        textField.leftViewMode = .always
+        alertView.setContent(view: textField, width: UIScreen.main.bounds.size.width - (48 * 2), height: 40)
     }
     
     required public init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     deinit {
-        debugPrint("AEAlertView-deinit")
+        debugPrint("AETextFieldAlertView-deinit")
     }
     
     open override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -309,7 +315,7 @@ open class AEAlertView: UIView {
     }
 }
 
-extension AEAlertView {
+extension AETextFieldAlertView {
     private func showAlert() {
         createActions()
         if #available(iOS 13, *) {

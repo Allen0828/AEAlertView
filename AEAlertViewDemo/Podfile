@@ -7,7 +7,7 @@ target 'AEAlertViewDemo' do
 
   # Pods for AEAlertViewDemo
 	
-  pod 'AEAlertView'
+#  pod 'AEAlertView'
 
 
 end
