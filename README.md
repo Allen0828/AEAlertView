@@ -10,6 +10,12 @@ If swift 4.0 above 5.0 below you can  pod'AEAlertView','1.7'
 # 如果是 swift 5.0 使用最新版即可
 
 # 2.2.2 - 更新了弹窗背景图片 支持整个弹窗在图片上显示
+<view><img src="https://github.com/Allen0828/AEAlertView/blob/master/img-folder/new1.jpeg" width="100"></img> <img src="https://github.com/Allen0828/AEAlertView/blob/master/img-folder/new2.jpeg" width="100"></img> <img src="https://github.com/Allen0828/AEAlertView/blob/master/img-folder/new3.jpeg" width="100"></img> <img src="https://github.com/Allen0828/AEAlertView/blob/master/img-folder/new4.jpeg" width="100"></img> <img
+src="https://github.com/Allen0828/AEAlertView/blob/master/img-folder/new5.jpeg" width="100"></img> <img
+src="https://github.com/Allen0828/AEAlertView/blob/master/img-folder/new6.jpeg" width="100"></img> <img
+src="https://github.com/Allen0828/AEAlertView/blob/master/img-folder/new7.jpeg" width="100"></img>
+</view>
+
 
 新增了动画弹窗
 
