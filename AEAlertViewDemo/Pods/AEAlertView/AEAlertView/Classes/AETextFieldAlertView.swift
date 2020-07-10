@@ -77,6 +77,8 @@ extension AETextFieldAlertView {
     }
     /// 手动重置按钮
     public func resetActions() {
+        actions = []
+        buttons = []
         createActions()
     }
     /// AEAlertAction 无法满足使用时 也可以使用 AEAlertViewButton 优先使用actions -> buttons
@@ -97,7 +99,7 @@ open class AETextFieldAlertView: UIView {
     public var dismissDuration: CGFloat = 0.25
     
     /// textField 可自行设置属性
-    private(set) var textField: UITextField!
+    public var textField: UITextField!
     /// 当前输入的文字
     public var textFieldText: String {
         return textField.text ?? ""
