@@ -256,7 +256,7 @@ open class AEAlertView: UIView {
     public var otherButtonCornerRadius: CGFloat = 4
     
     
-    /// baseAlert 只能设置属性 不能改变其值
+    /// baseAlert
     public var alertView: AEBaseAlertView!
     private var actions: [AEAlertAction] = []
     private var buttons: [AEAlertViewButton] = []

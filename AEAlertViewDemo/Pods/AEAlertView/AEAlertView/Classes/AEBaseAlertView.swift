@@ -28,9 +28,9 @@ open class AEBaseAlertView: UIView {
     // 基础控件 不能改变值 只能修改属性 如颜色 圆角等
     public var backgroundView: UIView!
     public var backgroundImage: UIImageView!
-    public var titleLabel: UILabel!
-    public var messageTextView: AEAlertTextView!
-    public var actionContainerView: UIView!
+    private(set) var titleLabel: UILabel!
+    private(set) var messageTextView: AEAlertTextView!
+    private(set) var actionContainerView: UIView!
     // 自定义view 最多只能设置两个自定义View 必须使用func setCustom setContent 来设置view
     private(set) var contentView: UIView?
     private(set) var customView: UIView?

@@ -102,6 +102,7 @@
 				9F1CEA712146BA5F001280FE /* Sources */,
 				9F1CEA722146BA5F001280FE /* Frameworks */,
 				9F1CEA732146BA5F001280FE /* Resources */,
+				2DD8E067D221D6A7606F337F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -159,6 +160,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		2DD8E067D221D6A7606F337F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AEAlertViewDemo/Pods-AEAlertViewDemo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AEAlertViewDemo/Pods-AEAlertViewDemo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AEAlertViewDemo/Pods-AEAlertViewDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		31BE5127F1D86FFE55C94634 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

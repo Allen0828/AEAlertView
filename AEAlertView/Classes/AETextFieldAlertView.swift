@@ -96,8 +96,8 @@ open class AETextFieldAlertView: UIView {
     /// dismiss动画时间 默认 0.25 如果为0 取消动画
     public var dismissDuration: CGFloat = 0.25
     
-    /// textField 可自行设置属性
-    private(set) var textField: UITextField!
+    /// textField 只能设置属性 不能修改值
+    public var textField: UITextField!
     /// 当前输入的文字
     public var textFieldText: String {
         return textField.text ?? ""
@@ -247,8 +247,8 @@ open class AETextFieldAlertView: UIView {
     public var textFieldBottomMargin: CGFloat = 100
     
     
-    /// baseAlert
-    private var alertView: AEBaseAlertView!
+    /// baseAlert 不能改变值
+    public var alertView: AEBaseAlertView!
     private var actions: [AEAlertAction] = []
     private var buttons: [AEAlertViewButton] = []
     private var alertStyle: AEAlertViewStyle = .defaulted

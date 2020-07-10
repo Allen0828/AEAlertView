@@ -7,15 +7,156 @@
 //
 
 import UIKit
+import AEAlertView
 //import AEAlertView
 
 
 
 class ViewController: UIViewController {
+    
+    let types = ["最快的方式调用", "设置背景图片",
+    "图片不出现在按钮上", "最快的输入框",
+    "内容超出", "图片过长",
+    "使用自定义view", "继承alertView",
+    "动画成功", "动画失败"]
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        var btnX: CGFloat = 10
+        var btnY: CGFloat = 100
+        let btnW: CGFloat = (UIScreen.main.bounds.size.width -  30) / 2
+        let btnH: CGFloat = 40
+        for (index, item) in types.enumerated() {
+            let btn = UIButton(frame: CGRect(x: btnX, y: btnY, width: btnW, height: btnH))
+            btn.setTitle(item, for: .normal)
+            btn.tag = index
+            if index % 2 == 0 {
+                btnX = btnW + 10
+                btn.backgroundColor = UIColor.red
+            } else {
+                btnY += 50
+                btnX = 10
+                btn.backgroundColor = UIColor.blue
+            }
+            btn.addTarget(self, action: #selector(typeButtonClick), for: .touchUpInside)
+            view.addSubview(btn)
+        }
     }
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    
+    @objc private func typeButtonClick(btn: UIButton) {
+        switch btn.tag {
+        case 0:
+            test0()
+        case 1:
+            test1()
+        case 2:
+            test2()
+        case 3:
+            test3()
+        case 4:
+            test4()
+        case 5:
+            test5()
+        default:
+            break
+        }
+    }
+        
+    
+    // 最快的方式调用
+    private func test0() {
+        AEAlertView.show(title: "提示", actions: ["好的"], message: "最快的调用方式") { (action) in
+            print("\(action.tag) --- 自动关闭了")
+        }
+    }
+    // 设置背景图片  (默认使用计算的高度 - 当设置了backgroundImageBottomMargin 属性时 会使用图片高度)
+    private func test1() {
+        AEAlertView.show(title: "提示", actions: ["cancel", "dev"], message: "(默认使用计算的高度 - 当设置了backgroundImageBottomMargin 属性时 会使用图片高度)", bgImage: UIImage(named: "001"), titleColor: UIColor.red, messageColor: UIColor.red, defaultActionColor: UIColor.red) { (action) in
+            print("\(action.tag) --- 自动关闭了")
+        }
+    }
+    // 设置图片 Margin  在默认样式下 按钮占用40的高度 如果是3个按钮 高度为80 4个为120 以此类推
+    private func test2() {
+        AEAlertView.show(title: "提示", actions: ["cancel", "dev"], message: "(设置图片 Margin  在默认样式下 按钮占用40的高度 如果是3个按钮 高度为80 4个为120 以此类推 - 注: 使用了bgImageBottomMargin 会根据图片的大小来计算弹窗高度--除非你的内容比图片高)", bgImage: UIImage(named: "001"), bgImageBottomMargin: 40, titleColor: UIColor.red, messageColor: UIColor.red, defaultActionColor: UIColor.red) { (action) in
+            print("\(action.tag) --- 自动关闭了")
+        }
+    }
+    // 最快的输入框
+    private func test3() {
+        let alert = AETextFieldAlertView.show(title: "", message: "正在展示最快速的出现输入框", bgImage: UIImage(named: "002"), placeholder: "点我试试")
+        let cancel = AEAlertAction.init(title: "cancel", style: .cancel) { (action) in
+            print("\(action.tag) --- 输入框的文字=\(alert.textFieldText)")
+            alert.dismiss()
+        }
+        alert.addAction(action: cancel)
+        alert.show()
+    }
+    // 内容超出
+    private func test4() {
+        let alert = AEAlertView.init(style: .custom, title: "展示的内容过多", message: "臣本布衣，躬耕于南阳，苟全性命于乱世，不求闻达于诸侯。先帝不以臣卑鄙，猥自枉屈，三顾臣于草庐之中，咨臣以当世之事，由是感激，遂许先帝以驱驰。后值倾覆，受任于败军之际，奉命于危难之间，尔来二十有一年矣。         \r\r先帝知臣谨慎，故临崩寄臣以大事也。受命以来，夙夜忧叹，恐托付不效，以伤先帝之明；故五月渡泸，深入不毛。今南方已定，兵甲已足，当奖率三军，北定中原，庶竭驽钝，攘除奸凶，兴复汉室，还于旧都。此臣所以报先帝而忠陛下之职分也。至于斟酌损益，进尽忠言，则攸之、祎、允之任也。 \r\r愿陛下托臣以讨贼兴复之效，不效，则治臣之罪，以告先帝之灵。若无兴德之言，则责攸之、祎、允等之慢，以彰其咎；陛下亦宜自谋，以咨诹善道，察纳雅言，深追先帝遗诏。臣不胜受恩感激。 \r\r今当远离，临表涕零，不知所言。")
+        alert.messageHeight = 300
+        let cancel = AEAlertAction.init(title: "cancel", style: .cancel) { (action) in
+            print("\(action.tag)")
+            alert.dismiss()
+        }
+        alert.addAction(action: cancel)
+        alert.show()
+    }
+    // 图片太长
+    private func test5() {
+        let alert = AEAlertView.init(style: .defaulted, title: "背景图片太长", message: "两种解决方法：\r1: 不设置backgroundImageBottomMargin, 只设置image的高度-注高度可能会引起图片变形-需要设置contentMode")
+//        alert.alertView.backgroundImage.image = UIImage(named: "001")
+        alert.backgroundImage = UIImage(named: "001")
+        alert.backgroundImageHeight = 300
+        
+//        let v = UIView(frame: CGRect(x: 0, y: 0, width: 300, height: 100))
+//        v.backgroundColor = UIColor.red
+//        alert.alertView.backgroundView.backgroundColor = UIColor.red
+//        alert.alertView.backgroundImage.image = UIImage(named: "001")
+        
+        let cancel = AEAlertAction.init(title: "cancel", style: .cancel) { (action) in
+            print("\(action.tag)")
+            alert.dismiss()
+        }
+        alert.addAction(action: cancel)
+        alert.show()
+    }
+    
+    
+}
+
+class AlertView: AEAlertView {
+    
+    override init(style: AEAlertViewStyle, title: String?, message: String?) {
+        super.init(style: style, title: title, message: message)
+        
+        alertView.actionHeight = 40
+        
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+}
+
+//class AlertBase: AEBaseAlertView {
+//
+//    override init(frame: CGRect) {
+//        super.init(frame: frame)
+//        backgroundImage.image = UIImage()
+//    }
+//
+//    required init?(coder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
+//
+//}
+    
+//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 
 //        let text = UITextField(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
 //        text.placeholder = "请输入密码"
@@ -76,11 +217,9 @@ class ViewController: UIViewController {
 //        }
 //        alert.addAction(action: sub)
 //        alert.show()
-    }
+//    }
     
-    private func dis() {
-        
-    }
+
     
 //    let types = ["普通样式", "UI普通样式",
 //    "修改控件位置", "UI修改控件位置",
@@ -431,7 +570,7 @@ class ViewController: UIViewController {
 //
 //        self.removeFromSuperview()
 //    }
-}
+//}
 
 
 //class AlertView: AEAlertView {
