@@ -346,13 +346,17 @@ extension AEBaseAlertView {
             let actionCons = NSLayoutConstraint.constraints(withVisualFormat: "H:|[actionContainerView]|", options: option, metrics: nil, views: ["actionContainerView": actionContainerView!])
             backgroundView.addConstraints(actionCons)
             
-            let verticalCons = NSLayoutConstraint.constraints(withVisualFormat: "V:|-20@750-[titleLabel]-10@750-[messageTextView]-5@750-[customContainerView]-5@750-[contentContainerView]-20@750-[actionContainerView]|", options: option, metrics: nil, views: ["titleLabel": titleLabel!, "messageTextView": messageTextView!, "customContainerView": customContainerView!, "contentContainerView": contentContainerView!, "actionContainerView": actionContainerView!])
+            let verticalCons = NSLayoutConstraint.constraints(withVisualFormat: "V:|-20@750-[titleLabel]-10@750-[messageTextView]-5@750-[contentContainerView]-5@750-[customContainerView]-20@750-|", options: option, metrics: nil, views: ["titleLabel": titleLabel!, "messageTextView": messageTextView!, "contentContainerView": contentContainerView!, "customContainerView": customContainerView!])
             backgroundView.addConstraints(verticalCons)
-        }
-        if alertStyle == .apple {
-            setAppleStyleActions(btns)
         } else {
-            setCustomStyleActions(btns)
+            let option = NSLayoutConstraint.FormatOptions(rawValue: 0)
+            let verticalCons = NSLayoutConstraint.constraints(withVisualFormat: "V:|-20@750-[titleLabel]-10@750-[messageTextView]-5@750-[contentContainerView]-5@750-[customContainerView]-20@750-[actionContainerView]|", options: option, metrics: nil, views: ["titleLabel": titleLabel!, "messageTextView": messageTextView!, "contentContainerView": contentContainerView!, "customContainerView": customContainerView!, "actionContainerView": actionContainerView!])
+            backgroundView.addConstraints(verticalCons)
+            if alertStyle == .apple {
+                setAppleStyleActions(btns)
+            } else {
+                setCustomStyleActions(btns)
+            }
         }
     }
     
