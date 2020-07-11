@@ -115,13 +115,38 @@ class ViewController: UIViewController {
     // 图片太长
     private func test5() {
         let alert = AEAlertView.init(style: .defaulted, title: "背景图片太长", message: "两种解决方法：\r1: 不设置backgroundImageBottomMargin, 只设置image的高度-注高度可能会引起图片变形-需要设置contentMode\r\r2: 不设置backgroundImageBottomMargin，也不设置backgroundImageHeight，根据内容自动计算（可以设置messageHeight来固定大小）")
-        alert.alertView.backgroundImage.image = UIImage(named: "001")
+        
+        // 尝试设置gif
+        let data = try? Data.init(contentsOf: URL(fileURLWithPath: Bundle.main.path(forResource: "003", ofType: "gif")!))
+        if let imgData = data, let source = CGImageSourceCreateWithData(imgData as CFData, nil) {
+            // 获取gif帧数
+            let count = CGImageSourceGetCount(source)
+            var images: [UIImage] = []
+            var total: Double = 0
+            for i in 0..<count {
+                let pro = CGImageSourceCopyPropertiesAtIndex(source, i, nil) as! [String: Any]
+                let gifPro = pro[kCGImagePropertyGIFDictionary as String] as! [String: Any]
+                // gif 原始秒数
+                let duration = gifPro[kCGImagePropertyGIFDelayTime as String] as! Double
+                // 动画方向
+//                let exif = pro[kCGImagePropertyOrientation as String] as! Int
+                // 获取每帧的图片
+                let imgRef = CGImageSourceCreateImageAtIndex(source, i, nil)!
+                let img = UIImage(cgImage: imgRef, scale: UIScreen.main.scale, orientation: UIImage.Orientation.up)
+                total += duration
+                images.append(img)
+            }
+            let anImg = UIImage.animatedImage(with: images, duration: total)
+            alert.alertView.backgroundImage.image = anImg
+        } else {
+            alert.alertView.backgroundImage.image = UIImage(named: "001")
+        }
 //        alert.backgroundImage = UIImage(named: "001")
         // 方式1
 //        alert.backgroundImageHeight = 300
 //        alert.alertView.backgroundImage.contentMode = .scaleAspectFill
         // 方式2
-        alert.messageHeight = 400
+//        alert.messageHeight = 400
         
         alert.messageColor = UIColor.red
         let cancel = AEAlertAction.init(title: "cancel", style: .cancel) { (action) in
@@ -242,7 +267,7 @@ class AlertView: AEAlertView {
     /// 只有一个按钮时 按钮为确定样式 (回调所有 点击事件)
     static public func show(_ title: String?, _ message: String?, _ actions: [String], handler:((AEAlertAction)->Void)?) {
         
-        let view = AlertView(style: .defaulted, title: title, message: message)
+        let view = AlertView(style: .custom, title: title, message: message)
         if actions.count == 1 {
             let action = AEAlertAction(title: actions[0], style: .defaulted) { (action) in
                 handler?(action)
