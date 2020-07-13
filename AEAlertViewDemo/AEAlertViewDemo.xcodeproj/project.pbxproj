@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,7 @@
 		9F1CEA7E2146BA5F001280FE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F1CEA7C2146BA5F001280FE /* Main.storyboard */; };
 		9F1CEA802146BA60001280FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F1CEA7F2146BA60001280FE /* Assets.xcassets */; };
 		9F1CEA832146BA60001280FE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F1CEA812146BA60001280FE /* LaunchScreen.storyboard */; };
+		9F74C72924B9DB4900467E13 /* 003.gif in Resources */ = {isa = PBXBuildFile; fileRef = 9F74C72824B9DB4900467E13 /* 003.gif */; };
 		9F781DBF215E253B00C2228F /* AlertViewManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F781DBE215E253B00C2228F /* AlertViewManger.swift */; };
 /* End PBXBuildFile section */
 
@@ -26,6 +27,7 @@
 		9F1CEA7F2146BA60001280FE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9F1CEA822146BA60001280FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9F1CEA842146BA60001280FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9F74C72824B9DB4900467E13 /* 003.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 003.gif; sourceTree = "<group>"; };
 		9F781DBE215E253B00C2228F /* AlertViewManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewManger.swift; sourceTree = "<group>"; };
 		DFA71EB5287F7B3F0B1D5FAA /* Pods_AEAlertViewDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AEAlertViewDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -72,6 +74,7 @@
 		9F1CEA772146BA5F001280FE /* AEAlertViewDemo */ = {
 			isa = PBXGroup;
 			children = (
+				9F74C72824B9DB4900467E13 /* 003.gif */,
 				9F1CEA782146BA5F001280FE /* AppDelegate.swift */,
 				9F1CEA7A2146BA5F001280FE /* ViewController.swift */,
 				9F1CEA7C2146BA5F001280FE /* Main.storyboard */,
@@ -153,6 +156,7 @@
 			files = (
 				9F1CEA832146BA60001280FE /* LaunchScreen.storyboard in Resources */,
 				9F1CEA802146BA60001280FE /* Assets.xcassets in Resources */,
+				9F74C72924B9DB4900467E13 /* 003.gif in Resources */,
 				9F1CEA7E2146BA5F001280FE /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
