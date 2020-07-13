@@ -79,6 +79,12 @@ extension AETextFieldAlertView {
     public func resetActions() {
         createActions()
     }
+    /// 清除原有的按钮
+    public func removeActions() {
+        actions = []
+        buttons = []
+        createActions()
+    }
     /// AEAlertAction 无法满足使用时 也可以使用 AEAlertViewButton 优先使用actions -> buttons
     public func addButton(button: AEAlertViewButton) {
         buttons.append(button)

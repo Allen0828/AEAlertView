@@ -20,6 +20,23 @@ public enum AEButtonArrangementMode {
     vertical
 }
 
+// open Func
+extension AEBaseAlertView {
+    // FUNC 推荐宽小于等于 UIScreen.main.bounds.size.width - (24 * 2)
+    /// 设置自定义view 1
+    public func setContent(view: UIView, width: CGFloat, height: CGFloat) {
+        setView(content: view, width, height)
+    }
+    /// 设置自定义view 2
+    public func setCustom(view: UIView, width: CGFloat, height: CGFloat) {
+        setView(custom: view, width, height)
+    }
+    /// 通过路径Path设置背景图 支持GIF  通过路径设置 Bundle.main.path(forResource name: String?, ofType ext: String?)
+    public func setBackgroundImage(contentsOf file: String?) {
+        setImage(contentsOf: file)
+    }
+}
+
 open class AEBaseAlertView: UIView {
     
     /// alert样式 apple样式下按钮有分割线 按钮高度为40  /Apple style buttons have split lines Button height is 40
@@ -35,14 +52,6 @@ open class AEBaseAlertView: UIView {
     private(set) var contentView: UIView?
     private(set) var customView: UIView?
     
-    // FUNC 推荐宽小于等于 UIScreen.main.bounds.size.width - (24 * 2)
-    public func setContent(view: UIView, width: CGFloat, height: CGFloat) {
-        setView(content: view, width, height)
-    }
-    public func setCustom(view: UIView, width: CGFloat, height: CGFloat) {
-        setView(custom: view, width, height)
-    }
-    
     // 按钮属性
     public var actionHeight: CGFloat = 40
     public var actionPadding: CGFloat = 8
@@ -52,9 +61,7 @@ open class AEBaseAlertView: UIView {
     public var actionArrangementMode: AEButtonArrangementMode = .horizontal
     public var actionSplitLine: UIColor = UIColor(white: 0.88, alpha: 1.0)
     public var actionList: [UIButton]? {
-        didSet {
-            setActionButtons(actionList)
-        }
+        didSet { setActionButtons(actionList) }
     }
     
     // 距离大小设置
@@ -259,8 +266,13 @@ extension AEBaseAlertView {
             if backgroundImageVerticalCentering != nil {
                 backgroundView.removeConstraints(backgroundImageVerticalCentering)
             }
+            // 图片过大时 只按照当前屏幕的最高值显示图片 最大高度 弹窗高 * 0.9
+            var height: CGFloat = backgroundImageHeight == 0 ? backgroundImage.image!.size.height : backgroundImageHeight
+            if height > (self.frame.size.height * 0.9) - margin {
+                height = self.frame.size.height * 0.9 - margin
+            }
             let metrics = ["margin":  NSNumber(floatLiteral: Double(margin)),
-                           "height": NSNumber(floatLiteral: Double(backgroundImageHeight == 0 ? backgroundImage.image!.size.height : backgroundImageHeight))]
+                           "height": NSNumber(floatLiteral: Double(height))]
             backgroundImageVerticalCentering = NSLayoutConstraint.constraints(withVisualFormat: "V:|[backgroundImage(height)]-margin-|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: metrics, views: ["backgroundImage": backgroundImage!])
             backgroundView.addConstraints(backgroundImageVerticalCentering)
         }
@@ -516,6 +528,79 @@ extension AEBaseAlertView {
     }
 }
 
+// 添加gif图片
+extension AEBaseAlertView {
+    private func setImage(contentsOf path: String?) {
+        // 判断图片是否存在
+        let url = URL(fileURLWithPath: path ?? "")
+        guard let data = try? Data.init(contentsOf: url) else { return }
+        if data.getImageFormat() == ImageFormat.Unknow { return }
+        // 判断是否为GIF 图片
+        if data.getImageFormat() == ImageFormat.GIF {
+            guard let source = CGImageSourceCreateWithData(data as CFData, nil) else { return }
+            let count = CGImageSourceGetCount(source)
+            var images: [UIImage] = []
+            var total: Double = 0
+            for i in 0..<count {
+                guard let pro = CGImageSourceCopyPropertiesAtIndex(source, i, nil) as? [String: Any],
+                    let gifDict = pro[kCGImagePropertyGIFDictionary as String] as? [String: Any],
+                    let duration = gifDict[kCGImagePropertyGIFDelayTime as String] as? Double,
+                    let imgRef = CGImageSourceCreateImageAtIndex(source, i, nil) else { return }
+                
+                let img = UIImage(cgImage: imgRef, scale: UIScreen.main.scale, orientation: UIImage.Orientation.up) // 默认gif图片没有旋转过
+                total += duration
+                images.append(img)
+            }
+            let anImg = UIImage.animatedImage(with: images, duration: total)
+            backgroundImage.image = anImg
+        } else if data.getImageFormat() == ImageFormat.WebP {
+            debugPrint("当前不支持显示 WebP图片")
+        } else {
+            backgroundImage.image = UIImage(data: data)
+        }
+    }
+}
+
+private enum ImageFormat {
+    case Unknow
+    case JPEG
+    case PNG
+    case GIF
+    case TIFF
+    case WebP
+    case HEIC
+    case HEIF
+}
+private extension Data {
+    func getImageFormat() -> ImageFormat  {
+        var buffer = [UInt8](repeating: 0, count: 1)
+        self.copyBytes(to: &buffer, count: 1)
+        
+        switch buffer {
+        case [0xFF]: return .JPEG
+        case [0x89]: return .PNG
+        case [0x47]: return .GIF
+        case [0x49],[0x4D]: return .TIFF
+        case [0x52] where self.count >= 12:
+            if let str = String(data: self[0...11], encoding: .ascii), str.hasPrefix("RIFF"), str.hasSuffix("WEBP") {
+                return .WebP
+            }
+        case [0x00] where self.count >= 12:
+            if let str = String(data: self[8...11], encoding: .ascii) {
+                let HEICBitMaps = Set(["heic", "heis", "heix", "hevc", "hevx"])
+                if HEICBitMaps.contains(str) {
+                    return .HEIC
+                }
+                let HEIFBitMaps = Set(["mif1", "msf1"])
+                if HEIFBitMaps.contains(str) {
+                    return .HEIF
+                }
+            }
+        default: break;
+        }
+        return .Unknow
+    }
+}
 
 
 // MARK: - AEAlertTextView

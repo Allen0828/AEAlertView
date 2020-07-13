@@ -93,6 +93,10 @@ extension AETextFieldAlertView {
     public func set(custom: UIView, width: CGFloat, height: CGFloat) {
         alertView.setCustom(view: custom, width: width, height: height)
     }
+    /// 使用路径设置背景图片 支持GIF
+    public func setBackgroundImage(contentsOf file: String?) {
+        alertView.setBackgroundImage(contentsOf: file)
+    }
 }
 
 open class AETextFieldAlertView: UIView {
@@ -107,6 +111,11 @@ open class AETextFieldAlertView: UIView {
     /// 当前输入的文字
     public var textFieldText: String {
         return textField.text ?? ""
+    }
+    
+    /// 设置背景图片
+    public var backgroundImage: UIImage? {
+        didSet { alertView.backgroundImage.image = backgroundImage }
     }
     
     // MARK: 设置文字属性

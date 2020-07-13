@@ -128,20 +128,17 @@ class ViewController: UIViewController {
                 let gifPro = pro[kCGImagePropertyGIFDictionary as String] as! [String: Any]
                 // gif 原始秒数
                 let duration = gifPro[kCGImagePropertyGIFDelayTime as String] as! Double
-                // 动画方向
-//                let exif = pro[kCGImagePropertyOrientation as String] as! Int
                 // 获取每帧的图片
                 let imgRef = CGImageSourceCreateImageAtIndex(source, i, nil)!
-                let img = UIImage(cgImage: imgRef, scale: UIScreen.main.scale, orientation: UIImage.Orientation.up)
+                let img = UIImage(cgImage: imgRef, scale: UIScreen.main.scale, orientation: UIImage.Orientation.up) // 默认gif图片没有旋转过
                 total += duration
                 images.append(img)
             }
             let anImg = UIImage.animatedImage(with: images, duration: total)
-            alert.alertView.backgroundImage.image = anImg
+            alert.backgroundImage = anImg
         } else {
-            alert.alertView.backgroundImage.image = UIImage(named: "001")
+            alert.backgroundImage = UIImage(named: "001")
         }
-//        alert.backgroundImage = UIImage(named: "001")
         // 方式1
 //        alert.backgroundImageHeight = 300
 //        alert.alertView.backgroundImage.contentMode = .scaleAspectFill
@@ -200,13 +197,14 @@ class ViewController: UIViewController {
             alert.dismiss()
         }
         let action_two = AEAlertAction(title: "确定", style: .defaulted) { (action) in
-            // alert.removeActions()
+             alert.removeActions()
             
             let animation = UIView(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
             let anim = AEBeginLineAnimation.initShow(in: animation.bounds, lineWidth: 4, lineColor: UIColor.blue)
             animation.addSubview(anim)
             
             alert.textField.isHidden = true
+            alert.customViewTopMargin = -60
             alert.set(custom: animation, width: 80, height: 80)
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
                 anim.paused()
@@ -235,13 +233,14 @@ class ViewController: UIViewController {
             animV.dismiss()
         }
         let action_two = AEAlertAction(title: "确定", style: .defaulted) { (action) in
-//            animV.removeActions()
+            animV.removeActions()
 
             let animation = UIView(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
             let anim = AEBeginLineAnimation.initShow(in: animation.bounds, lineWidth: 4, lineColor: UIColor.blue)
             animation.addSubview(anim)
             
             animV.textField.isHidden = true
+            animV.customViewTopMargin = -60
             animV.set(custom: animation, width: 80, height: 80)
             // 模拟失败
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
