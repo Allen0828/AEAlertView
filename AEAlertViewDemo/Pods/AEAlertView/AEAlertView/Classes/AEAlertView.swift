@@ -118,9 +118,9 @@ open class AEAlertView: UIView {
     public var textFieldBottomMargin: CGFloat = 100
     
     /// 设置背景图片
-//    public var backgroundImage: UIImage? {
-//        didSet {alertView.backgroundImage.image = backgroundImage }
-//    }
+    public var backgroundImage: UIImage? {
+        didSet {alertView.backgroundImage.image = backgroundImage }
+    }
     
     // MARK: 设置文字属性
     /// title
@@ -256,7 +256,7 @@ open class AEAlertView: UIView {
     public var otherButtonCornerRadius: CGFloat = 4
     
     
-    /// baseAlert
+    /// baseAlert 只能设置属性 不能改变其值
     public var alertView: AEBaseAlertView!
     private var actions: [AEAlertAction] = []
     private var buttons: [AEAlertViewButton] = []
