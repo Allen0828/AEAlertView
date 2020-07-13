@@ -1,0 +1,16 @@
+PODS:
+  - AEAlertView (2.2.3)
+
+DEPENDENCIES:
+  - AEAlertView
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - AEAlertView
+
+SPEC CHECKSUMS:
+  AEAlertView: 2ac369948406e6e9f08b87690f85f9600ddb23a5
+
+PODFILE CHECKSUM: b2a0efc38c205d3c6db6683bbc40df578a10bd20
+
+COCOAPODS: 1.7.3
