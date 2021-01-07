@@ -15,6 +15,7 @@
 		A8BD44E5230405B800C610BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8BD44E3230405B800C610BC /* Main.storyboard */; };
 		A8BD44E7230405B800C610BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A8BD44E6230405B800C610BC /* Assets.xcassets */; };
 		A8BD44EA230405B900C610BC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8BD44E8230405B900C610BC /* LaunchScreen.storyboard */; };
+		A8D11BE225998761000B9AFD /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D11BE125998761000B9AFD /* AlertView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		A8BD44E6230405B800C610BC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A8BD44E9230405B900C610BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A8BD44EB230405B900C610BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A8D11BE125998761000B9AFD /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		E02CCCE18C439FBB1FD79419 /* Pods-AlertViewDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlertViewDemo.release.xcconfig"; path = "Target Support Files/Pods-AlertViewDemo/Pods-AlertViewDemo.release.xcconfig"; sourceTree = "<group>"; };
 		F87941D9C83C4666449DCA5C /* Pods-AlertViewDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlertViewDemo.debug.xcconfig"; path = "Target Support Files/Pods-AlertViewDemo/Pods-AlertViewDemo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -82,6 +84,7 @@
 		A8BD44DE230405B800C610BC /* AlertViewDemo */ = {
 			isa = PBXGroup;
 			children = (
+				A8D11BE025998749000B9AFD /* AlertView */,
 				A89BC57124BC5F1600E6E127 /* 003.gif */,
 				A89BC56F24BC5F1100E6E127 /* gif004.gif */,
 				A8BD44DF230405B800C610BC /* AppDelegate.swift */,
@@ -92,6 +95,14 @@
 				A8BD44EB230405B900C610BC /* Info.plist */,
 			);
 			path = AlertViewDemo;
+			sourceTree = "<group>";
+		};
+		A8D11BE025998749000B9AFD /* AlertView */ = {
+			isa = PBXGroup;
+			children = (
+				A8D11BE125998761000B9AFD /* AlertView.swift */,
+			);
+			path = AlertView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -213,6 +224,7 @@
 			files = (
 				A8BD44E2230405B800C610BC /* ViewController.swift in Sources */,
 				A8BD44E0230405B800C610BC /* AppDelegate.swift in Sources */,
+				A8D11BE225998761000B9AFD /* AlertView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
