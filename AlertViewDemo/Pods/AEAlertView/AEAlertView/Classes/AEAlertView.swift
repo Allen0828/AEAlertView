@@ -327,7 +327,10 @@ open class AEAlertView: UIView {
 extension AEAlertView {
     private func showAlert() {
         createActions()
-        if #available(iOS 13, *) {
+        if #available(iOS 14.0, *) {
+            let window = UIApplication.shared.windows.first { $0.isKeyWindow }
+            window?.addSubview(self)
+        } else if #available(iOS 13, *) {
             UIApplication.shared.keyWindow?.addSubview(self)
         } else {
             UIApplication.shared.delegate?.window??.addSubview(self)
