@@ -8,5 +8,6 @@ target 'SwiftUI-Demo' do
   # Pods for SwiftUI-Demo
 
   pod 'AEAlertView'
+  pod 'SnapKit'
 
 end

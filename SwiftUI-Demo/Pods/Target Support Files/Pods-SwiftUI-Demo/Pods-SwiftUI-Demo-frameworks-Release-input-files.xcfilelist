@@ -1,2 +1,3 @@
 ${PODS_ROOT}/Target Support Files/Pods-SwiftUI-Demo/Pods-SwiftUI-Demo-frameworks.sh
 ${BUILT_PRODUCTS_DIR}/AEAlertView/AEAlertView.framework
+${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework
