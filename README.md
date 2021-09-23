@@ -9,6 +9,8 @@ If swift 4.0 above 5.0 below you can  pod'AEAlertView','1.7'
 # 如果是 swift 4.0 以上 5.0 以下  你可以 pod'AEAlertView','1.7' 
 # 如果是 swift 5.0 使用最新版即可
 
+- [ ] 正在开发Web与Native的交互
+
 # 2.2 - 更新了弹窗背景图片 支持整个弹窗在图片上显示，支持GIF图片做为背景图片，具体样式Demo中都以包含。
 <view><img src="https://github.com/Allen0828/AEAlertView/blob/master/img-folder/new1.jpeg" width="100"></img> <img src="https://github.com/Allen0828/AEAlertView/blob/master/img-folder/new2.jpeg" width="100"></img> <img src="https://github.com/Allen0828/AEAlertView/blob/master/img-folder/new3.jpeg" width="100"></img> <img src="https://github.com/Allen0828/AEAlertView/blob/master/img-folder/new4.jpeg" width="100"></img> <img
 src="https://github.com/Allen0828/AEAlertView/blob/master/img-folder/new5.jpeg" width="100"></img> <img
