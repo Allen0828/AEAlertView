@@ -38,20 +38,14 @@ extension AEAlertView {
     ///   - title: 标题
     ///   - actions: 按钮 默认数组第一个为AEAlertActionStyle.cancel样式
     ///   - message: 内容 没设置高度 会根据文字高度改变弹窗的高度
-    ///   - bgImage: 背景图片 (默认当图比内容高时 使用图的高 当内容比图高时 使用内容的高)
-    ///   - bgImageBottomMargin: 如果设置了 背景图片会自适应高度 当图片过小时 可能会导致文字显示不完整
-    ///   - defaultActionColor: default按钮的文字颜色 默认深蓝
     ///   - handler: 按钮的回调 action.tag 对应数组的下标 在回调结束后 自动关闭alertView
-    static public func show(title: String?, actions: [String], message: String?, bgImage: UIImage? = UIImage(), bgImageBottomMargin: CGFloat = -1, titleColor: UIColor? = UIColor.black, messageColor: UIColor? = UIColor.darkGray, defaultActionColor: UIColor? = nil, handler: ((AEAlertAction)->())?) {
+    static public func show(title: String?, message: String?, actions: [String], bgImage: UIImage? = nil, bgImageBottomMargin: CGFloat = -1, handler: ((AEAlertAction)->())?) {
         let alert = AEAlertView(style: .defaulted, title: title, message: message)
-        alert.alertView.backgroundImage.image = bgImage
-        if bgImageBottomMargin != -1 {
-            alert.backgroundImageBottomMargin = bgImageBottomMargin
-        }
-        alert.titleColor = titleColor
-        alert.messageColor = messageColor
-        if defaultActionColor != nil {
-            alert.buttonTitleColor = defaultActionColor
+        if (bgImage != nil) {
+            alert.alertView.backgroundImage.image = bgImage
+            if bgImageBottomMargin != -1 {
+                alert.backgroundImageBottomMargin = bgImageBottomMargin
+            }
         }
         for (idx,item) in actions.enumerated() {
             if idx == 0 {
@@ -77,6 +71,12 @@ extension AEAlertView {
     public func dismiss() {
         dismissAlert()
     }
+    /// 如果你不想使用 show() 来展示 可以调用此方法后 在去手动将alert添加到你需要的视图中
+    /// get current view You must add it to superview
+    public func create() {
+        createActions()
+    }
+    
     /// 添加action
     public func addAction(action: AEAlertAction) {
         actions.append(action)
@@ -88,13 +88,9 @@ extension AEAlertView {
     /// 清除原有的按钮
     public func removeActions() {
         actions = []
-        buttons = []
         createActions()
     }
-    /// AEAlertAction 无法满足使用时 也可以使用 AEAlertViewButton 优先使用actions -> buttons
-    public func addButton(button: AEAlertViewButton) {
-        buttons.append(button)
-    }
+
     /// 设置contentView 推荐宽小于等于 UIScreen.main.bounds.size.width - (24 * 2)
     public func set(content: UIView, width: CGFloat, height: CGFloat) {
         alertView.setContent(view: content, width: width, height: height)
@@ -130,6 +126,13 @@ open class AEAlertView: UIView {
     /// 设置背景图片
     public var backgroundImage: UIImage? {
         didSet { alertView.backgroundImage.image = backgroundImage }
+    }
+    public var backgroundImageMode: UIView.ContentMode = .scaleToFill {
+        didSet { alertView.backgroundImage.contentMode = backgroundImageMode }
+    }
+     
+    public var alertBackgroundColor: UIColor? {
+        didSet { alertView.backgroundView.backgroundColor = alertBackgroundColor }
     }
     
     // MARK: 设置文字属性
@@ -213,8 +216,9 @@ open class AEAlertView: UIView {
     }
     
     
-    //MARK: action 注: 当你使用 AEAlertViewButton作为action时 所有按钮的属性都不会生效 需要你在初始化AEAlertViewButton时自行设置
-    public var actionHeight: CGFloat = 40 {
+    //MARK: action 2.3 开始 action所有设置都在 AEAlertAction中 会根据AEAlertViewStyle来使用合适的配置
+    /// 按钮高度,为了保证整齐,如果没有手动设置!会计算所有按钮中的文字获取最大高度!
+    public var actionHeight: CGFloat = -1 {
         didSet { alertView.actionHeight = actionHeight }
     }
     /// 两个按钮时 排列方式
@@ -223,55 +227,12 @@ open class AEAlertView: UIView {
             alertView.actionArrangementMode = actionArrangementMode
         }
     }
-    /// cancel 字体
-    public var cancelButtonTitleFont: UIFont = UIFont.systemFont(ofSize: 15)
-    /// cancel 背景颜色
-    public var cancelButtonColor: UIColor? = UIColor.clear
-    /// cancel 标题的颜色
-    public var cancelButtonTitleColor: UIColor? = UIColor.darkGray
-    // 只在 AEAlertViewStyle == custom 才会生效
-    /// cancel 描边颜色 默认为灰色
-    public var cancelButtonLayerBorderColor: UIColor? = UIColor.darkGray
-    /// cancel 描边宽度
-    public var cancelButtonLayerBorderWidth: CGFloat = 1
-    /// cancel 圆角 默认4
-    public var cancelButtonCornerRadius: CGFloat = 4
-    
-    /// defaulted 字体
-    public var buttonTitleFont: UIFont = UIFont.systemFont(ofSize: 15)
-    /// defaulted 背景颜色
-    public var buttonColor: UIColor? = UIColor.clear //(white: 0.97, alpha: 1.0)
-    /// defaulted 标题的颜色
-    public var buttonTitleColor: UIColor? = UIColor(red: 26/255, green: 104/255, blue: 254/255, alpha: 1)
-    // 只在 AEAlertViewStyle == custom 才会生效
-    /// defaulted 描边颜色 默认为浅蓝色
-    public var buttonLayerBorderColor: UIColor? = UIColor(red: 26/255, green: 104/255, blue: 254/255, alpha: 1)
-    /// defaulted 描边宽度 默认1
-    public var buttonLayerBorderWidth: CGFloat = 1
-    /// defaulted 圆角 默认4
-    public var buttonCornerRadius: CGFloat = 4
-    
-    /// other 字体
-    public var otherButtonTitleFont: UIFont = UIFont.systemFont(ofSize: 15)
-    /// other 背景色
-    public var otherButtonColor: UIColor? = UIColor.clear //(white: 0.97, alpha: 1.0)
-    /// other 标题的颜色
-    public var otherButtonTitleColor: UIColor? = UIColor(red: 26/255, green: 104/255, blue: 254/255, alpha: 1)
-    // 只在 AEAlertViewStyle == custom 才会生效
-    /// other 描边颜色 默认为浅蓝色
-    public var otherButtonLayerBorderColor: UIColor? = UIColor(red: 26/255, green: 104/255, blue: 254/255, alpha: 1)
-    /// other 描边宽度
-    public var otherButtonLayerBorderWidth: CGFloat = 1
-    /// other 圆角 默认4
-    public var otherButtonCornerRadius: CGFloat = 4
     
     
     /// baseAlert 只能设置属性 不能改变其值
     public var alertView: AEBaseAlertView!
-    private var actions: [AEAlertAction] = []
-    private var buttons: [AEAlertViewButton] = []
-    private var alertStyle: AEAlertViewStyle = .defaulted
     
+    /// init
     public override convenience init(frame: CGRect) {
         self.init(style: .defaulted, title: nil, message: nil)
     }
@@ -293,6 +254,9 @@ open class AEAlertView: UIView {
         }
         addSubview(alertView)
     }
+
+    private var actions: [AEAlertAction] = []
+    private var alertStyle: AEAlertViewStyle = .defaulted
     
     required public init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -327,118 +291,82 @@ open class AEAlertView: UIView {
 extension AEAlertView {
     private func showAlert() {
         createActions()
-        if #available(iOS 13, *) {
-            UIApplication.shared.keyWindow?.addSubview(self)
-        } else {
-            UIApplication.shared.delegate?.window??.addSubview(self)
+        DispatchQueue.main.async {
+            UIApplication.shared.alertWindow?.addSubview(self)
+            if  self.isObserverKeyboard {
+                NotificationCenter.default.addObserver(self, selector: #selector( self.keyBoardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+                NotificationCenter.default.addObserver(self, selector: #selector( self.keyBoardWillShow), name: UIResponder.keyboardWillHideNotification, object: nil)
+            }
+            
+            if self.showDuration == 0.0 {
+                self.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
+                return
+            }
+            self.alertView.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+            self.alertView.alpha = 0
+            
+            UIView.animate(withDuration: TimeInterval(self.showDuration),
+                           delay: 0,
+                           usingSpringWithDamping: 0.7,
+                           initialSpringVelocity: 0.5,
+                           options: .curveEaseInOut,
+                           animations: {
+                        self.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
+                        self.alertView.transform = CGAffineTransform(scaleX: 1, y: 1)
+                        self.alertView.alpha = 1
+            }, completion: nil)
         }
-        if isObserverKeyboard {
-            NotificationCenter.default.addObserver(self, selector: #selector(keyBoardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-            NotificationCenter.default.addObserver(self, selector: #selector(keyBoardWillShow), name: UIResponder.keyboardWillHideNotification, object: nil)
-        }
-        
-        if showDuration == 0.0 {
-            self.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
-            return
-        }
-        alertView.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
-        alertView.alpha = 0
-        
-        UIView.animate(withDuration: TimeInterval(showDuration),
-                       delay: 0,
-                       usingSpringWithDamping: 0.7,
-                       initialSpringVelocity: 0.5,
-                       options: .curveEaseInOut,
-                       animations: {
-                    self.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
-                    self.alertView.transform = CGAffineTransform(scaleX: 1, y: 1)
-                    self.alertView.alpha = 1
-        }, completion: nil)
     }
     private func dismissAlert() {
-        if !Thread.isMainThread { return }
-        if isObserverKeyboard {
-            NotificationCenter.default.removeObserver(self)
-        }
-        actions = []
-        buttons = []
-        if dismissDuration == 0.0 {
-            for view in self.subviews {
-                view.removeFromSuperview()
+        DispatchQueue.main.async {
+            if self.isObserverKeyboard {
+                NotificationCenter.default.removeObserver(self)
             }
-            self.removeFromSuperview()
-            return
-        }
-        UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveEaseIn, animations: {
-            self.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
-            self.alertView.alpha = 0
-            self.alpha = 0
-        }) { (finished) in
-            for view in self.subviews {
-                view.removeFromSuperview()
+            self.actions = []
+            if self.dismissDuration == 0.0 {
+                for view in self.subviews {
+                    view.removeFromSuperview()
+                }
+                self.removeFromSuperview()
+                return
             }
-            self.removeFromSuperview()
+            UIView.animate(withDuration: self.dismissDuration, delay: 0.0, options: .curveEaseIn, animations: {
+                self.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
+                self.alertView.alpha = 0
+                self.alpha = 0
+            }) { (finished) in
+                self.removeFromSuperview()
+            }
         }
     }
     
     private func createActions() {
-        if actions.count == 0 {
-            alertView.actionList = buttons
-            return
-        }
-        var alertButtons: [AEAlertViewButton] = []
-        for (idx, action) in actions.enumerated() {
-            let btn = AEAlertViewButton(type: .custom)
-            btn.tag = idx
-            btn.contentEdgeInsets = UIEdgeInsets(top: -15, left: -15, bottom: -15, right: -15)
-            btn.addTarget(self, action: #selector(actionPressed), for: .touchUpInside)
-            btn.isEnabled = action.enabled ?? true
-            btn.setTitle(action.title, for: .normal)
-            if action.tag == -1 {
-                action.tag = idx
+        DispatchQueue.main.async {
+            if self.actions.count == 0 {
+                self.alertView.actionList = []
+                return
             }
-            if action.style == .cancel{
-                btn.setTitleColor(cancelButtonTitleColor, for: .normal)
-                btn.setTitleColor(cancelButtonTitleColor, for: .highlighted)
-                btn.setBackgroundColor(color: cancelButtonColor ?? UIColor(white: 0.97, alpha: 1.0), state: .normal)
-                btn.setBackgroundColor(color: cancelButtonColor ?? UIColor(white: 0.97, alpha: 1.0), state: .highlighted)
-                btn.titleLabel?.font = cancelButtonTitleFont
-                if alertStyle == .custom {
-                    btn.layer.cornerRadius = cancelButtonCornerRadius
-                    btn.layer.borderWidth = cancelButtonLayerBorderWidth
-                    btn.layer.borderColor = (cancelButtonLayerBorderColor ?? UIColor.clear).cgColor
-                }
-            } else if action.style == .defaulted {
-                btn.setTitleColor(buttonTitleColor, for: .normal)
-                btn.setTitleColor(buttonTitleColor, for: .highlighted)
-                btn.setBackgroundColor(color: buttonColor ?? UIColor.blue, state: .normal)
-                btn.setBackgroundColor(color: buttonColor ?? UIColor.red, state: .highlighted)
-                btn.titleLabel?.font = buttonTitleFont
-                if alertStyle == .custom {
-                    btn.layer.cornerRadius = buttonCornerRadius
-                    btn.layer.borderWidth = buttonLayerBorderWidth
-                    btn.layer.borderColor = (buttonLayerBorderColor ?? UIColor.clear).cgColor
-                }
-            } else {
-                btn.setTitleColor(otherButtonTitleColor, for: .normal)
-                btn.setTitleColor(otherButtonTitleColor, for: .highlighted)
-                btn.setBackgroundColor(color: otherButtonColor ?? UIColor.red, state: .normal)
-                btn.setBackgroundColor(color: otherButtonColor ?? UIColor.red, state: .highlighted)
-                btn.titleLabel?.font = otherButtonTitleFont
-                if alertStyle == .custom {
-                    btn.layer.cornerRadius = otherButtonCornerRadius
-                    btn.layer.borderWidth = otherButtonLayerBorderWidth
-                    btn.layer.borderColor = (otherButtonLayerBorderColor ?? UIColor.clear).cgColor
-                }
+            var list: [AEAlertViewButton] = []
+            for (idx, action) in self.actions.enumerated() {
+                let btn = AEAlertViewButton(type: .custom)
+                btn.tag = idx
+                btn.action = action
+                btn.addTarget(self, action: #selector(self.actionPressed), for: .touchUpInside)
+                if action.tag == -1 { action.tag = idx }
+                action.actionButton = btn
+                list.append(btn)
             }
-            action.actionButton = btn
-            alertButtons.append(btn)
+            self.alertView.actionList = list
         }
-        alertView.actionList = alertButtons
     }
+
     @objc private func actionPressed(button: AEAlertViewButton) {
         if button.tag < actions.count {
+            if !(actions[button.tag].enabled ?? false) {
+                return
+            }
             actions[button.tag].handler?(actions[button.tag])
         }
     }
+    
 }

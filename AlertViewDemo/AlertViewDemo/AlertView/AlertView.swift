@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import AEAlertView
+//import AEAlertView
 
 
 final class AlertView: AEAlertView {
@@ -20,16 +20,24 @@ final class AlertView: AEAlertView {
                 handler?(action)
                 view.dismiss()
             }
+            action.titleColor = .red
+            
             view.addAction(action: action)
         } else if actions.count == 2 {
             let cancel = AEAlertAction(title: actions[0], style: .cancel) { (action) in
                 handler?(action)
                 view.dismiss()
             }
+            cancel.titleColor = .red
+            cancel.cancelLayerBorderColor = .red
+            cancel.layerBorderWidth = 1
             let submit = AEAlertAction(title: actions[1], style: .defaulted) { (action) in
                 handler?(action)
                 view.dismiss()
             }
+            submit.titleColor = .red
+            submit.cancelLayerBorderColor = .blue
+            submit.layerBorderWidth = 1
             view.addAction(action: cancel)
             view.addAction(action: submit)
         } else if actions.count == 3 {
@@ -54,12 +62,6 @@ final class AlertView: AEAlertView {
     
     override init(style: AEAlertViewStyle, title: String?, message: String?) {
         super.init(style: style, title: title, message: message)
-        
-        cancelButtonLayerBorderColor = UIColor.darkGray
-        cancelButtonTitleColor = UIColor.darkGray
-        buttonColor = UIColor.red
-        buttonTitleColor = UIColor.white
-        buttonLayerBorderColor = UIColor.red
         
         titleTopMargin = title?.count ?? 0 > 0 ? 6 : 0
         messageTopMargin = message?.count ?? 0 > 0 ? 6 : 0

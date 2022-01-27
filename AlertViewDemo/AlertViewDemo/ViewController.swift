@@ -82,7 +82,7 @@ class ViewController: UIViewController {
     }
     // 设置背景图片  (默认使用计算的高度 - 当设置了backgroundImageBottomMargin 属性时 会使用图片高度)
     private func test1() {
-        AEAlertView.show(title: "提示", actions: ["cancel", "dev"], message: "(默认使用计算的高度 - 当设置了backgroundImageBottomMargin 属性时 会使用图片高度)", bgImage: UIImage(named: "001"), titleColor: UIColor.red, messageColor: UIColor.red, defaultActionColor: UIColor.red) { (action) in
+        AEAlertView.show(title: "提示", actions: ["cancel", "dev"], message: "(默认使用计算的高度 - 当设置了backgroundImageBottomMargin 属性时 会使用图片高度)") { (action) in
             print("\(action.tag) --- 自动关闭了")
         }
     }
