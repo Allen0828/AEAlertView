@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		269E8E8C27A1480D00ACE3C0 /* gif004.gif in Resources */ = {isa = PBXBuildFile; fileRef = 269E8E8A27A1480D00ACE3C0 /* gif004.gif */; };
 		269E8E8D27A1480D00ACE3C0 /* 003.gif in Resources */ = {isa = PBXBuildFile; fileRef = 269E8E8B27A1480D00ACE3C0 /* 003.gif */; };
-		269E8E8F27A14A4C00ACE3C0 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E8E8E27A14A4C00ACE3C0 /* AlertView.swift */; };
 		26BF7D2B2746454A0016469E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BF7D2A2746454A0016469E /* AppDelegate.swift */; };
 		26BF7D2D2746454A0016469E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BF7D2C2746454A0016469E /* SceneDelegate.swift */; };
 		26BF7D2F2746454A0016469E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BF7D2E2746454A0016469E /* ViewController.swift */; };
@@ -27,7 +26,6 @@
 /* Begin PBXFileReference section */
 		269E8E8A27A1480D00ACE3C0 /* gif004.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = gif004.gif; path = ../../AlertViewDemo/AlertViewDemo/gif004.gif; sourceTree = "<group>"; };
 		269E8E8B27A1480D00ACE3C0 /* 003.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = 003.gif; path = ../../AlertViewDemo/AlertViewDemo/003.gif; sourceTree = "<group>"; };
-		269E8E8E27A14A4C00ACE3C0 /* AlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlertView.swift; path = ../../AlertViewDemo/AlertViewDemo/AlertView/AlertView.swift; sourceTree = "<group>"; };
 		26BF7D272746454A0016469E /* dev-alert.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "dev-alert.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		26BF7D2A2746454A0016469E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		26BF7D2C2746454A0016469E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -74,7 +72,6 @@
 		26BF7D292746454A0016469E /* dev-alert */ = {
 			isa = PBXGroup;
 			children = (
-				269E8E8E27A14A4C00ACE3C0 /* AlertView.swift */,
 				269E8E8B27A1480D00ACE3C0 /* 003.gif */,
 				269E8E8A27A1480D00ACE3C0 /* gif004.gif */,
 				26BF7D49274645A20016469E /* Classes */,
@@ -180,7 +177,6 @@
 				26BF7D2B2746454A0016469E /* AppDelegate.swift in Sources */,
 				26BF7D53274645A20016469E /* AEBaseAlertView.swift in Sources */,
 				26BF7D2D2746454A0016469E /* SceneDelegate.swift in Sources */,
-				269E8E8F27A14A4C00ACE3C0 /* AlertView.swift in Sources */,
 				26BF7D52274645A20016469E /* AEAlertView.swift in Sources */,
 				26BF7D4F274645A20016469E /* AETextFieldAlertView.swift in Sources */,
 				26BF7D55274647340016469E /* TestViewController.swift in Sources */,

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-//import AEAlertView
+import AEAlertView
 
 
 final class AlertView: AEAlertView {
@@ -70,5 +70,6 @@ final class AlertView: AEAlertView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
     
 }

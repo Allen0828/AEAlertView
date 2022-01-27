@@ -65,7 +65,7 @@ extension TestViewController {
     private func alertType6() {
         let alert = AEAlertView.init(style: .custom, title: "too much to show", message: "臣本布衣，躬耕于南阳，苟全性命于乱世，不求闻达于诸侯。先帝不以臣卑鄙，猥自枉屈，三顾臣于草庐之中，咨臣以当世之事，由是感激，遂许先帝以驱驰。后值倾覆，受任于败军之际，奉命于危难之间，尔来二十有一年矣。         \r\r先帝知臣谨慎，故临崩寄臣以大事也。受命以来，夙夜忧叹，恐托付不效，以伤先帝之明；故五月渡泸，深入不毛。今南方已定，兵甲已足，当奖率三军，北定中原，庶竭驽钝，攘除奸凶，兴复汉室，还于旧都。此臣所以报先帝而忠陛下之职分也。至于斟酌损益，进尽忠言，则攸之、祎、允之任也。 \r\r愿陛下托臣以讨贼兴复之效，不效，则治臣之罪，以告先帝之灵。若无兴德之言，则责攸之、祎、允等之慢，以彰其咎；陛下亦宜自谋，以咨诹善道，察纳雅言，深追先帝遗诏。臣不胜受恩感激。 \r\r今当远离，临表涕零，不知所言。")
         alert.messageHeight = 300
-        alert.messagePadding = 30
+//        alert.messagePadding = 30
         let cancel = AEAlertAction.init(title: "cancel", style: .cancel) { (action) in
             print("\(action.tag)")
             alert.dismiss()
@@ -182,7 +182,7 @@ extension TestViewController {
     private func alertFieldType6() {
         let alert = AETextFieldAlertView.init(style: .custom, title: "too much to show", message: "臣本布衣，躬耕于南阳，苟全性命于乱世，不求闻达于诸侯。先帝不以臣卑鄙，猥自枉屈，三顾臣于草庐之中，咨臣以当世之事，由是感激，遂许先帝以驱驰。后值倾覆，受任于败军之际，奉命于危难之间，尔来二十有一年矣。         \r\r先帝知臣谨慎，故临崩寄臣以大事也。受命以来，夙夜忧叹，恐托付不效，以伤先帝之明；故五月渡泸，深入不毛。今南方已定，兵甲已足，当奖率三军，北定中原，庶竭驽钝，攘除奸凶，兴复汉室，还于旧都。此臣所以报先帝而忠陛下之职分也。至于斟酌损益，进尽忠言，则攸之、祎、允之任也。 \r\r愿陛下托臣以讨贼兴复之效，不效，则治臣之罪，以告先帝之灵。若无兴德之言，则责攸之、祎、允等之慢，以彰其咎；陛下亦宜自谋，以咨诹善道，察纳雅言，深追先帝遗诏。臣不胜受恩感激。 \r\r今当远离，临表涕零，不知所言。")
         alert.messageHeight = 300
-        alert.messagePadding = 30
+//        alert.messagePadding = 30 // 两个不应该同时使用 会有约束冲突警告 但是不影响使用 会在下个版本修复
         let cancel = AEAlertAction.init(title: "cancel", style: .cancel) { (action) in
             print("\(alert.textFieldText)")
             print("\(action.tag)")
@@ -318,9 +318,9 @@ extension TestViewController {
         animV.show()
     }
     private func alertCustomType3() {
-        AlertView.show("产品就要这样的", "产品: 砍我可以-砍需求不行", ["呵呵", "哦哦"]) { (action) in
-            print(action.tag)
-        }
+//        AlertView.show("产品就要这样的", "产品: 砍我可以-砍需求不行", ["呵呵", "哦哦"]) { (action) in
+//            print(action.tag)
+//        }
     }
     
 }
