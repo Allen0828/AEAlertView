@@ -26,12 +26,13 @@
      <p>`AEAlertAction` currently only supports 2 display modes `defaulted, cancel`.</p> 
      <p>All setting properties are done in action. If you don't want to use cancel, you can set all action to defaulted.</p>
 </font>
-     <p>2.3.1 -Support setting the maximum width</p>
+     
+     v2.3.2 -Support setting the maximum width
                                                                          
                                                                            
 # Preview                                                                       
 
-# 2.3.0 
+# 2.3
 <view><img src="https://github.com/Allen0828/AEAlertView/blob/master/img-folder/2.3-001.jpg" width="100"></img><img
 src="https://github.com/Allen0828/AEAlertView/blob/master/img-folder/2.3-002.jpg" width="100"></img> <img
 src="https://github.com/Allen0828/AEAlertView/blob/master/img-folder/2.3-003.jpg" width="100"></img>
