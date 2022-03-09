@@ -60,9 +60,14 @@ final class AlertView: AEAlertView {
         view.show()
     }
     
-    override init(style: AEAlertViewStyle, title: String?, message: String?) {
-        super.init(style: style, title: title, message: message)
-        
+//    override init(style: AEAlertViewStyle, title: String?, message: String?) {
+//        super.init(style: style, title: title, message: message)
+//
+//        titleTopMargin = title?.count ?? 0 > 0 ? 6 : 0
+//        messageTopMargin = message?.count ?? 0 > 0 ? 6 : 0
+//    }
+    override init(style: AEAlertViewStyle, title: String?, message: String?, maximumWidth: CGFloat = 320) {
+        super.init(style: style, title: title, message: message, maximumWidth: maximumWidth)
         titleTopMargin = title?.count ?? 0 > 0 ? 6 : 0
         messageTopMargin = message?.count ?? 0 > 0 ? 6 : 0
     }

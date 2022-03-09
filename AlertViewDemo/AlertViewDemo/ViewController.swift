@@ -111,7 +111,7 @@ extension ViewController {
         alert.show()
     }
     private func alertType8() {
-        let alert = AEAlertView(style: .defaulted, title: "custom action", message: "Please check the default values before using")
+        let alert = AEAlertView(style: .defaulted, title: "custom action", message: "Please check the default values before using", maximumWidth: 200)
         let cancel = AEAlertAction.init(title: "cancel\rcancel\rcancel", style: .cancel) { (action) in
             alert.dismiss()
         }

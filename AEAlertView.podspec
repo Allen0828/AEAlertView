@@ -16,15 +16,15 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "AEAlertView"
-  s.version      = "2.3.1"
-  s.summary      = "Correct typos for 2.3.1"
+  s.version      = "2.3.2"
+  s.summary      = "Correct typos for 2.3.2"
 
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
   #   * Try to keep it short, snappy and to the point.
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
-  s.description  = "add alert base view maximum width"
+  s.description  = "add alert base view maximum width and fix bug"
 
   s.homepage     = "https://github.com/Allen0828/AEAlertView"
   # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
