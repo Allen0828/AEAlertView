@@ -448,7 +448,7 @@ extension AEBaseAlertView {
             
             let horizontalLine = UIView(frame: CGRect.zero)
             horizontalLine.translatesAutoresizingMaskIntoConstraints = false
-            horizontalLine.backgroundColor = actionSplitLine
+            horizontalLine.backgroundColor = UIColor.red//actionSplitLine
             
             actionContainerView.addSubview(horizontalLine)
             actionContainerView.addConstraint(NSLayoutConstraint(item: horizontalLine, attribute: .top, relatedBy: .equal, toItem: actionContainerView, attribute: .top, multiplier: 1, constant: 0))

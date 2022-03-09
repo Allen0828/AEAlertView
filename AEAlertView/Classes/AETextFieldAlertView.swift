@@ -248,12 +248,16 @@ open class AETextFieldAlertView: UIView {
     public convenience init(style: AEAlertViewStyle) {
         self.init(style: style, title: nil, message: nil)
     }
-    public init(style: AEAlertViewStyle, title: String?, message: String?) {
+    public convenience init(style: AEAlertViewStyle, maximumWidth: CGFloat = 320) {
+        self.init(style: style, title: nil, message: nil, maximumWidth: maximumWidth)
+    }
+    
+    public init(style: AEAlertViewStyle, title: String?, message: String?, maximumWidth: CGFloat = 320) {
         let frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
         super.init(frame: frame)
         backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
         alertStyle = style
-        alertView = AEBaseAlertView(frame: frame)
+        alertView = AEBaseAlertView(frame: frame, maximumWidth: maximumWidth)
         alertView.titleLabel.text = title
         alertView.messageTextView.text = message ?? ""
         if style == .custom {
@@ -272,8 +276,10 @@ open class AETextFieldAlertView: UIView {
         let leftV = UIView(frame: CGRect(x: 0, y: 0, width: 8, height: 12))
         textField.leftView = leftV
         textField.leftViewMode = .always
-        alertView.setContent(view: textField, width: UIScreen.main.bounds.size.width - (48 * 2), height: 40)
+        // 宽度
+        alertView.setContent(view: textField, width: alertView.maximumWidth-16, height: 40)
     }
+    
 
     private var actions: [AEAlertAction] = []
     private var alertStyle: AEAlertViewStyle = .defaulted
