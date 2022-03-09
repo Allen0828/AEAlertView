@@ -39,6 +39,10 @@ extension AEBaseAlertView {
 
 open class AEBaseAlertView: UIView {
     
+    /// 最大宽度 请在init中赋值 为了适配iPad 默认值改为320
+    private(set) var maximumWidth: CGFloat = 320
+    
+
     public func dismiss() {
         for item in self.subviews {
             item.removeFromSuperview()
@@ -74,8 +78,6 @@ open class AEBaseAlertView: UIView {
     }
     
     // 距离大小设置
-    /// 最大宽度
-    public var maximumWidth: CGFloat = UIScreen.main.bounds.size.width - (24 * 2)
     /// backgroundImageBottomMargin  注 (如果你的内容高过了图片的高度, 图片会被拉伸 除非你设置了backgroundImageHeight)  设置0 = (使用backgroundImage的高度)
     public var backgroundImageBottomMargin: CGFloat = 0 {
         didSet { setBackgroundImageBottomMargin(margin: backgroundImageBottomMargin) }
@@ -122,8 +124,17 @@ open class AEBaseAlertView: UIView {
     }
     
     
-    public override init(frame: CGRect) {
+//    public override init(frame: CGRect) {
+//        super.init(frame: frame)
+//        config()
+//    }
+    
+    public override convenience init(frame: CGRect) {
+        self.init(frame: frame, maximumWidth: 320)
+    }
+    public init(frame: CGRect, maximumWidth: CGFloat) {
         super.init(frame: frame)
+        self.maximumWidth = maximumWidth
         config()
     }
     
