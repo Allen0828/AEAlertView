@@ -26,6 +26,7 @@
      <p>`AEAlertAction` currently only supports 2 display modes `defaulted, cancel`.</p> 
      <p>All setting properties are done in action. If you don't want to use cancel, you can set all action to defaulted.</p>
 </font>
+     <p>2.3.1 -Support setting the maximum width</p>
                                                                          
                                                                            
 # Preview                                                                       
@@ -101,6 +102,26 @@ func test() {
         alert.addAction(action: cancel)
         alert.addAction(action: dev)
         alert.show()
+}
+```
+# 设置最大宽度
+```swift
+private func alertType3() {
+  let alert = AEAlertView.init(style: .defaulted, title: "title", message: "set gif height Add alert to the current view", maximumWidth: 600)
+  alert.setBackgroundImage(contentsOf: Bundle.main.path(forResource: "003", ofType: "gif"))
+        
+  alert.backgroundImageHeight = 300
+  alert.messageColor = UIColor.red
+  let cancel = AEAlertAction.init(title: "cancel", style: .cancel) { (action) in
+       print("\(action.tag)")
+      alert.dismiss()
+  }
+  cancel.cancelTitleColor = .red
+        
+  alert.addAction(action: cancel)
+  alert.create()
+        
+  view.addSubview(alert)
 }
 ```
 
