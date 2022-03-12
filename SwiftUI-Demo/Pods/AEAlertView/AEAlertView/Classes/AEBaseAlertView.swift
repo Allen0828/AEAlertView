@@ -39,22 +39,35 @@ extension AEBaseAlertView {
 
 open class AEBaseAlertView: UIView {
     
-    /// alert样式 apple样式下按钮有分割线 按钮高度为40  /Apple style buttons have split lines Button height is 40
+    /// 最大宽度 请在init中赋值 为了适配iPad 默认值改为320
+    private(set) var maximumWidth: CGFloat = 320
+    
+
+    public func dismiss() {
+        for item in self.subviews {
+            item.removeFromSuperview()
+        }
+    }
+    
+    /// Apple style same as system. custom style The buttons are more visual
     public var alertStyle: AEBaseAlertViewStyle = .apple
     
     // 基础控件 不能改变值 只能修改属性 如颜色 圆角等
+    // You cannot change the value. You can only modify the property
     public var backgroundView: UIView!
     public var backgroundImage: UIImageView!
     public var titleLabel: UILabel!
     public var messageTextView: AEAlertTextView!
     public var actionContainerView: UIView!
-    // 自定义view 最多只能设置两个自定义View 必须使用func setCustom setContent 来设置view
+    // 自定义view 最多只能设置两个自定义View Must use func setCustom setContent set view
     private(set) var contentView: UIView?
     private(set) var customView: UIView?
     
     // 按钮属性
-    public var actionHeight: CGFloat = 40
+    /// 如果不设置 会自动计算按钮文字 根据设置的numberOfLines来计算最高高度
+    public var actionHeight: CGFloat = -1
     public var actionPadding: CGFloat = 8
+    public var actionTitleSize: CGFloat = 14
     /// customStyle 按钮上下的间距, 在appleStyle中设置无效 / The space between the top and bottom of the customstyle button, invalid in applestyle
     public var actionMargin: CGFloat = 8
     /// 按钮排列方式 只有2个按钮时生效  1个按钮或多个按钮都为垂直排列 /Only two buttons are effective. One or more buttons are arranged vertically.  默认2两个按钮 horizontal
@@ -65,9 +78,7 @@ open class AEBaseAlertView: UIView {
     }
     
     // 距离大小设置
-    /// 最大宽度
-    public var maximumWidth: CGFloat = UIScreen.main.bounds.size.width - (24 * 2)
-    /// backgroundImageBottomMargin  注 (如果你的内容高过了图片的高度, 图片会被拉伸 除非你设置了backgroundImageHeight)  设置0 = (使用backgroundImage的高度 注: 如果你的内容高过了图片的高度, 图片会被拉伸 除非你设置了messageHeight)
+    /// backgroundImageBottomMargin  注 (如果你的内容高过了图片的高度, 图片会被拉伸 除非你设置了backgroundImageHeight)  设置0 = (使用backgroundImage的高度)
     public var backgroundImageBottomMargin: CGFloat = 0 {
         didSet { setBackgroundImageBottomMargin(margin: backgroundImageBottomMargin) }
     }
@@ -113,8 +124,16 @@ open class AEBaseAlertView: UIView {
     }
     
     
-    public override init(frame: CGRect) {
+    public override convenience init(frame: CGRect) {
+        if UIScreen.main.bounds.size.width-48 > 320 {
+            self.init(frame: frame, maximumWidth: 320)
+        } else {
+            self.init(frame: frame, maximumWidth: UIScreen.main.bounds.size.width-48)
+        }
+    }
+    public init(frame: CGRect, maximumWidth: CGFloat) {
         super.init(frame: frame)
+        self.maximumWidth = maximumWidth
         config()
     }
     
@@ -134,9 +153,12 @@ open class AEBaseAlertView: UIView {
 
 extension AEBaseAlertView {
     private func config() {
+        if !Thread.isMainThread {
+            debugPrint("warning----Is not currently the main thread---⚠️⚠️⚠️⚠️")
+        }
         backgroundView = UIView(frame: CGRect.zero)
         backgroundView.translatesAutoresizingMaskIntoConstraints = false
-        backgroundView.backgroundColor = UIColor(white: 0.97, alpha: 1.0)
+        backgroundView.backgroundColor = UIColor.white
         backgroundView.layer.cornerRadius = 8
         backgroundView.layer.masksToBounds = true
         addSubview(backgroundView)
@@ -188,7 +210,7 @@ extension AEBaseAlertView {
         messageTextView.textColor = UIColor.darkGray
         messageTextView.backgroundColor = UIColor.clear
         backgroundView.addSubview(messageTextView)
-        let messageCons = NSLayoutConstraint.constraints(withVisualFormat: "H:|-24@750-[messageTextView]-24@750-|", options: option, metrics: nil, views: ["messageTextView": messageTextView!])
+        let messageCons = NSLayoutConstraint.constraints(withVisualFormat: "H:|-[messageTextView]-|", options: option, metrics: nil, views: ["messageTextView": messageTextView!])
         backgroundView.addConstraints(messageCons)
         
         contentContainerView = UIView(frame: CGRect.zero)
@@ -345,8 +367,8 @@ extension AEBaseAlertView {
 
 // MARK: 按钮设置
 extension AEBaseAlertView {
-    private func setActionButtons(_ buttons: [UIButton]?) {
-        guard let btns = buttons else { return }
+    private func setActionButtons(_ actions: [UIButton]?) {
+        guard let btns = actions else { return }
         for btn in btns {
             btn.removeFromSuperview()
         }
@@ -373,14 +395,24 @@ extension AEBaseAlertView {
     }
     
     private func setAppleStyleActions(_ actions: [UIButton]) {
-        let metrics = ["height": NSNumber(floatLiteral: Double(actionHeight))]
+        var width = maximumWidth - 2
+        if actions.count == 2 && actionArrangementMode == .horizontal {
+            width = (maximumWidth-2)/2-actionPadding*2
+        }
+        var height = actionHeight
+        if height == -1 {
+            let maxH = actionHeight == -1 ? getMaxTextHeight(actions: actions, width: width) : actionHeight
+            height = maxH <= 40 ? 40 : maxH
+        }
+
+        let metrics = ["height": NSNumber(floatLiteral: Double(height))]
         
         if actions.count == 2 && actionArrangementMode == .horizontal {
             let first = actions[0]
             let last = actions[1]
             first.translatesAutoresizingMaskIntoConstraints = false
             last.translatesAutoresizingMaskIntoConstraints = false
-            
+
             let horizontalLine = UIView(frame: CGRect.zero)
             horizontalLine.translatesAutoresizingMaskIntoConstraints = false
             horizontalLine.backgroundColor = actionSplitLine
@@ -423,7 +455,7 @@ extension AEBaseAlertView {
             actionContainerView.addConstraint(NSLayoutConstraint(item: horizontalLine, attribute: .width, relatedBy: .equal, toItem: actionContainerView, attribute: .width, multiplier: 1, constant: 0))
             
             actionContainerView.addSubview(the)
-            let theHorizontal = NSLayoutConstraint.constraints(withVisualFormat: "H:|[the]|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: metrics, views: ["the":the])
+            let theHorizontal = NSLayoutConstraint.constraints(withVisualFormat: "H:|[the]|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: ["the":the])
             actionContainerView.addConstraints(theHorizontal)
             let theVertical = NSLayoutConstraint.constraints(withVisualFormat: "V:|[horizontalLine(1)][the(height)]|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: metrics, views: ["horizontalLine": horizontalLine, "the": the])
             actionContainerView.addConstraints(theVertical)
@@ -470,18 +502,33 @@ extension AEBaseAlertView {
                 }
             }
         }
+        for item in actions {
+            if let btn = item as? AEAlertViewButton {
+                btn.setButtonEdgeInsets()
+            }
+        }
     }
     
     private func setCustomStyleActions(_ actions: [UIButton]) {
-
-        let metrics = ["height": NSNumber(floatLiteral: Double(actionHeight)), "padding": NSNumber(floatLiteral: Double(actionPadding)), "margin": NSNumber(floatLiteral: Double(actionMargin))]
+        var width = maximumWidth - 2
+        if actions.count == 2 && actionArrangementMode == .horizontal {
+            width = maximumWidth/2-actionPadding*2
+        }
+        var height = actionHeight
+        if height == -1 {
+            let maxH = actionHeight == -1 ? getMaxTextHeight(actions: actions, width: width) : actionHeight
+            height = maxH <= 40.0 ? 40.0 : maxH
+        }
+        
+        
+        let metrics = ["height": NSNumber(floatLiteral: Double(height)), "padding": NSNumber(floatLiteral: Double(actionPadding)), "margin": NSNumber(floatLiteral: Double(actionMargin))]
             
         if actions.count == 2 && actionArrangementMode == .horizontal {
             let first = actions[0]
             let last = actions[1]
             first.translatesAutoresizingMaskIntoConstraints = false
             last.translatesAutoresizingMaskIntoConstraints = false
-            
+
             actionContainerView.addSubview(first)
             actionContainerView.addSubview(last)
             actionContainerView.addConstraint(NSLayoutConstraint(item: first, attribute: .width, relatedBy: .equal, toItem: last, attribute: .width, multiplier: 1.0, constant: 0.0))
@@ -525,7 +572,27 @@ extension AEBaseAlertView {
                 }
             }
         }
+        for item in actions {
+            if let btn = item as? AEAlertViewButton {
+                btn.setButtonEdgeInsets()
+            }
+        }
     }
+    
+    private func getMaxTextHeight(actions: [UIButton], width: CGFloat) -> CGFloat {
+        let maxBtn = actions.max{ ($0.currentTitle ?? "").count < ($1.currentTitle ?? "").count }
+        let maxLines = maxBtn?.titleLabel?.numberOfLines ?? 1
+        if maxLines == 1 {
+            return 40
+        }
+        let maxTitle = maxBtn?.currentTitle ?? ""
+        let maxFont = maxBtn?.titleLabel?.font ?? UIFont.systemFont(ofSize: 14)
+        let height = maxTitle.boundingRect(with:CGSize(width: width, height:CGFloat(MAXFLOAT)), options: .usesLineFragmentOrigin, attributes: [.font: maxFont], context:nil).size.height
+        let labelTextLines = Int(ceil(CGFloat(height) / maxFont.lineHeight))
+        let intHeight = maxLines == 0 ? Int(height) : (Int(height) / labelTextLines * maxLines)
+        return CGFloat(intHeight) + 6
+    }
+    
 }
 
 // 添加gif图片
@@ -625,5 +692,35 @@ public class AEAlertTextView: UITextView {
         } else {
             return CGSize.zero
         }
+    }
+}
+
+
+extension UIApplication {
+    var alertWindow: UIWindow? {
+        return currentWindow()
+    }
+    func currentWindow() -> UIWindow? {
+        if Thread.isMainThread {
+            if #available(iOS 15.0, *) {
+                let connectedScenes = UIApplication.shared.connectedScenes
+                    .filter({ $0.activationState == .foregroundActive })
+                    .compactMap({$0 as? UIWindowScene})
+                if connectedScenes.count == 0 {
+                    return UIApplication.shared.windows.first
+                }
+                let window = connectedScenes.first?
+                    .windows
+                    .first { $0.isKeyWindow }
+                return window
+            } else if #available(iOS 13.0, *) {
+                return UIApplication.shared.windows.first { $0.isKeyWindow }
+            } else if #available(iOS 8.0, *) {
+                return UIApplication.shared.delegate?.window ?? UIApplication.shared.keyWindow
+            } else {
+                return UIApplication.shared.windows.first { $0.isKeyWindow }
+            }
+        }
+        return nil
     }
 }
