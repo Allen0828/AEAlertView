@@ -239,10 +239,17 @@ open class AEAlertView: UIView {
     public convenience init(style: AEAlertViewStyle) {
         self.init(style: style, title: nil, message: nil)
     }
-    public convenience init(style: AEAlertViewStyle, maximumWidth: CGFloat = 320) {
+    public convenience init(style: AEAlertViewStyle, maximumWidth: CGFloat) {
         self.init(style: style, title: nil, message: nil, maximumWidth: maximumWidth)
     }
-    public init(style: AEAlertViewStyle, title: String?, message: String?, maximumWidth: CGFloat = 320) {
+    public convenience init(style: AEAlertViewStyle, title: String?, message: String?) {
+        if UIScreen.main.bounds.size.width-48 > 320 {
+            self.init(style: style, title: title, message: message, maximumWidth: 320)
+        } else {
+            self.init(style: style, title: title, message: message, maximumWidth: UIScreen.main.bounds.size.width-48)
+        }
+    }
+    public init(style: AEAlertViewStyle, title: String?, message: String?, maximumWidth: CGFloat) {
         let frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
         super.init(frame: frame)
         backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)

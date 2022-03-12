@@ -124,13 +124,12 @@ open class AEBaseAlertView: UIView {
     }
     
     
-//    public override init(frame: CGRect) {
-//        super.init(frame: frame)
-//        config()
-//    }
-    
     public override convenience init(frame: CGRect) {
-        self.init(frame: frame, maximumWidth: 320)
+        if UIScreen.main.bounds.size.width-48 > 320 {
+            self.init(frame: frame, maximumWidth: 320)
+        } else {
+            self.init(frame: frame, maximumWidth: UIScreen.main.bounds.size.width-48)
+        }
     }
     public init(frame: CGRect, maximumWidth: CGFloat) {
         super.init(frame: frame)

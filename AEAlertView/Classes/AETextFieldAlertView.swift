@@ -251,6 +251,13 @@ open class AETextFieldAlertView: UIView {
     public convenience init(style: AEAlertViewStyle, maximumWidth: CGFloat = 320) {
         self.init(style: style, title: nil, message: nil, maximumWidth: maximumWidth)
     }
+    public convenience init(style: AEAlertViewStyle, title: String?, message: String?) {
+        if UIScreen.main.bounds.size.width-48 > 320 {
+            self.init(style: style, title: title, message: message, maximumWidth: 320)
+        } else {
+            self.init(style: style, title: title, message: message, maximumWidth: UIScreen.main.bounds.size.width-48)
+        }
+    }
     
     public init(style: AEAlertViewStyle, title: String?, message: String?, maximumWidth: CGFloat = 320) {
         let frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
