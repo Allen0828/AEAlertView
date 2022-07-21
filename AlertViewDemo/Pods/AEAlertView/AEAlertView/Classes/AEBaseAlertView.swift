@@ -195,7 +195,7 @@ extension AEBaseAlertView {
         titleLabel.textAlignment = .center
         backgroundView.addSubview(titleLabel)
         // 设置控件约束 默认750
-        let titleCons = NSLayoutConstraint.constraints(withVisualFormat: "H:|-51@750-[titleLabel]-51@750-|", options: option, metrics: nil, views: ["titleLabel": titleLabel!])
+        let titleCons = NSLayoutConstraint.constraints(withVisualFormat: "H:|-[titleLabel]-|", options: option, metrics: nil, views: ["titleLabel": titleLabel!])
         backgroundView.addConstraints(titleCons)
         
         messageTextView = AEAlertTextView(frame: CGRect.zero)

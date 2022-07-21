@@ -16,8 +16,9 @@ extension ViewController {
 //        AEAlertView.show(title: "title title title title title title title title title ", message: "fastest", actions: ["ok"]) { action in
 //            print("dismiss----Fastest")
 //        }
-        let alert = AEAlertView.init(style: .defaulted, title: "title title title title title title title title ", message: "set gif height Add alert to the current view")
+        let alert = AEAlertView.init(style: .defaulted, title: "title title title title title title title title title title ", message: "set gif height Add alert to the current view")
         alert.titlePadding = 32
+        alert.titleNumberOfLines = 1
         let cancel = AEAlertAction.init(title: "cancel", style: .cancel) { (action) in
             print("\(action.tag)")
             alert.dismiss()
