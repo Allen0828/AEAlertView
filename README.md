@@ -27,9 +27,15 @@
      <p>All setting properties are done in action. If you don't want to use cancel, you can set all action to defaulted.</p>
 </font>
      
-     v2.3.2 -Support setting the maximum width
+     v2.3.2- Support setting the maximum width
+     v2.3.4- Fix the problem that the title does not wrap lines by default. The number of Title lines can be set use.
                                                                          
-                                                                           
+  
+感谢大家反馈 如果你在使用中遇到任何问题、bug、建议等欢迎提交 [点击进入讨论区](https://github.com/Allen0828/AEAlertView/discussions) 
+
+Thank you for your feedback. If you encounter any problems, bugs, suggestions, etc. in use, you are welcome to submit them [discussions](https://github.com/Allen0828/AEAlertView/discussions) 
+
+
 # Preview                                                                       
 
 # 2.3
