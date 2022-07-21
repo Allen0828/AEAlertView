@@ -141,6 +141,10 @@ open class AETextFieldAlertView: UIView {
     public var titleAlignment: NSTextAlignment = .center {
         didSet { alertView.titleLabel.textAlignment = titleAlignment }
     }
+    /// 默认为2 不推荐修改此属性
+    public var titleNumberOfLines: Int = 2 {
+        didSet { alertView.titleLabel.numberOfLines = titleNumberOfLines }
+    }
     /// message
     public var message: String? {
         didSet { alertView.messageTextView.text = message ?? "" }

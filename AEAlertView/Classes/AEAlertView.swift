@@ -152,6 +152,10 @@ open class AEAlertView: UIView {
     public var titleAlignment: NSTextAlignment = .center {
         didSet { alertView.titleLabel.textAlignment = titleAlignment }
     }
+    /// 默认为2 不推荐修改此属性
+    public var titleNumberOfLines: Int = 2 {
+        didSet { alertView.titleLabel.numberOfLines = titleNumberOfLines }
+    }
     /// message
     public var message: String? {
         didSet { alertView.messageTextView.text = message ?? "" }
@@ -178,11 +182,11 @@ open class AEAlertView: UIView {
     public var backgroundImageBottomMargin: CGFloat = 0 {
         didSet { alertView.backgroundImageBottomMargin = backgroundImageBottomMargin }
     }
-    /// titleLabel 距离alert背景框 上方间距 默认8
+    /// titleLabel 距离alert背景框 左右的距离 默认8
     public var titlePadding: CGFloat = 8 {
         didSet { alertView.titlePadding = titlePadding }
     }
-    /// titleLabel 距离alert背景框 左右的距离 默认16
+    /// titleLabel 距离alert背景框 上方间距 默认8
     public var titleTopMargin: CGFloat = 8 {
         didSet { alertView.titleTopMargin = titleTopMargin }
     }

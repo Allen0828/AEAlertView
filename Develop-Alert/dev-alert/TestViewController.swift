@@ -11,9 +11,20 @@ extension TestViewController {
     
     // MARK: - alert
     private func alertType1() {
-        AEAlertView.show(title: "title", message: "fastest", actions: ["ok"]) { action in
-            print("dismiss----Fastest")
+//        AEAlertView.show(title: "title title title title title title title title title title ", message: "fastest", actions: ["ok"]) { action in
+//            print("dismiss----Fastest")
+//        }
+        let alert = AEAlertView.init(style: .defaulted, title: "title title title title title title title title title title title title title title title title title title title title ", message: "set gif height Add alert to the current view")
+//        alert.titlePadding = 0;
+        alert.titleNumberOfLines = 2
+        let cancel = AEAlertAction.init(title: "cancel", style: .cancel) { (action) in
+            print("\(action.tag)")
+            alert.dismiss()
         }
+        cancel.cancelTitleColor = .red
+        
+        alert.addAction(action: cancel)
+        alert.show()
     }
     private func alertType2() {
         AEAlertView.show(title: "title", message: "set background image", actions: ["cancel", "ok"], bgImage: UIImage(named: "006")) { action in
@@ -130,7 +141,7 @@ extension TestViewController {
     
     // MARK: - alertFiled
     private func alertFieldType1() {
-        AETextFieldAlertView.show(title: "title", message: "messages", actions: ["cancel","dev"]) { action, text in
+        AETextFieldAlertView.show(title: "title title title title title title title title title title title title title title title title title title title title", message: "messages", actions: ["cancel","dev"]) { action, text in
             print("input----\(text)")
         }
     }
