@@ -16,7 +16,7 @@ extension TestViewController {
 //        }
         let alert = AEAlertView.init(style: .defaulted, title: "title title title title title title title title title title title title title title title title title title title title ", message: "set gif height Add alert to the current view")
 //        alert.titlePadding = 0;
-        alert.titleNumberOfLines = 2
+        alert.titleNumberOfLines = 3
         let cancel = AEAlertAction.init(title: "cancel", style: .cancel) { (action) in
             print("\(action.tag)")
             alert.dismiss()
@@ -32,7 +32,7 @@ extension TestViewController {
         }
     }
     private func alertType3() {
-        let alert = AEAlertView.init(style: .defaulted, title: "title", message: "set gif height Add alert to the current view", maximumWidth: 600)
+        let alert = AEAlertView.init(style: .defaulted, title: "title", message: "set gif height Add alert to the current view", maximumWidth: 200)
         alert.setBackgroundImage(contentsOf: Bundle.main.path(forResource: "003", ofType: "gif"))
         
         alert.backgroundImageHeight = 300
