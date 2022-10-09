@@ -702,7 +702,7 @@ extension UIApplication {
     }
     func currentWindow() -> UIWindow? {
         if Thread.isMainThread {
-            if #available(iOS 15.0, *) {
+            if #available(iOS 13, *) {
                 let connectedScenes = UIApplication.shared.connectedScenes
                     .filter({ $0.activationState == .foregroundActive })
                     .compactMap({$0 as? UIWindowScene})
@@ -713,8 +713,6 @@ extension UIApplication {
                     .windows
                     .first { $0.isKeyWindow }
                 return window
-            } else if #available(iOS 13.0, *) {
-                return UIApplication.shared.windows.first { $0.isKeyWindow }
             } else if #available(iOS 8.0, *) {
                 return UIApplication.shared.delegate?.window ?? UIApplication.shared.keyWindow
             } else {
