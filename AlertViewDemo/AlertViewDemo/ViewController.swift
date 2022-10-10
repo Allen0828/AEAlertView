@@ -17,8 +17,10 @@ extension ViewController {
 //            print("dismiss----Fastest")
 //        }
         let alert = AEAlertView.init(style: .defaulted, title: "title title title title title title title title title title ", message: "set gif height Add alert to the current view")
-        alert.titlePadding = 32
-        alert.titleNumberOfLines = 1
+        alert.titlePadding = 64
+//        alert.messagePadding = 32
+        alert.titleNumberOfLines = 0
+//        alert.messageTopMargin = 60
         let cancel = AEAlertAction.init(title: "cancel", style: .cancel) { (action) in
             print("\(action.tag)")
             alert.dismiss()

@@ -149,6 +149,8 @@ open class AEBaseAlertView: UIView {
     private var backgroundImageVerticalCentering: [NSLayoutConstraint]!
     private var contentContainerView: UIView!
     private var customContainerView: UIView!
+    
+    private var titleWidthConstraints: [NSLayoutConstraint] = []
 }
 
 extension AEBaseAlertView {
@@ -195,8 +197,8 @@ extension AEBaseAlertView {
         titleLabel.textAlignment = .center
         backgroundView.addSubview(titleLabel)
         // 设置控件约束 默认750
-        let titleCons = NSLayoutConstraint.constraints(withVisualFormat: "H:|-[titleLabel]-|", options: option, metrics: nil, views: ["titleLabel": titleLabel!])
-        backgroundView.addConstraints(titleCons)
+        titleWidthConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-[titleLabel]-|", options: option, metrics: nil, views: ["titleLabel": titleLabel!])
+        backgroundView.addConstraints(titleWidthConstraints)
         
         messageTextView = AEAlertTextView(frame: CGRect.zero)
         messageTextView.translatesAutoresizingMaskIntoConstraints = false
@@ -318,9 +320,10 @@ extension AEBaseAlertView {
         backgroundView.addConstraints(cons)
     }
     private func setTitlePadding(padding: CGFloat) {
+        backgroundView.removeConstraints(titleWidthConstraints)
         let metrics = ["padding": NSNumber(floatLiteral: Double(padding))]
-        let cons = NSLayoutConstraint.constraints(withVisualFormat: "H:|-padding-[titleLabel]-padding-|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: metrics, views: ["titleLabel": titleLabel!])
-        backgroundView.addConstraints(cons)
+        titleWidthConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-padding-[titleLabel]-padding-|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: metrics, views: ["titleLabel": titleLabel!])
+        backgroundView.addConstraints(titleWidthConstraints)
     }
     private func setMessageTopMargin(margin: CGFloat) {
         let metrics = ["margin":  NSNumber(floatLiteral: Double(margin))]
@@ -702,7 +705,7 @@ extension UIApplication {
     }
     func currentWindow() -> UIWindow? {
         if Thread.isMainThread {
-            if #available(iOS 15.0, *) {
+            if #available(iOS 13, *) {
                 let connectedScenes = UIApplication.shared.connectedScenes
                     .filter({ $0.activationState == .foregroundActive })
                     .compactMap({$0 as? UIWindowScene})
@@ -713,8 +716,6 @@ extension UIApplication {
                     .windows
                     .first { $0.isKeyWindow }
                 return window
-            } else if #available(iOS 13.0, *) {
-                return UIApplication.shared.windows.first { $0.isKeyWindow }
             } else if #available(iOS 8.0, *) {
                 return UIApplication.shared.delegate?.window ?? UIApplication.shared.keyWindow
             } else {

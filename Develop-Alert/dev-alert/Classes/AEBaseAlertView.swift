@@ -149,6 +149,9 @@ open class AEBaseAlertView: UIView {
     private var backgroundImageVerticalCentering: [NSLayoutConstraint]!
     private var contentContainerView: UIView!
     private var customContainerView: UIView!
+    
+    private var titleWidthConstraints: [NSLayoutConstraint] = []
+    private var messageWidthConstraints: [NSLayoutConstraint] = []
 }
 
 extension AEBaseAlertView {
@@ -195,8 +198,8 @@ extension AEBaseAlertView {
         titleLabel.textAlignment = .center
         backgroundView.addSubview(titleLabel)
         // 设置控件约束 默认750
-        let titleCons = NSLayoutConstraint.constraints(withVisualFormat: "H:|-[titleLabel]-|", options: option, metrics: nil, views: ["titleLabel": titleLabel!])
-        backgroundView.addConstraints(titleCons)
+        titleWidthConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-[titleLabel]-|", options: option, metrics: nil, views: ["titleLabel": titleLabel!])
+        backgroundView.addConstraints(titleWidthConstraints)
         
         messageTextView = AEAlertTextView(frame: CGRect.zero)
         messageTextView.translatesAutoresizingMaskIntoConstraints = false
@@ -210,8 +213,8 @@ extension AEBaseAlertView {
         messageTextView.textColor = UIColor.darkGray
         messageTextView.backgroundColor = UIColor.clear
         backgroundView.addSubview(messageTextView)
-        let messageCons = NSLayoutConstraint.constraints(withVisualFormat: "H:|-[messageTextView]-|", options: option, metrics: nil, views: ["messageTextView": messageTextView!])
-        backgroundView.addConstraints(messageCons)
+        messageWidthConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-[messageTextView]-|", options: option, metrics: nil, views: ["messageTextView": messageTextView!])
+        backgroundView.addConstraints(messageWidthConstraints)
         
         contentContainerView = UIView(frame: CGRect.zero)
         contentContainerView.translatesAutoresizingMaskIntoConstraints = false
@@ -318,9 +321,10 @@ extension AEBaseAlertView {
         backgroundView.addConstraints(cons)
     }
     private func setTitlePadding(padding: CGFloat) {
+        backgroundView.removeConstraints(titleWidthConstraints)
         let metrics = ["padding": NSNumber(floatLiteral: Double(padding))]
-        let cons = NSLayoutConstraint.constraints(withVisualFormat: "H:|-padding-[titleLabel]-padding-|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: metrics, views: ["titleLabel": titleLabel!])
-        backgroundView.addConstraints(cons)
+        titleWidthConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-padding-[titleLabel]-padding-|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: metrics, views: ["titleLabel": titleLabel!])
+        backgroundView.addConstraints(titleWidthConstraints)
     }
     private func setMessageTopMargin(margin: CGFloat) {
         let metrics = ["margin":  NSNumber(floatLiteral: Double(margin))]
@@ -329,9 +333,10 @@ extension AEBaseAlertView {
         backgroundView.addConstraints(cons)
     }
     private func setMessagePadding(padding: CGFloat) {
+        backgroundView.removeConstraints(messageWidthConstraints)
         let metrics = ["padding": NSNumber(floatLiteral: Double(padding))]
-        let cons = NSLayoutConstraint.constraints(withVisualFormat: "H:|-padding-[messageTextView]-padding-|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: metrics, views: ["messageTextView": messageTextView!])
-        backgroundView.addConstraints(cons)
+        messageWidthConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-padding-[messageTextView]-padding-|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: metrics, views: ["messageTextView": messageTextView!])
+        backgroundView.addConstraints(messageWidthConstraints)
     }
     private func setMessageHeight(height: CGFloat) {
         messageTextView.isScrollEnabled = true
