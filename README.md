@@ -46,13 +46,21 @@ src="https://github.com/Allen0828/AEAlertView/blob/master/img-folder/2.3-003.jpg
 </view>
 
 # 2.2
-<view><img src="https://github.com/Allen0828/AEAlertView/blob/master/img-folder/new3.jpeg" width="100"></img><img
+<view>
+
+<img src="https://github.com/Allen0828/AEAlertView/blob/master/img-folder/new3.jpeg" width="100"></img><img
 src="https://github.com/Allen0828/AEAlertView/blob/master/img-folder/gif003.gif" width="100"></img> <img
 src="https://github.com/Allen0828/AEAlertView/blob/master/img-folder/new7.jpeg" width="100"></img>
+
 </view>
 
-# 2.1 
-<view><img src="https://github.com/Allen0828/AEAlertView/blob/master/img-folder/succees2.1.gif" width="100"></img><img src="https://github.com/Allen0828/AEAlertView/blob/master/img-folder/error2.1.gif" width="100"></img>
+# other 
+<view>
+
+<img src="https://github.com/Allen0828/AEAlertView/blob/master/img-folder/new1.jpeg" width="150"></img>
+<img src="https://github.com/Allen0828/AEAlertView/blob/master/img-folder/succees2.1.gif" width="150"></img>
+<img src="https://github.com/Allen0828/AEAlertView/blob/master/img-folder/uiAlertView_GIF.gif" width="150"></img>
+
 </view>
 
 # 如果有 你有任何问题 或者 好的建议 欢迎联系我  - email: allen.zhang0828@gmail.com -
