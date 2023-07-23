@@ -197,7 +197,7 @@ extension AEBaseAlertView {
         titleLabel.numberOfLines = 2
         titleLabel.textAlignment = .center
         backgroundView.addSubview(titleLabel)
-        // 设置控件约束 默认750
+        
         titleWidthConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-[titleLabel]-|", options: option, metrics: nil, views: ["titleLabel": titleLabel!])
         backgroundView.addConstraints(titleWidthConstraints)
         
@@ -207,7 +207,6 @@ extension AEBaseAlertView {
         messageTextView.font = UIFont.preferredFont(forTextStyle: .subheadline)
         messageTextView.setContentHuggingPriority(.required, for: .vertical)
         messageTextView.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
-        messageTextView.allowsEditingTextAttributes = false
         messageTextView.isScrollEnabled = false
         messageTextView.isEditable = false
         messageTextView.textColor = UIColor.darkGray
@@ -238,7 +237,7 @@ extension AEBaseAlertView {
         let actionCons = NSLayoutConstraint.constraints(withVisualFormat: "H:|[actionContainerView]|", options: option, metrics: nil, views: ["actionContainerView": actionContainerView!])
         backgroundView.addConstraints(actionCons)
         
-        let verticalCons = NSLayoutConstraint.constraints(withVisualFormat: "V:|-20@750-[titleLabel]-10@750-[messageTextView]-5@750-[contentContainerView]-5@750-[customContainerView]-20@750-[actionContainerView]|", options: option, metrics: nil, views: ["titleLabel": titleLabel!, "messageTextView": messageTextView!, "contentContainerView": contentContainerView!, "customContainerView": customContainerView!,"actionContainerView": actionContainerView!])
+        let verticalCons = NSLayoutConstraint.constraints(withVisualFormat: "V:|-15@800-[titleLabel]-10@800-[messageTextView]->=0-[contentContainerView]->=0-[customContainerView]->=0-[actionContainerView]|", options: option, metrics: nil, views: ["titleLabel": titleLabel!, "messageTextView": messageTextView!, "contentContainerView": contentContainerView!, "customContainerView": customContainerView!,"actionContainerView": actionContainerView!])
         backgroundView.addConstraints(verticalCons)
     }
 }
@@ -381,16 +380,16 @@ extension AEBaseAlertView {
             for item in actionContainerView.subviews {
                 item.removeFromSuperview()
             }
-            let option = NSLayoutConstraint.FormatOptions(rawValue: 0)
-            let actionCons = NSLayoutConstraint.constraints(withVisualFormat: "H:|[actionContainerView]|", options: option, metrics: nil, views: ["actionContainerView": actionContainerView!])
-            backgroundView.addConstraints(actionCons)
+//            let option = NSLayoutConstraint.FormatOptions(rawValue: 0)
+//            let actionCons = NSLayoutConstraint.constraints(withVisualFormat: "H:|[actionContainerView]|", options: option, metrics: nil, views: ["actionContainerView": actionContainerView!])
+//            backgroundView.addConstraints(actionCons)
             
-            let verticalCons = NSLayoutConstraint.constraints(withVisualFormat: "V:|-20@750-[titleLabel]-10@750-[messageTextView]-5@750-[contentContainerView]-5@750-[customContainerView]-20@750-|", options: option, metrics: nil, views: ["titleLabel": titleLabel!, "messageTextView": messageTextView!, "contentContainerView": contentContainerView!, "customContainerView": customContainerView!])
-            backgroundView.addConstraints(verticalCons)
+//            let verticalCons = NSLayoutConstraint.constraints(withVisualFormat: "V:|-20@750-[titleLabel]-10@750-[messageTextView]-5@750-[contentContainerView]-5@750-[customContainerView]-20@750-|", options: option, metrics: nil, views: ["titleLabel": titleLabel!, "messageTextView": messageTextView!, "contentContainerView": contentContainerView!, "customContainerView": customContainerView!])
+//            backgroundView.addConstraints(verticalCons)
         } else {
-            let option = NSLayoutConstraint.FormatOptions(rawValue: 0)
-            let verticalCons = NSLayoutConstraint.constraints(withVisualFormat: "V:|-20@750-[titleLabel]-10@750-[messageTextView]-5@750-[contentContainerView]-5@750-[customContainerView]-20@750-[actionContainerView]|", options: option, metrics: nil, views: ["titleLabel": titleLabel!, "messageTextView": messageTextView!, "contentContainerView": contentContainerView!, "customContainerView": customContainerView!, "actionContainerView": actionContainerView!])
-            backgroundView.addConstraints(verticalCons)
+//            let option = NSLayoutConstraint.FormatOptions(rawValue: 0)
+//            let verticalCons = NSLayoutConstraint.constraints(withVisualFormat: "V:|-20@750-[titleLabel]-10@750-[messageTextView]-5@750-[contentContainerView]-5@750-[customContainerView]-20@750-[actionContainerView]|", options: option, metrics: nil, views: ["titleLabel": titleLabel!, "messageTextView": messageTextView!, "contentContainerView": contentContainerView!, "customContainerView": customContainerView!, "actionContainerView": actionContainerView!])
+//            backgroundView.addConstraints(verticalCons)
             if alertStyle == .apple {
                 setAppleStyleActions(btns)
             } else {
@@ -453,16 +452,15 @@ extension AEBaseAlertView {
             let horizontalLine = UIView(frame: CGRect.zero)
             horizontalLine.translatesAutoresizingMaskIntoConstraints = false
             horizontalLine.backgroundColor = actionSplitLine
-            
             actionContainerView.addSubview(horizontalLine)
-            actionContainerView.addConstraint(NSLayoutConstraint(item: horizontalLine, attribute: .top, relatedBy: .equal, toItem: actionContainerView, attribute: .top, multiplier: 1, constant: 0))
-            actionContainerView.addConstraint(NSLayoutConstraint(item: horizontalLine, attribute: .left, relatedBy: .equal, toItem: actionContainerView, attribute: .left, multiplier: 1, constant: 0))
-            actionContainerView.addConstraint(NSLayoutConstraint(item: horizontalLine, attribute: .width, relatedBy: .equal, toItem: actionContainerView, attribute: .width, multiplier: 1, constant: 0))
-            
+
             actionContainerView.addSubview(the)
             let theHorizontal = NSLayoutConstraint.constraints(withVisualFormat: "H:|[the]|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: ["the":the])
             actionContainerView.addConstraints(theHorizontal)
-            let theVertical = NSLayoutConstraint.constraints(withVisualFormat: "V:|[horizontalLine(1)][the(height)]|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: metrics, views: ["horizontalLine": horizontalLine, "the": the])
+            let lineCons = NSLayoutConstraint.constraints(withVisualFormat: "H:|[line]|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: ["line": horizontalLine])
+            actionContainerView.addConstraints(lineCons)
+            
+            let theVertical = NSLayoutConstraint.constraints(withVisualFormat: "V:|[line(1)][the(height)]|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: metrics, views: ["line":horizontalLine, "the": the])
             actionContainerView.addConstraints(theVertical)
             
         } else {
@@ -530,6 +528,7 @@ extension AEBaseAlertView {
             
         if actions.count == 2 && actionArrangementMode == .horizontal {
             let first = actions[0]
+            
             let last = actions[1]
             first.translatesAutoresizingMaskIntoConstraints = false
             last.translatesAutoresizingMaskIntoConstraints = false
@@ -605,10 +604,16 @@ extension AEBaseAlertView {
     private func setImage(contentsOf path: String?) {
         // 判断图片是否存在
         let url = URL(fileURLWithPath: path ?? "")
-        guard let data = try? Data.init(contentsOf: url) else { return }
-        if data.getImageFormat() == ImageFormat.Unknow { return }
+        guard let data = try? Data.init(contentsOf: url) else {
+            debugPrint("alertview: 图片路径不存在")
+            return
+        }
+        if data.alertGetImageFormat() == ImageFormat.Unknow {
+            debugPrint("alertview: 不支持的图片格式")
+            return
+        }
         // 判断是否为GIF 图片
-        if data.getImageFormat() == ImageFormat.GIF {
+        if data.alertGetImageFormat() == ImageFormat.GIF {
             guard let source = CGImageSourceCreateWithData(data as CFData, nil) else { return }
             let count = CGImageSourceGetCount(source)
             var images: [UIImage] = []
@@ -625,7 +630,7 @@ extension AEBaseAlertView {
             }
             let anImg = UIImage.animatedImage(with: images, duration: total)
             backgroundImage.image = anImg
-        } else if data.getImageFormat() == ImageFormat.WebP {
+        } else if data.alertGetImageFormat() == ImageFormat.WebP {
             debugPrint("当前不支持显示 WebP图片")
         } else {
             backgroundImage.image = UIImage(data: data)
@@ -633,97 +638,9 @@ extension AEBaseAlertView {
     }
 }
 
-private enum ImageFormat {
-    case Unknow
-    case JPEG
-    case PNG
-    case GIF
-    case TIFF
-    case WebP
-    case HEIC
-    case HEIF
-}
-private extension Data {
-    func getImageFormat() -> ImageFormat  {
-        var buffer = [UInt8](repeating: 0, count: 1)
-        self.copyBytes(to: &buffer, count: 1)
-        
-        switch buffer {
-        case [0xFF]: return .JPEG
-        case [0x89]: return .PNG
-        case [0x47]: return .GIF
-        case [0x49],[0x4D]: return .TIFF
-        case [0x52] where self.count >= 12:
-            if let str = String(data: self[0...11], encoding: .ascii), str.hasPrefix("RIFF"), str.hasSuffix("WEBP") {
-                return .WebP
-            }
-        case [0x00] where self.count >= 12:
-            if let str = String(data: self[8...11], encoding: .ascii) {
-                let HEICBitMaps = Set(["heic", "heis", "heix", "hevc", "hevx"])
-                if HEICBitMaps.contains(str) {
-                    return .HEIC
-                }
-                let HEIFBitMaps = Set(["mif1", "msf1"])
-                if HEIFBitMaps.contains(str) {
-                    return .HEIF
-                }
-            }
-        default: break;
-        }
-        return .Unknow
-    }
-}
 
 
-// MARK: - AEAlertTextView
-public class AEAlertTextView: UITextView {
-    public override init(frame: CGRect, textContainer: NSTextContainer?) {
-        super.init(frame: frame, textContainer: textContainer)
-        textContainerInset = UIEdgeInsets.zero
-    }
-    
-    required public init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    override open func layoutSubviews() {
-        super.layoutSubviews()
-        if !self.bounds.size.equalTo(self.intrinsicContentCGSize()) {
-            invalidateIntrinsicContentSize()
-        }
-    }
-    private func intrinsicContentCGSize() -> CGSize {
-        if self.text.count > 0 {
-            return self.contentSize
-        } else {
-            return CGSize.zero
-        }
-    }
-}
 
 
-extension UIApplication {
-    var alertWindow: UIWindow? {
-        return currentWindow()
-    }
-    func currentWindow() -> UIWindow? {
-        if Thread.isMainThread {
-            if #available(iOS 13, *) {
-                let connectedScenes = UIApplication.shared.connectedScenes
-                    .filter({ $0.activationState == .foregroundActive })
-                    .compactMap({$0 as? UIWindowScene})
-                if connectedScenes.count == 0 {
-                    return UIApplication.shared.windows.first
-                }
-                let window = connectedScenes.first?
-                    .windows
-                    .first { $0.isKeyWindow }
-                return window
-            } else if #available(iOS 8.0, *) {
-                return UIApplication.shared.delegate?.window ?? UIApplication.shared.keyWindow
-            } else {
-                return UIApplication.shared.windows.first { $0.isKeyWindow }
-            }
-        }
-        return nil
-    }
-}
+
+

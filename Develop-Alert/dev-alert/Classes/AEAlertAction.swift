@@ -41,6 +41,9 @@ open class AEAlertAction: NSObject {
     
     /// layer 属性 推荐在 AEAlertView-style等于custom时 使用
     /// layerBorderWidth>0 才会生效
+    
+    /// 适配自定义样式 如果为true  默认会设置BorderWidth1 和 CornerRadius 4
+    public var adapterCustom = true
     public var layerBorderColor: UIColor? = UIColor(red: 30/255, green: 144/255, blue: 255/255, alpha: 1)
     public var cancelLayerBorderColor: UIColor? = UIColor.darkGray
     public var layerBorderWidth: CGFloat = 0

@@ -329,7 +329,7 @@ extension AETextFieldAlertView {
     private func showAlert() {
         createActions()
         DispatchQueue.main.async {
-            UIApplication.shared.alertWindow?.addSubview(self)
+            UIApplication.shared.alertGetCurrentWindow()?.addSubview(self)
             if self.isObserverKeyboard {
                 NotificationCenter.default.addObserver(self, selector: #selector(self.keyBoardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
                 NotificationCenter.default.addObserver(self, selector: #selector(self.keyBoardWillShow), name: UIResponder.keyboardWillHideNotification, object: nil)

@@ -11,22 +11,35 @@ extension TestViewController {
     
     // MARK: - alert
     private func alertType1() {
-//        AEAlertView.show(title: "title title title title title title title title title title ", message: "fastest", actions: ["ok"]) { action in
-//            print("dismiss----Fastest")
-//        }
-        let alert = AEAlertView.init(style: .defaulted, title: "title title title title title title title title title title title title title title title title title title title title ", message: "set gif height Add alert to the current view")
-        alert.titlePadding = 32;
-        alert.titleNumberOfLines = 1
-        alert.messagePadding = 32
+        let alert = AEAlertView.init(style: .defaulted, title: "too much to show", message: "臣本布衣，躬耕于南阳，苟全性命于乱世，不求闻达于诸侯。先帝不以臣卑鄙，猥自枉屈，三顾臣于草庐之中，咨臣以当世之事，由是感激，遂许先帝以驱驰。后值倾覆，受任于败军之际，奉命于危难之间，尔来二十有一年矣。         \r\r先帝知臣谨慎，故临崩寄臣以大事也。受命以来，夙夜忧叹，恐托付不效，以伤先帝之明；故五月渡泸，深入不毛。今南方已定，兵甲已足，当奖率三军，北定中原，庶竭驽钝，攘除奸凶，兴复汉室，还于旧都。此臣所以报先帝而忠陛下之职分也。至于斟酌损益，进尽忠言，则攸之、祎、允之任也。 \r\r愿陛下托臣以讨贼兴复之效，不效，则治臣之罪，以告先帝之灵。若无兴德之言，则责攸之、祎、允等之慢，以彰其咎；陛下亦宜自谋，以咨诹善道，察纳雅言，深追先帝遗诏。臣不胜受恩感激。 \r\r今当远离，临表涕零，不知所言。")
+        //alert.messageHeight = 300
+        //        alert.messagePadding = 30
+        
         let cancel = AEAlertAction.init(title: "cancel", style: .cancel) { (action) in
             print("\(action.tag)")
             alert.dismiss()
         }
-        cancel.cancelTitleColor = .red
-        
+//        cancel.adapterCustom = false
         alert.addAction(action: cancel)
         alert.show()
     }
+    
+//        AEAlertView.show(title: "title title title title title title title title title title ", message: "fastest", actions: ["ok"]) { action in
+//            print("dismiss----Fastest")
+//        }
+//        let alert = AEAlertView.init(style: .defaulted, title: "title title title title title title title title title title title title title title title title title title title title ", message: "set gif height Add alert to the current view")
+//        alert.titlePadding = 32;
+//        alert.titleNumberOfLines = 1
+//        alert.messagePadding = 32
+//        let cancel = AEAlertAction.init(title: "cancel", style: .cancel) { (action) in
+//            print("\(action.tag)")
+//            alert.dismiss()
+//        }
+//        cancel.cancelTitleColor = .red
+//
+//        alert.addAction(action: cancel)
+//        alert.show()
+
     private func alertType2() {
         AEAlertView.show(title: "title", message: "set background image", actions: ["cancel", "ok"], bgImage: UIImage(named: "006")) { action in
             print("dismiss----background")
@@ -35,7 +48,7 @@ extension TestViewController {
     private func alertType3() {
         let alert = AEAlertView.init(style: .defaulted, title: "title", message: "set gif height Add alert to the current view", maximumWidth: 200)
         alert.setBackgroundImage(contentsOf: Bundle.main.path(forResource: "003", ofType: "gif"))
-        
+
         alert.backgroundImageHeight = 300
         alert.messageColor = UIColor.red
         let cancel = AEAlertAction.init(title: "cancel", style: .cancel) { (action) in
@@ -43,10 +56,10 @@ extension TestViewController {
             alert.dismiss()
         }
         cancel.cancelTitleColor = .red
-        
+
         alert.addAction(action: cancel)
         alert.create()
-        
+
         view.addSubview(alert)
     }
     private func alertType4() {
@@ -63,7 +76,7 @@ extension TestViewController {
 //        alert.alertView.backgroundImage.contentMode = .scaleAspectFill
         // 方式2
         alert.messageHeight = 600
-        
+
         alert.titleColor = UIColor.red
         alert.messageColor = UIColor.red
         let cancel = AEAlertAction.init(title: "cancel", style: .cancel) { (action) in
@@ -75,8 +88,8 @@ extension TestViewController {
     }
     // 内容过多
     private func alertType6() {
-        let alert = AEAlertView.init(style: .custom, title: "too much to show", message: "臣本布衣，躬耕于南阳，苟全性命于乱世，不求闻达于诸侯。先帝不以臣卑鄙，猥自枉屈，三顾臣于草庐之中，咨臣以当世之事，由是感激，遂许先帝以驱驰。后值倾覆，受任于败军之际，奉命于危难之间，尔来二十有一年矣。         \r\r先帝知臣谨慎，故临崩寄臣以大事也。受命以来，夙夜忧叹，恐托付不效，以伤先帝之明；故五月渡泸，深入不毛。今南方已定，兵甲已足，当奖率三军，北定中原，庶竭驽钝，攘除奸凶，兴复汉室，还于旧都。此臣所以报先帝而忠陛下之职分也。至于斟酌损益，进尽忠言，则攸之、祎、允之任也。 \r\r愿陛下托臣以讨贼兴复之效，不效，则治臣之罪，以告先帝之灵。若无兴德之言，则责攸之、祎、允等之慢，以彰其咎；陛下亦宜自谋，以咨诹善道，察纳雅言，深追先帝遗诏。臣不胜受恩感激。 \r\r今当远离，临表涕零，不知所言。")
-        alert.messageHeight = 300
+        let alert = AEAlertView.init(style: .custom, title: "too much to show", message: "臣本布衣，躬耕于南阳，苟全性命于乱世，不求闻达于诸侯。先帝不以臣卑鄙，猥自枉屈，三顾臣于草庐之中，咨臣以当世之事，由是感激，遂许先帝以驱驰。后值倾覆，受任于败军之际，奉命于危难之间，尔来二十有一年矣。         \r\r先帝知臣谨慎，故临崩寄臣以大事也。受命以来，夙夜忧叹，恐托付不效，以伤先帝之明；故五月渡泸，深入不毛。今南方已定，兵甲已足，当奖率三军，北定中原，庶竭驽钝，攘除奸凶，兴复汉室，还于旧都。此臣所以报先帝而忠陛下之职分也。至于斟酌损益，进尽忠言，则攸之、祎、允之任也。 \r\r愿陛下托臣以讨贼兴复之效，不效，则治臣之罪，以告先帝之灵。若无兴德之言，则责攸之、祎、允等之慢，以彰其咎；陛下亦宜自谋，以咨诹善道，察纳雅言，深追先帝遗诏。臣不胜受恩感激。 \r\r今当远离，临表涕零，不知所言。\r\r臣本布衣，躬耕于南阳，苟全性命于乱世，不求闻达于诸侯。先帝不以臣卑鄙，猥自枉屈，三顾臣于草庐之中，咨臣以当世之事，由是感激，遂许先帝以驱驰。后值倾覆，受任于败军之际，奉命于危难之间，尔来二十有一年矣。         \r\r先帝知臣谨慎，故临崩寄臣以大事也。受命以来，夙夜忧叹，恐托付不效，以伤先帝之明；故五月渡泸，深入不毛。今南方已定，兵甲已足，当奖率三军，北定中原，庶竭驽钝，攘除奸凶，兴复汉室，还于旧都。此臣所以报先帝而忠陛下之职分也。至于斟酌损益，进尽忠言，则攸之、祎、允之任也。 \r\r愿陛下托臣以讨贼兴复之效，不效，则治臣之罪，以告先帝之灵。若无兴德之言，则责攸之、祎、允等之慢，以彰其咎；陛下亦宜自谋，以咨诹善道，察纳雅言，深追先帝遗诏。臣不胜受恩感激。 \r\r今当远离，临表涕零，不知所言。")
+        //alert.messageHeight = 300
 //        alert.messagePadding = 30
         let cancel = AEAlertAction.init(title: "cancel", style: .cancel) { (action) in
             print("\(action.tag)")
@@ -87,15 +100,15 @@ extension TestViewController {
     }
     private func alertType7() {
         let alert = AEAlertView(style: .custom, title: "custom view", message: "At most two can be set", maximumWidth: 600)
-        
+
         let v1 = UIView(frame: CGRect(x: 0, y: 0, width: 300, height: 60))
         v1.backgroundColor = UIColor.blue
         alert.set(content: v1, width: 300, height: 60)
-        
+
         let v2 = UIView(frame: CGRect(x: 0, y: 0, width: 300, height: 60))
         v2.backgroundColor = UIColor.red
         alert.set(custom: v2, width: 300, height: 60)
-        
+
         let cancel = AEAlertAction.init(title: "cancel", style: .cancel) { (action) in
             print("\(action.tag)")
             alert.dismiss()
@@ -105,7 +118,7 @@ extension TestViewController {
         cancel.cancelTitleColor = UIColor.red
         cancel.cancelLayerBorderColor = UIColor.darkGray
         cancel.layerBorderWidth = 1
-        
+
         let dev = AEAlertAction.init(title: "dev", style: .defaulted) { (action) in
             print("\(action.tag)")
         }
@@ -114,32 +127,32 @@ extension TestViewController {
         dev.backgroundColor = UIColor.yellow
         dev.layerBorderColor = UIColor.orange
         dev.layerBorderWidth = 1
-        
+
         alert.addAction(action: cancel)
         alert.addAction(action: dev)
         alert.show()
     }
     private func alertType8() {
 //        AEBaseAlertView.MaximumWidth = 200
-        
+
         let alert = AEAlertView(style: .defaulted, title: "custom action", message: "Please check the default values before using")
         let cancel = AEAlertAction.init(title: "cancel\rcancel\rcancel", style: .cancel) { (action) in
             alert.dismiss()
         }
         cancel.cancelTitleColor = UIColor.red
         cancel.numberOfLines = 0
-        
+
         let dev = AEAlertAction.init(title: "dev", style: .defaulted) { (action) in
-           
+
         }
         dev.image = UIImage(named: "index_def_icon")
 //        dev.imagePlacement = .right
-        
+
         alert.addAction(action: cancel)
         alert.addAction(action: dev)
         alert.show()
     }
-    
+
     // MARK: - alertFiled
     private func alertFieldType1() {
         AETextFieldAlertView.show(title: "title title title title title title title title title title title title title title title title title title title title", message: "messages", actions: ["cancel","dev"]) { action, text in
@@ -154,7 +167,7 @@ extension TestViewController {
     private func alertFieldType3() {
         let alert = AETextFieldAlertView.init(style: .defaulted, title: "title", message: "set gif height Add alert to the current view")
         alert.setBackgroundImage(contentsOf: Bundle.main.path(forResource: "003", ofType: "gif"))
-        
+
         alert.backgroundImageHeight = 300
         alert.messageColor = UIColor.red
         let cancel = AEAlertAction.init(title: "cancel", style: .cancel) { (action) in
@@ -163,10 +176,10 @@ extension TestViewController {
             alert.dismiss()
         }
         cancel.cancelTitleColor = .red
-        
+
         alert.addAction(action: cancel)
         alert.create()
-        
+
         view.addSubview(alert)
     }
     private func alertFieldType4() {
@@ -182,7 +195,7 @@ extension TestViewController {
         alert.alertView.backgroundImage.contentMode = .scaleAspectFill
         // 方式2
 //        alert.messageHeight = 600
-        
+
         alert.titleColor = UIColor.red
         alert.messageColor = UIColor.red
         let cancel = AEAlertAction.init(title: "cancel", style: .cancel) { (action) in
@@ -219,14 +232,14 @@ extension TestViewController {
         let v2 = UIView(frame: CGRect(x: 0, y: 0, width: 300, height: 60))
         v2.backgroundColor = UIColor.red
         alert.set(custom: v2, width: 300, height: 60)
-        
+
         let cancel = AEAlertAction.init(title: "cancel", style: .cancel) { (action) in
             print("\(action.tag)")
             alert.dismiss()
         }
         cancel.tag = 1001
         cancel.layerBorderWidth = 1
-        
+
         let dev = AEAlertAction.init(title: "dev", style: .defaulted) { (action) in
             print("\(action.tag)")
         }
@@ -235,7 +248,7 @@ extension TestViewController {
         dev.backgroundColor = UIColor.yellow
         dev.layerBorderColor = UIColor.orange
         dev.layerBorderWidth = 1
-        
+
         alert.addAction(action: cancel)
         alert.addAction(action: dev)
         alert.show()
@@ -247,19 +260,19 @@ extension TestViewController {
         }
         cancel.cancelTitleColor = UIColor.red
         cancel.numberOfLines = 0
-        
+
         let dev = AEAlertAction.init(title: "dev", style: .defaulted) { (action) in
-           
+
         }
         dev.image = UIImage(named: "index_def_icon")
 //        dev.imagePlacement = .right
-        
+
         alert.addAction(action: cancel)
         alert.addAction(action: dev)
         alert.show()
     }
-    
-    
+
+
     // MARK: - alertCustom
     // 动画成功
     private func alertCustomType1() {
@@ -270,11 +283,11 @@ extension TestViewController {
         }
         let action_two = AEAlertAction(title: "确定", style: .defaulted) { (action) in
             alert.removeActions()
-            
+
             let animation = UIView(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
             let anim = AEBeginLineAnimation.initShow(in: animation.bounds, lineWidth: 4, lineColor: UIColor.blue)
             animation.addSubview(anim)
-            
+
             alert.textField.isHidden = true
             alert.customViewTopMargin = -60
             alert.set(custom: animation, width: 80, height: 80)
@@ -283,7 +296,7 @@ extension TestViewController {
                 anim.removeFromSuperview()
                 let fail = AELineSuccessAnimation.initShow(in: animation.bounds, lineColor: UIColor.red)
                 animation.addSubview(fail)
-                
+
                 let cancel = AEAlertAction(title: "成功了", style: .defaulted) { (action) in
                     alert.dismiss()
                 }
@@ -299,17 +312,17 @@ extension TestViewController {
     private func alertCustomType2() {
         let animV = AETextFieldAlertView.init(style: .defaulted, title: "请输入密码", message: nil)
         animV.textField.placeholder = "密码"
-        
+
         let action_one = AEAlertAction(title: "取消", style: .cancel) { (action) in
             animV.dismiss()
         }
         let action_two = AEAlertAction(title: "确定", style: .defaulted) { (action) in
             animV.removeActions()
-            
+
             let animation = UIView(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
             let anim = AEBeginLineAnimation.initShow(in: animation.bounds, lineWidth: 4, lineColor: UIColor.blue)
             animation.addSubview(anim)
-            
+
             animV.textField.isHidden = true
             animV.customViewTopMargin = -60
             animV.set(custom: animation, width: 80, height: 80)
@@ -319,7 +332,7 @@ extension TestViewController {
                 anim.removeFromSuperview()
                 let fail = AELineFailAnimation.initShow(in: animation.bounds, lineColor: UIColor.red)
                 animation.addSubview(fail)
-                
+
                 let cancel = AEAlertAction(title: "取消", style: .cancel) { (action) in
                     animV.dismiss()
                 }
@@ -336,26 +349,26 @@ extension TestViewController {
 //            print(action.tag)
 //        }
     }
-    
+
 }
 
 
 
 class TestViewController: UIViewController {
-    
+
     let alertTypes = ["最快的方式调用", "设置背景图片", "设置背景图片Gif", "图片不出现在按钮上", "图片过长", "内容超出", "使用自定义view", "按钮多样性"]
     let alertFieldTypes = ["最快的方式调用", "设置背景图片", "设置背景图片Gif", "图片不出现在按钮上", "图片过长", "内容超出", "使用自定义view", "按钮多样性"]
     // 自定义
     let alertCustomTypes = ["动画成功", "动画失败", "继承alertView"]
-    
-    
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        
+
         scrollView.frame = self.view.bounds
         view.addSubview(scrollView)
-        
+
         let btnX: CGFloat = 10
         var btnY: CGFloat = 60
         let btnW: CGFloat = (UIScreen.main.bounds.size.width -  30) / 2
@@ -398,7 +411,7 @@ class TestViewController: UIViewController {
         }
         scrollView.contentSize = CGSize(width: 0, height: btnY+100)
     }
-    
+
     lazy var scrollView = UIScrollView()
     lazy var alertLa: UILabel = {
         let la = UILabel()
@@ -421,7 +434,7 @@ class TestViewController: UIViewController {
         la.textAlignment = .center
         return la
     }()
-    
+
     @objc private func alertClick(btn: UIButton) {
         switch btn.tag {
         case 0: alertType1()
@@ -436,7 +449,7 @@ class TestViewController: UIViewController {
             break
         }
     }
-    
+
     @objc private func alertFieldClick(btn: UIButton) {
         switch btn.tag {
         case 0: alertFieldType1()
@@ -451,7 +464,7 @@ class TestViewController: UIViewController {
             break
         }
     }
-    
+
     @objc private func alertCustomClick(btn: UIButton) {
         switch btn.tag {
         case 0: alertCustomType1()
@@ -461,5 +474,5 @@ class TestViewController: UIViewController {
             break
         }
     }
-    
+
 }

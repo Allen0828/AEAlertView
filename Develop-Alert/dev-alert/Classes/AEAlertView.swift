@@ -79,6 +79,10 @@ extension AEAlertView {
     
     /// 添加action
     public func addAction(action: AEAlertAction) {
+        if alertStyle == .custom && action.adapterCustom {
+            action.layerBorderWidth = action.layerBorderWidth == 0 ? 1 : action.layerBorderWidth
+            action.layerCornerRadius = action.layerCornerRadius == 0 ? 4 : action.layerCornerRadius
+        }
         actions.append(action)
     }
     /// 手动重置按钮
@@ -306,7 +310,7 @@ extension AEAlertView {
     private func showAlert() {
         createActions()
         DispatchQueue.main.async {
-            UIApplication.shared.alertWindow?.addSubview(self)
+            UIApplication.shared.alertGetCurrentWindow()?.addSubview(self)
             if  self.isObserverKeyboard {
                 NotificationCenter.default.addObserver(self, selector: #selector( self.keyBoardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
                 NotificationCenter.default.addObserver(self, selector: #selector( self.keyBoardWillShow), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -318,6 +322,7 @@ extension AEAlertView {
             }
             self.alertView.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
             self.alertView.alpha = 0
+            self.alertView.messageTextView.isScrollEnabled = true
             
             UIView.animate(withDuration: TimeInterval(self.showDuration),
                            delay: 0,
@@ -328,7 +333,12 @@ extension AEAlertView {
                         self.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
                         self.alertView.transform = CGAffineTransform(scaleX: 1, y: 1)
                         self.alertView.alpha = 1
-            }, completion: nil)
+            }) { finish in
+                if finish {
+                    self.alertView.messageTextView.isScrollEnabled = true
+                }
+                
+            }
         }
     }
     private func dismissAlert() {
