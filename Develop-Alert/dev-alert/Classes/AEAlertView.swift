@@ -334,10 +334,9 @@ extension AEAlertView {
                         self.alertView.transform = CGAffineTransform(scaleX: 1, y: 1)
                         self.alertView.alpha = 1
             }) { finish in
-                if finish {
-                    self.alertView.messageTextView.isScrollEnabled = true
-                }
-                
+//                if finish {
+//                    self.alertView.messageTextView.isScrollEnabled = true
+//                }
             }
         }
     }

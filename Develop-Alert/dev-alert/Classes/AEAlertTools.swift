@@ -86,6 +86,7 @@ public class AEAlertTextView: UITextView {
     override open func layoutSubviews() {
         super.layoutSubviews()
         if !self.bounds.size.equalTo(self.intrinsicContentCGSize()) {
+            print("b=\(self.bounds.size) c=\(self.intrinsicContentCGSize())")
             invalidateIntrinsicContentSize()
         }
     }
