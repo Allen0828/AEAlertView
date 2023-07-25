@@ -8,7 +8,7 @@
 
 import UIKit
 
-/// alertView 样式
+/// alertView 样式   在未设置actionHeight时 action 最低高度为40 最高为计算的实际高度
 public enum AEBaseAlertViewStyle {
     case apple,
     custom
@@ -23,7 +23,7 @@ public enum AEButtonArrangementMode {
 // open Func
 extension AEBaseAlertView {
     // FUNC 推荐宽小于等于 UIScreen.main.bounds.size.width - (24 * 2)
-    /// 设置自定义view 1
+    /// 设置自定义view 1   如果 width=-1  则宽度默认回和alertview 同宽
     public func setContent(view: UIView, width: CGFloat, height: CGFloat) {
         setView(content: view, width, height)
     }
@@ -41,7 +41,8 @@ open class AEBaseAlertView: UIView {
     
     /// 最大宽度 请在init中赋值 为了适配iPad 默认值改为320
     private(set) var maximumWidth: CGFloat = 320
-    
+    /// 新版本中text view 如果isScrollEnabled为true 则不能自动刷新高度，因此为了解决这个功能特意在计算高度是isScrollEnabled设置为false  当高度计算完成后在修改为true 除非你设置了false
+    public var textViewIsScrollEnabled = true
 
     public func dismiss() {
         for item in self.subviews {
@@ -59,6 +60,9 @@ open class AEBaseAlertView: UIView {
     public var titleLabel: UILabel!
     public var messageTextView: AEAlertTextView!
     public var actionContainerView: UIView!
+    // container
+    public var contentContainerView: UIView!
+    public var customContainerView: UIView!
     // 自定义view 最多只能设置两个自定义View Must use func setCustom setContent set view
     private(set) var contentView: UIView?
     private(set) var customView: UIView?
@@ -147,11 +151,9 @@ open class AEBaseAlertView: UIView {
     private var backgroundWidthConstraint: NSLayoutConstraint!
     private var backgroundViewVerticalCentering: NSLayoutConstraint!
     private var backgroundImageVerticalCentering: [NSLayoutConstraint]!
-    private var contentContainerView: UIView!
-    private var customContainerView: UIView!
-    
     private var titleWidthConstraints: [NSLayoutConstraint] = []
     private var messageWidthConstraints: [NSLayoutConstraint] = []
+    
 }
 
 extension AEBaseAlertView {
@@ -174,7 +176,7 @@ extension AEBaseAlertView {
         addConstraint(backgroundViewVerticalCentering)
         addConstraint(NSLayoutConstraint(item: backgroundView!, attribute: .height, relatedBy: .lessThanOrEqual, toItem: self, attribute: .height, multiplier: 0.9, constant: 0))
         
-//        initBackgroundImage()
+        initBackgroundImage()
         initSubviews()
     }
     
@@ -209,6 +211,7 @@ extension AEBaseAlertView {
         messageTextView.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
         messageTextView.isScrollEnabled = false
         messageTextView.isEditable = false
+        messageTextView.isSelectable = true
         messageTextView.textColor = UIColor.darkGray
         messageTextView.backgroundColor = UIColor.clear
         backgroundView.addSubview(messageTextView)
@@ -237,7 +240,7 @@ extension AEBaseAlertView {
         let actionCons = NSLayoutConstraint.constraints(withVisualFormat: "H:|[actionContainerView]|", options: option, metrics: nil, views: ["actionContainerView": actionContainerView!])
         backgroundView.addConstraints(actionCons)
 
-        let verticalCons = NSLayoutConstraint.constraints(withVisualFormat: "V:|-15@800-[titleLabel]-10@800-[messageTextView]-0@750-[contentContainerView]-0@750-[customContainerView]-15@750-[actionContainerView]|", options: option, metrics: nil, views: ["titleLabel": titleLabel!, "messageTextView": messageTextView!, "contentContainerView": contentContainerView!, "customContainerView": customContainerView!,"actionContainerView": actionContainerView!])
+        let verticalCons = NSLayoutConstraint.constraints(withVisualFormat: "V:|-15@800-[titleLabel]-10@800-[messageTextView]-0@750-[contentContainerView]-0@750-[customContainerView]-10@750-[actionContainerView]|", options: option, metrics: nil, views: ["titleLabel": titleLabel!, "messageTextView": messageTextView!, "contentContainerView": contentContainerView!, "customContainerView": customContainerView!,"actionContainerView": actionContainerView!])
         backgroundView.addConstraints(verticalCons)
     }
 }
@@ -252,10 +255,10 @@ extension AEBaseAlertView {
         self.contentView?.translatesAutoresizingMaskIntoConstraints = false
         contentContainerView.addSubview(contentView!)
         
-        let contentCons = NSLayoutConstraint.constraints(withVisualFormat: "H:|[content]|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: ["content": content])
-        contentContainerView.addConstraints(contentCons)
-                
-        if w > -1 {
+        if w == -1 {
+            let contentCons = NSLayoutConstraint.constraints(withVisualFormat: "H:|[content]|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: ["content": content])
+            contentContainerView.addConstraints(contentCons)
+        } else {
             contentContainerView.addConstraints(
                 NSLayoutConstraint.constraints(withVisualFormat:
                     "H:[content(width)]", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: metrics, views: ["content":contentView!]))
@@ -276,9 +279,14 @@ extension AEBaseAlertView {
         self.customView?.translatesAutoresizingMaskIntoConstraints = false
         customContainerView.addSubview(customView!)
         
-        customContainerView.addConstraints(
-            NSLayoutConstraint.constraints(withVisualFormat:
-                "H:[custom(width)]", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: metrics, views: ["custom":customView!]))
+        if w == -1 {
+            let contentCons = NSLayoutConstraint.constraints(withVisualFormat: "H:|[custom]|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: ["custom": customView!])
+            contentContainerView.addConstraints(contentCons)
+        } else {
+            customContainerView.addConstraints(
+                NSLayoutConstraint.constraints(withVisualFormat:
+                    "H:[custom(width)]", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: metrics, views: ["custom":customView!]))
+        }
         customContainerView.addConstraints(
             NSLayoutConstraint.constraints(withVisualFormat:
                 "V:|[custom(height)]|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: metrics, views: ["custom":customView!]))
@@ -320,7 +328,7 @@ extension AEBaseAlertView {
     
     private func setTitleTopMargin(margin: CGFloat) {
         let metrics = ["margin":  NSNumber(floatLiteral: Double(margin))]
-        let format = "V:|-margin-[titleLabel]-10@750-[messageTextView]-5@750-[contentContainerView]-5@750-[customContainerView]-20@750-[actionContainerView]|"
+        let format = "V:|-margin-[titleLabel]-10@800-[messageTextView]-0@750-[contentContainerView]-0@750-[customContainerView]-10@750-[actionContainerView]|"
         let cons = NSLayoutConstraint.constraints(withVisualFormat: format, options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: metrics, views: ["titleLabel": titleLabel!, "messageTextView": messageTextView!,"contentContainerView": contentContainerView!,  "customContainerView": customContainerView!, "actionContainerView": actionContainerView!])
         backgroundView.addConstraints(cons)
     }
@@ -332,7 +340,7 @@ extension AEBaseAlertView {
     }
     private func setMessageTopMargin(margin: CGFloat) {
         let metrics = ["margin":  NSNumber(floatLiteral: Double(margin))]
-        let format = "V:|-20@750-[titleLabel]-margin-[messageTextView]-5@750-[contentContainerView]-5@750-[customContainerView]-20@750-[actionContainerView]|"
+        let format = "V:|-15@800-[titleLabel]-margin-[messageTextView]-0@750-[contentContainerView]-0@750-[customContainerView]-10@750-[actionContainerView]|"
         let cons = NSLayoutConstraint.constraints(withVisualFormat: format, options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: metrics, views: ["titleLabel": titleLabel!, "messageTextView": messageTextView!,"contentContainerView": contentContainerView!,  "customContainerView": customContainerView!, "actionContainerView": actionContainerView!])
         backgroundView.addConstraints(cons)
     }
@@ -345,34 +353,30 @@ extension AEBaseAlertView {
     private func setMessageHeight(height: CGFloat) {
         messageTextView.isScrollEnabled = true
         let metrics = ["height": NSNumber(floatLiteral: Double(height))]
-//        let cons = NSLayoutConstraint.constraints(withVisualFormat: "V:|-20@750-[titleLabel]-10@750-[messageTextView(height)]-5@750-[contentContainerView]-5@750-[customContainerView]-20@750-[actionContainerView]|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: metrics, views: ["titleLabel": titleLabel!, "messageTextView": messageTextView!, "contentContainerView": contentContainerView!, "customContainerView": customContainerView!, "actionContainerView": actionContainerView!])
-//        backgroundView.addConstraints(cons)
-        
-        let cons = NSLayoutConstraint.constraints(withVisualFormat: "V:|-20@750-[titleLabel]-10@750-[messageTextView(height)]-10@750-|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: metrics, views: ["titleLabel": titleLabel!, "messageTextView": messageTextView!])
+        let cons = NSLayoutConstraint.constraints(withVisualFormat: "V:|-15@800-[titleLabel]-10@800-[messageTextView(height)]-0@750-[contentContainerView]-0@750-[customContainerView]-10@750-[actionContainerView]|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: metrics, views: ["titleLabel": titleLabel!, "messageTextView": messageTextView!, "contentContainerView": contentContainerView!, "customContainerView": customContainerView!, "actionContainerView": actionContainerView!])
         backgroundView.addConstraints(cons)
-        
     }
     private func setContentViewTopMargin(margin: CGFloat) {
         let metrics = ["margin":  NSNumber(floatLiteral: Double(margin))]
-        let format = "V:|-20@750-[titleLabel]-10@750-[messageTextView]-margin-[contentContainerView]-0@750-[customContainerView]-20@750-[actionContainerView]|"
+        let format = "V:|-15@800-[titleLabel]-10@800-[messageTextView]-margin-[contentContainerView]-0@750-[customContainerView]-10@750-[actionContainerView]|"
         let cons = NSLayoutConstraint.constraints(withVisualFormat: format, options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: metrics, views: ["titleLabel": titleLabel!, "messageTextView": messageTextView!, "contentContainerView": contentContainerView!, "customContainerView": customContainerView!, "actionContainerView": actionContainerView!])
         backgroundView.addConstraints(cons)
     }
     private func setCustomViewTopMargin(margin: CGFloat) {
         let metrics = ["margin":  NSNumber(floatLiteral: Double(margin))]
-        let format = "V:|-20@750-[titleLabel]-10@750-[messageTextView]-0@750-[contentContainerView]-margin-[customContainerView]-20@750-[actionContainerView]|"
+        let format = "V:|-15@800-[titleLabel]-10@800-[messageTextView]-0@750-[contentContainerView]-margin-[customContainerView]-10@750-[actionContainerView]|"
         let cons = NSLayoutConstraint.constraints(withVisualFormat: format, options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: metrics, views: ["titleLabel": titleLabel!, "messageTextView": messageTextView!,"contentContainerView": contentContainerView!,  "customContainerView": customContainerView!, "actionContainerView": actionContainerView!])
         backgroundView.addConstraints(cons)
     }
     private func setActionViewTopMargin(margin: CGFloat) {
         let metrics = ["margin":  NSNumber(floatLiteral: Double(margin))]
-        let format = "V:|-20@750-[titleLabel]-10@750-[messageTextView]-0@750-[contentContainerView]-0@750-[customContainerView]-margin-[actionContainerView]|"
+        let format = "V:|-15@800-[titleLabel]-10@800-[messageTextView]-0@750-[contentContainerView]-0@750-[customContainerView]-margin-[actionContainerView]|"
         let cons = NSLayoutConstraint.constraints(withVisualFormat: format, options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: metrics, views: ["titleLabel": titleLabel!, "messageTextView": messageTextView!, "contentContainerView": contentContainerView!, "customContainerView": customContainerView!, "actionContainerView": actionContainerView!])
         backgroundView.addConstraints(cons)
     }
     private func setActionViewBottomMargin(margin: CGFloat) {
         let metrics = ["margin":  NSNumber(floatLiteral: Double(margin))]
-        let format = "V:|-20@750-[titleLabel]-10@750-[messageTextView]-0@750-[contentContainerView]-0@750-[customContainerView]-20@750-[actionContainerView]-margin-|"
+        let format = "V:|-15@800-[titleLabel]-10@800-[messageTextView]-0@750-[contentContainerView]-0@750-[customContainerView]-10@750-[actionContainerView]-margin-|"
         let cons = NSLayoutConstraint.constraints(withVisualFormat: format, options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: metrics, views: ["titleLabel": titleLabel!, "messageTextView": messageTextView!, "contentContainerView": contentContainerView!, "customContainerView": customContainerView!,"actionContainerView": actionContainerView!])
         backgroundView.addConstraints(cons)
     }
@@ -389,23 +393,6 @@ extension AEBaseAlertView {
             setAppleStyleActions(btns)
         } else {
             setCustomStyleActions(btns)
-        }
-        
-        if btns.count == 0 {
-//            for item in actionContainerView.subviews {
-//                item.removeFromSuperview()
-//            }
-//            let option = NSLayoutConstraint.FormatOptions(rawValue: 0)
-//            let actionCons = NSLayoutConstraint.constraints(withVisualFormat: "H:|[actionContainerView]|", options: option, metrics: nil, views: ["actionContainerView": actionContainerView!])
-//            backgroundView.addConstraints(actionCons)
-            
-//            let verticalCons = NSLayoutConstraint.constraints(withVisualFormat: "V:|-20@750-[titleLabel]-10@750-[messageTextView]-5@750-[contentContainerView]-5@750-[customContainerView]-20@750-|", options: option, metrics: nil, views: ["titleLabel": titleLabel!, "messageTextView": messageTextView!, "contentContainerView": contentContainerView!, "customContainerView": customContainerView!])
-//            backgroundView.addConstraints(verticalCons)
-        } else {
-//            let option = NSLayoutConstraint.FormatOptions(rawValue: 0)
-//            let verticalCons = NSLayoutConstraint.constraints(withVisualFormat: "V:|-20@750-[titleLabel]-10@750-[messageTextView]-5@750-[contentContainerView]-5@750-[customContainerView]-20@750-[actionContainerView]|", options: option, metrics: nil, views: ["titleLabel": titleLabel!, "messageTextView": messageTextView!, "contentContainerView": contentContainerView!, "customContainerView": customContainerView!, "actionContainerView": actionContainerView!])
-//            backgroundView.addConstraints(verticalCons)
-            
         }
     }
     

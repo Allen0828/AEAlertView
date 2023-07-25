@@ -87,6 +87,10 @@ extension AETextFieldAlertView {
 
     /// 添加action
     public func addAction(action: AEAlertAction) {
+        if alertStyle == .custom && action.adapterCustom {
+            action.layerBorderWidth = action.layerBorderWidth == 0 ? 1 : action.layerBorderWidth
+            action.layerCornerRadius = action.layerCornerRadius == 0 ? 4 : action.layerCornerRadius
+        }
         actions.append(action)
     }
     /// 手动重置按钮
@@ -96,6 +100,9 @@ extension AETextFieldAlertView {
     /// 清除原有的按钮
     public func removeActions() {
         actions = []
+        for view in self.alertView.actionContainerView.subviews {
+            view.isHidden = true
+        }
         createActions()
     }
 
@@ -160,6 +167,9 @@ open class AETextFieldAlertView: UIView {
     }
     public var messageAlignment: NSTextAlignment = .center {
         didSet { alertView.messageTextView.textAlignment = messageAlignment }
+    }
+    public var messageIsSelectable: Bool = true {
+        didSet { alertView.messageTextView.isSelectable = messageIsSelectable }
     }
 
     // MARK: 位置设置
@@ -341,17 +351,15 @@ extension AETextFieldAlertView {
             }
             self.alertView.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
             self.alertView.alpha = 0
-            
-            UIView.animate(withDuration: TimeInterval(self.showDuration),
-                           delay: 0,
-                           usingSpringWithDamping: 0.7,
-                           initialSpringVelocity: 0.5,
-                           options: .curveEaseInOut,
-                           animations: {
+            if self.alertView.textViewIsScrollEnabled {
+                self.alertView.messageTextView.isScrollEnabled = true
+            }
+
+            UIView.animate(withDuration: TimeInterval(self.showDuration), delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.5, options: .curveEaseInOut, animations: {
                 self.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
                 self.alertView.transform = CGAffineTransform(scaleX: 1, y: 1)
                 self.alertView.alpha = 1
-            }, completion: nil)
+            }) { _ in }
         }
     }
     private func dismissAlert() {

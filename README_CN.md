@@ -1,41 +1,20 @@
 # AEAlertView 
-## AEAlertView does not depend on any third-party library
-[中文文档](https://github.com/Allen0828/AEAlertView/blob/master/README_CN.md)
+## AEAlertView 目前没有使用到任何第三方库
 
-| Swift        |     range       | use  |
+| Swift        |     版本       | 使用版本  |
 | ------------- |:-------------:| -----|
 | version      | 4.0 and below  | Pod `'AEAlertView','1.0'` |
 | version      | 4.0-5.0        | Pod `'AEAlertView','1.7'` |
 | version      | 5.0+           | Pod `'AEAlertView'` |
 
 <font>
-     <p>Please read the instructions before using it.</p>
-     <p>If you have any problems, please send emails or submit Issues at any time. Thank you very much.</p>
-     <p>It is recommended to download AlertViewDemo first, and check the specific usage method.</p>
+     <p>在使用前请先阅读本文档</p>
+     <p>在使用过程中如果有任何问题可以直接提 issues</p>
+     <p>建议先看看 AlertViewDemo 中的代码，在demo中各种用法都有</p>
 </font>
 
-
-# Version 2.3 is updated
-
-
-<font color=#ff6666>
-     <p>2.3 Updates</p>
-     <p>Multiple lines of text can be used for buttons, pictures can be set, and pictures can be arranged left and right (Tips: If the height of the button is not set, it will be used uniformly according to the maximum height of the text)</p>
-     <p>The previous button attribute setting on alertView is abolished, please use `AEAlertAction` directly for button attribute. </p>
-     <p>Add 'public func create() {}' if you don't need to display on UIWindow you can call 'create()' after configuration to add alert to the view you need to add.
-     <p>`AEAlertAction` currently only supports 2 display modes `defaulted, cancel`.</p> 
-     <p>All setting properties are done in action. If you don't want to use cancel, you can set all action to defaulted.</p>
-</font>
-     
-     v2.3.2- Support setting the maximum width
-     v2.3.4- Fix the problem that the title does not wrap lines by default. The number of Title lines can be set use.
-     v2.3.5- Fix if target init OS > 12, get window error 
-                                                                         
-  
-感谢大家反馈 如果你在使用中遇到任何问题、bug、建议等欢迎提交 [点击进入讨论区](https://github.com/Allen0828/AEAlertView/discussions) 
-
-Thank you for your feedback. If you encounter any problems, bugs, suggestions, etc. in use, you are welcome to submit them [discussions](https://github.com/Allen0828/AEAlertView/discussions) 
-
+AEAlertView 支持所有控件的左右上下间距
+对所有控件都设置为public 你也可以按照自己的需要来自定义你的alertView
 
 # Preview                                                                       
 
@@ -141,8 +120,7 @@ private func alertType3() {
 }
 ```
 
--------------------
-*** 控件支持 设置左右 上下间距  本来想提供 类方法来一句话调用, 但是每个项目的主题色不同 所有需要你 自己设置自己的主题色***
+
 
 
 

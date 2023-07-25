@@ -20,7 +20,6 @@
 		DB4EC6AB2A6D612900378955 /* AEAlertTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4EC6A42A6D612900378955 /* AEAlertTools.swift */; };
 		DB4EC6AC2A6D612900378955 /* AEAlertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4EC6A52A6D612900378955 /* AEAlertAction.swift */; };
 		DB4EC6AD2A6D612900378955 /* AEWebAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4EC6A62A6D612900378955 /* AEWebAlertView.swift */; };
-		DB4EC6AE2A6D612900378955 /* AEPathAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4EC6A72A6D612900378955 /* AEPathAnimation.swift */; };
 		DB4EC6AF2A6D612900378955 /* AEAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4EC6A82A6D612900378955 /* AEAlertView.swift */; };
 		DB4EC6B02A6D612900378955 /* AEBaseAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4EC6A92A6D612900378955 /* AEBaseAlertView.swift */; };
 /* End PBXBuildFile section */
@@ -41,7 +40,6 @@
 		DB4EC6A42A6D612900378955 /* AEAlertTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AEAlertTools.swift; sourceTree = "<group>"; };
 		DB4EC6A52A6D612900378955 /* AEAlertAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AEAlertAction.swift; sourceTree = "<group>"; };
 		DB4EC6A62A6D612900378955 /* AEWebAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AEWebAlertView.swift; sourceTree = "<group>"; };
-		DB4EC6A72A6D612900378955 /* AEPathAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AEPathAnimation.swift; sourceTree = "<group>"; };
 		DB4EC6A82A6D612900378955 /* AEAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AEAlertView.swift; sourceTree = "<group>"; };
 		DB4EC6A92A6D612900378955 /* AEBaseAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AEBaseAlertView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -80,6 +78,7 @@
 				269E8E8B27A1480D00ACE3C0 /* 003.gif */,
 				269E8E8A27A1480D00ACE3C0 /* gif004.gif */,
 				26BF7D2A2746454A0016469E /* AppDelegate.swift */,
+				DB4EC6A62A6D612900378955 /* AEWebAlertView.swift */,
 				26BF7D2C2746454A0016469E /* SceneDelegate.swift */,
 				26BF7D2E2746454A0016469E /* ViewController.swift */,
 				26BF7D302746454A0016469E /* Main.storyboard */,
@@ -97,8 +96,6 @@
 				DB4EC6A32A6D612900378955 /* AETextFieldAlertView.swift */,
 				DB4EC6A42A6D612900378955 /* AEAlertTools.swift */,
 				DB4EC6A52A6D612900378955 /* AEAlertAction.swift */,
-				DB4EC6A62A6D612900378955 /* AEWebAlertView.swift */,
-				DB4EC6A72A6D612900378955 /* AEPathAnimation.swift */,
 				DB4EC6A82A6D612900378955 /* AEAlertView.swift */,
 				DB4EC6A92A6D612900378955 /* AEBaseAlertView.swift */,
 			);
@@ -181,7 +178,6 @@
 				DB4EC6AB2A6D612900378955 /* AEAlertTools.swift in Sources */,
 				DB4EC6AF2A6D612900378955 /* AEAlertView.swift in Sources */,
 				DB4EC6AC2A6D612900378955 /* AEAlertAction.swift in Sources */,
-				DB4EC6AE2A6D612900378955 /* AEPathAnimation.swift in Sources */,
 				26BF7D2F2746454A0016469E /* ViewController.swift in Sources */,
 				26BF7D2B2746454A0016469E /* AppDelegate.swift in Sources */,
 				26BF7D2D2746454A0016469E /* SceneDelegate.swift in Sources */,

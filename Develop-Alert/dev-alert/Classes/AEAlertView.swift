@@ -92,6 +92,9 @@ extension AEAlertView {
     /// 清除原有的按钮
     public func removeActions() {
         actions = []
+        for view in self.alertView.actionContainerView.subviews {
+            view.isHidden = true
+        }
         createActions()
     }
 
@@ -175,6 +178,9 @@ open class AEAlertView: UIView {
     }
     public var messageAlignment: NSTextAlignment = .center {
         didSet { alertView.messageTextView.textAlignment = messageAlignment }
+    }
+    public var messageIsSelectable: Bool = true {
+        didSet { alertView.messageTextView.isSelectable = messageIsSelectable }
     }
     
     // MARK: 位置设置
@@ -322,22 +328,15 @@ extension AEAlertView {
             }
             self.alertView.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
             self.alertView.alpha = 0
-            self.alertView.messageTextView.isScrollEnabled = true
-            
-            UIView.animate(withDuration: TimeInterval(self.showDuration),
-                           delay: 0,
-                           usingSpringWithDamping: 0.7,
-                           initialSpringVelocity: 0.5,
-                           options: .curveEaseInOut,
-                           animations: {
-                        self.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
-                        self.alertView.transform = CGAffineTransform(scaleX: 1, y: 1)
-                        self.alertView.alpha = 1
-            }) { finish in
-//                if finish {
-//                    self.alertView.messageTextView.isScrollEnabled = true
-//                }
+            if self.alertView.textViewIsScrollEnabled {
+                self.alertView.messageTextView.isScrollEnabled = true
             }
+            
+            UIView.animate(withDuration: TimeInterval(self.showDuration), delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.5, options: .curveEaseInOut, animations: {
+                self.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
+                self.alertView.transform = CGAffineTransform(scaleX: 1, y: 1)
+                self.alertView.alpha = 1
+            }) { _ in }
         }
     }
     private func dismissAlert() {
@@ -358,6 +357,9 @@ extension AEAlertView {
                 self.alertView.alpha = 0
                 self.alpha = 0
             }) { (finished) in
+                for view in self.subviews {
+                    view.removeFromSuperview()
+                }
                 self.removeFromSuperview()
             }
         }
