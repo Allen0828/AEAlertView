@@ -17,9 +17,9 @@ AEAlertView 支持所有控件的左右上下间距
 对所有控件都设置为public 你也可以按照自己的需要来自定义你的alertView
 
 # AEAlertView 目前提供了两种基础框 
-1 基础的alertview 你可以在使用时，手动设置两个自定义view
-2 带有UITextField `AETextFieldAlertView` 在使用时只能添加一个自定义view 调用 `set(custom: UIView, width: CGFloat, height: CGFloat)`
-3 带有WKWebView的 `AEWebAlertView` 考虑到app审核问题，此功能不在AEAlertView 库中。你可以在demo中找到它 `AEWebAlertView.swift`
+1 基础的alertview 你可以在使用时，手动设置两个自定义view<br />
+2 带有UITextField `AETextFieldAlertView` 在使用时只能添加一个自定义view 调用 `set(custom: UIView, width: CGFloat, height: CGFloat)`<br />
+3 带有WKWebView的 `AEWebAlertView` 考虑到app审核问题，此功能不在AEAlertView 库中。你可以在demo中找到它 `AEWebAlertView.swift`<br />
 
 # 开发计划
 后续会添加 3D模型展示到Alert中
@@ -55,22 +55,27 @@ src="https://github.com/Allen0828/AEAlertView/blob/master/img-folder/new7.jpeg" 
 
 
 # 调用方式和控件说明
-1 title 使用UILabe 作为基础控件，默认只能显示两行，如果需要显示多行请设置`titleNumberOfLines` 属性
-2 message 使用UITextView 作为基础控件，默认无高度显示会根据内容自动刷新高度，并且默认是可长按选中的。
-    关闭自动刷新高度`alertView.textViewIsScrollEnabled` 不推荐设置此属性，如果设置了请记得设置`messageHeight`.
-    关闭长按可选中模式`messageIsSelectable` 
-3 contentView 自定义的View 调用`set(content: UIView, width: CGFloat, height: CGFloat)`
-    如果在设置时希望view的宽度和alert同宽，在调用时 width 传入 -1
-    contentView 默认和 message 的上间距是0
-4 customView 自定义view2 调用`set(custom: UIView, width: CGFloat, height: CGFloat)`
-    如果在设置时希望view的宽度和alert同宽，在调用时 width 传入 -1
-    customView 默认和 contentView 的上间距是0
-5 actionContainerView 用于放置按钮的控件，目前该控件不能设置自身属性，只能设置上下的间距。
-    actionContainerView 默认和 customView 的上间距是 10 可以调用`actionViewTopMargin` 来设置
-    actionContainerView 默认和alert 底部的间距是 0  可以调用`actionViewBottomMargin` 来设置
+1 title 使用UILabe 作为基础控件，默认只能显示两行，如果需要显示多行请设置`titleNumberOfLines` 属性<br />
+
+2 message 使用UITextView 作为基础控件，默认无高度显示会根据内容自动刷新高度，并且默认是可长按选中的。<br />
+    关闭自动刷新高度`alertView.textViewIsScrollEnabled` 不推荐设置此属性，如果设置了请记得设置`messageHeight`.<br />
+    关闭长按可选中模式`messageIsSelectable` <br /> 
+    
+3 contentView 自定义的View 调用`set(content: UIView, width: CGFloat, height: CGFloat)`<br />
+    如果在设置时希望view的宽度和alert同宽，在调用时 width 传入 -1<br />
+    contentView 默认和 message 的上间距是0<br />
+    
+4 customView 自定义view2 调用`set(custom: UIView, width: CGFloat, height: CGFloat)`<br />
+    如果在设置时希望view的宽度和alert同宽，在调用时 width 传入 -1<br />
+    customView 默认和 contentView 的上间距是0<br />
+    
+5 actionContainerView 用于放置按钮的控件，目前该控件不能设置自身属性，只能设置上下的间距。<br />
+    actionContainerView 默认和 customView 的上间距是 10 可以调用`actionViewTopMargin` 来设置<br />
+    actionContainerView 默认和alert 底部的间距是 0  可以调用`actionViewBottomMargin` 来设置<br />
 
 
-最简单的调用方式实例，此方法无论按钮有几个，在点击按钮后弹出都会消失
+
+最简单的调用方式实例，此方法无论按钮有几个，在点击按钮后弹窗都会消失
 ```swift
 func test() {
     AEAlertView.show(title: "title", message: "fastest", actions: ["ok"]) { action in
@@ -150,14 +155,21 @@ private func alertType3() {
 
 # 版本更新记录
 
-v2.3.6- 1: 如果alertView 设置为custom样式，则action 默认会添加描边和圆角。设置action.adapterCustom 可取消
-        2：增加内容可设置为不能选中状态。默认为可选中，messageIsSelectable
-        3：在alertView初始化时，添加了frame 可选参数，如果你需要将alert添加到自定义view上，最好时传入自定义的尺寸，不传则使用默认屏幕宽高
-        4：支持在设置自定义View时，宽可以和父容器宽一致，宽读传-1即可
-        5：添加了一些debug log 打印
-v2.3.5- 修复如果目标init OS>12，获取window的错误
-v2.3.4- 修复了title 默认情况下不换行的问题。添加title 行的数量可以设置。
-v2.3.2- 支持设置最大宽度
+v2.3.6- <br />
+1: 如果alertView 设置为custom样式，则action 默认会添加描边和圆角。设置action.adapterCustom 可取消<br />
+2：增加内容可设置为不能选中状态。默认为可选中，messageIsSelectable<br />
+3：在alertView初始化时，添加了frame 可选参数，如果你需要将alert添加到自定义view上，最好时传入自定义的尺寸，不传则使用默认屏幕宽高<br />
+4：支持在设置自定义View时，宽可以和父容器宽一致，宽读传-1即可<br />
+5：添加了一些debug log 打印<br />   
+
+v2.3.5- <br />
+修复如果目标init OS>12，获取window的错误<br />
+
+v2.3.4- <br />
+修复了title 默认情况下不换行的问题。添加title 行的数量可以设置。<br />
+
+v2.3.2- <br />
+支持设置最大宽度<br />
      
      
 
