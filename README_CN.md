@@ -148,11 +148,17 @@ private func alertType3() {
 
 
 
+# 版本更新记录
 
-
-
-
-
-
+v2.3.6- 1: 如果alertView 设置为custom样式，则action 默认会添加描边和圆角。设置action.adapterCustom 可取消
+        2：增加内容可设置为不能选中状态。默认为可选中，messageIsSelectable
+        3：在alertView初始化时，添加了frame 可选参数，如果你需要将alert添加到自定义view上，最好时传入自定义的尺寸，不传则使用默认屏幕宽高
+        4：支持在设置自定义View时，宽可以和父容器宽一致，宽读传-1即可
+        5：添加了一些debug log 打印
+v2.3.5- 修复如果目标init OS>12，获取window的错误
+v2.3.4- 修复了title 默认情况下不换行的问题。添加title 行的数量可以设置。
+v2.3.2- 支持设置最大宽度
+     
+     
 
 
