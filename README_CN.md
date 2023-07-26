@@ -16,6 +16,15 @@
 AEAlertView 支持所有控件的左右上下间距
 对所有控件都设置为public 你也可以按照自己的需要来自定义你的alertView
 
+# AEAlertView 目前提供了两种基础框 
+1 基础的alertview 你可以在使用时，手动设置两个自定义view
+2 带有UITextField `AETextFieldAlertView` 在使用时只能添加一个自定义view 调用 `set(custom: UIView, width: CGFloat, height: CGFloat)`
+3 带有WKWebView的 `AEWebAlertView` 考虑到app审核问题，此功能不在AEAlertView 库中。你可以在demo中找到它 `AEWebAlertView.swift`
+
+# 开发计划
+后续会添加 3D模型展示到Alert中
+
+
 # Preview                                                                       
 
 # 2.3
@@ -44,7 +53,24 @@ src="https://github.com/Allen0828/AEAlertView/blob/master/img-folder/new7.jpeg" 
 
 # 如果有 你有任何问题 或者 好的建议 欢迎联系我  - email: allen.zhang0828@gmail.com -
 
-# 简单使用
+
+# 调用方式和控件说明
+1 title 使用UILabe 作为基础控件，默认只能显示两行，如果需要显示多行请设置`titleNumberOfLines` 属性
+2 message 使用UITextView 作为基础控件，默认无高度显示会根据内容自动刷新高度，并且默认是可长按选中的。
+    关闭自动刷新高度`alertView.textViewIsScrollEnabled` 不推荐设置此属性，如果设置了请记得设置`messageHeight`.
+    关闭长按可选中模式`messageIsSelectable` 
+3 contentView 自定义的View 调用`set(content: UIView, width: CGFloat, height: CGFloat)`
+    如果在设置时希望view的宽度和alert同宽，在调用时 width 传入 -1
+    contentView 默认和 message 的上间距是0
+4 customView 自定义view2 调用`set(custom: UIView, width: CGFloat, height: CGFloat)`
+    如果在设置时希望view的宽度和alert同宽，在调用时 width 传入 -1
+    customView 默认和 contentView 的上间距是0
+5 actionContainerView 用于放置按钮的控件，目前该控件不能设置自身属性，只能设置上下的间距。
+    actionContainerView 默认和 customView 的上间距是 10 可以调用`actionViewTopMargin` 来设置
+    actionContainerView 默认和alert 底部的间距是 0  可以调用`actionViewBottomMargin` 来设置
+
+
+最简单的调用方式实例，此方法无论按钮有几个，在点击按钮后弹出都会消失
 ```swift
 func test() {
     AEAlertView.show(title: "title", message: "fastest", actions: ["ok"]) { action in
@@ -57,28 +83,27 @@ func test() {
 }
 ```
 
-# 添加到自定义的view上
+添加到自定义的view上 如果在init时没有选择传入frame 默认是和屏幕size一致，因此如果你想添加到自定义view上 应该在初始化时传入frame
 ```swift
 func test() {
-     let alert = AEAlertView.init(style: .defaulted, title: "title", message: "set gif height Add alert to the current view")
-     alert.setBackgroundImage(contentsOf: Bundle.main.path(forResource: "003", ofType: "gif"))
+    // frame 使用了当前view的大小 具体请查看demo
+    let alert = AEAlertView.init(frame: view.bounds, style: .defaulted, title: "title", message: "set gif height Add alert to the current view")
+    alert.setBackgroundImage(contentsOf: Bundle.main.path(forResource: "003", ofType: "gif"))
+    alert.messageHeight = 250
+    
+    alert.messageColor = UIColor.red
+    let cancel = AEAlertAction.init(title: "cancel", style: .cancel) { (action) in
+        alert.dismiss()
+    }
+    cancel.cancelTitleColor = .red
+    alert.addAction(action: cancel)
+    alert.create()
 
-     alert.backgroundImageHeight = 300
-     alert.messageColor = UIColor.red
-     let cancel = AEAlertAction.init(title: "cancel", style: .cancel) { (action) in
-          print("\(action.tag)")
-          alert.dismiss()
-     }
-     cancel.cancelTitleColor = .red
-
-     alert.addAction(action: cancel)
-     alert.create()
-
-     self.view.addSubview(alert)
+    view.addSubview(alert)
 }
 ```
 
-# 自定义按钮主题
+自定义按钮主题  由于iOS15中 出现了自定义Button 因此如果AEAction不能满足你的需求，你可以自己创建button 并添加到alertView中
 ```swift
 func test() {
         let alert = AEAlertView(style: .defaulted, title: "custom action", message: "Please check the default values before using")
@@ -99,7 +124,8 @@ func test() {
         alert.show()
 }
 ```
-# 设置最大宽度
+
+设置最大宽度  对于ipad 而言，alertView如果继续使用屏幕宽度来计算 会显的很大，因此如果你在ipad中使用时，应该设置它的最大宽度。
 ```swift
 private func alertType3() {
   let alert = AEAlertView.init(style: .defaulted, title: "title", message: "set gif height Add alert to the current view", maximumWidth: 600)

@@ -12,9 +12,9 @@
 		194CFECF861491BF1118BBCE76D3A737 /* AEAlertView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 641D6CFA4D7209F354FB4C9692CF0788 /* AEAlertView-dummy.m */; };
 		367A8D3EDABCEE423530F1C50A17FFED /* Pods-AlertViewDemo-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = EE1A14FAE4EA8EBFC6569AAF3947CF5E /* Pods-AlertViewDemo-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A9DC7A21BB55583C679FA83BC2DA1415 /* Pods-AlertViewDemo-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DA8265E68122A074541EFA31EC208D5 /* Pods-AlertViewDemo-dummy.m */; };
-		CB75D549E3F6319FF0B98F9A324F2C25 /* AEPathAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8F24C94AF0EEFBA2F790EF2B261A58 /* AEPathAnimation.swift */; };
 		D6ECAAC64A6122442A2A7DB1A7B7C1D7 /* AETextFieldAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE1B1269E0225640DA783AE658276D3 /* AETextFieldAlertView.swift */; };
 		DA50121F44C4CFB055E850DEE1FBD782 /* AEAlertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DC43FA49732271156D6B275235ECD9 /* AEAlertAction.swift */; };
+		DB4EC6B22A6FE44300378955 /* AEAlertTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4EC6B12A6FE44300378955 /* AEAlertTools.swift */; };
 		E7F4B79980F7331B1BFFD36427B50604 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAB6F611E86A4758835A715E4B4184F6 /* Foundation.framework */; };
 		F6DB5738208CEA2CB721A643E503EC09 /* AEAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17180226D17BD36E1AA0DBD9ED2D1985 /* AEAlertView.swift */; };
 		FB7621A63B468B5E1AD2F896793FDFD8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAB6F611E86A4758835A715E4B4184F6 /* Foundation.framework */; };
@@ -43,7 +43,7 @@
 		4503ABCC7E46892F79C507DB737109C4 /* Pods-AlertViewDemo-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-AlertViewDemo-acknowledgements.markdown"; sourceTree = "<group>"; };
 		4E8D8CA9E463D2718342AE4F12628C36 /* Pods-AlertViewDemo-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-AlertViewDemo-Info.plist"; sourceTree = "<group>"; };
 		641D6CFA4D7209F354FB4C9692CF0788 /* AEAlertView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "AEAlertView-dummy.m"; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A1DC43FA49732271156D6B275235ECD9 /* AEAlertAction.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AEAlertAction.swift; path = AEAlertView/Classes/AEAlertAction.swift; sourceTree = "<group>"; };
 		A381EE091CA778507A71C896FD70B5ED /* Pods-AlertViewDemo-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-AlertViewDemo-frameworks.sh"; sourceTree = "<group>"; };
 		BC6699488A4D8E7647DFAF2E7A5B6343 /* AEAlertView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = AEAlertView.modulemap; sourceTree = "<group>"; };
@@ -51,9 +51,9 @@
 		CAB5A91F40B968E68258E25629062DD9 /* Pods-AlertViewDemo-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-AlertViewDemo-acknowledgements.plist"; sourceTree = "<group>"; };
 		D245E0514AAC1A2B9A6D5EA2F383E90F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		D8A8C47609DEE5007EA2E6A6958DA71A /* Pods-AlertViewDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-AlertViewDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		DB4EC6B12A6FE44300378955 /* AEAlertTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AEAlertTools.swift; path = AEAlertView/Classes/AEAlertTools.swift; sourceTree = "<group>"; };
 		E3D2F6CADE081507D25AD68BD6DA9008 /* Pods-AlertViewDemo.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-AlertViewDemo.modulemap"; sourceTree = "<group>"; };
 		EAB6F611E86A4758835A715E4B4184F6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		EB8F24C94AF0EEFBA2F790EF2B261A58 /* AEPathAnimation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AEPathAnimation.swift; path = AEAlertView/Classes/AEPathAnimation.swift; sourceTree = "<group>"; };
 		EE1A14FAE4EA8EBFC6569AAF3947CF5E /* Pods-AlertViewDemo-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-AlertViewDemo-umbrella.h"; sourceTree = "<group>"; };
 		EEE1B1269E0225640DA783AE658276D3 /* AETextFieldAlertView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AETextFieldAlertView.swift; path = AEAlertView/Classes/AETextFieldAlertView.swift; sourceTree = "<group>"; };
 		F7115B91A34E82B33E66FF55FDBC804B /* Pods-AlertViewDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-AlertViewDemo.release.xcconfig"; sourceTree = "<group>"; };
@@ -124,14 +124,13 @@
 		88A878C6DD8C4D18601F6FF503F78635 /* AEAlertView */ = {
 			isa = PBXGroup;
 			children = (
+				DB4EC6B12A6FE44300378955 /* AEAlertTools.swift */,
 				A1DC43FA49732271156D6B275235ECD9 /* AEAlertAction.swift */,
 				17180226D17BD36E1AA0DBD9ED2D1985 /* AEAlertView.swift */,
 				0629578518C755AE168B944A098988E4 /* AEBaseAlertView.swift */,
-				EB8F24C94AF0EEFBA2F790EF2B261A58 /* AEPathAnimation.swift */,
 				EEE1B1269E0225640DA783AE658276D3 /* AETextFieldAlertView.swift */,
 				81616F1AA3E45F82D441D3E568FB9E7F /* Support Files */,
 			);
-			name = AEAlertView;
 			path = AEAlertView;
 			sourceTree = "<group>";
 		};
@@ -297,11 +296,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB4EC6B22A6FE44300378955 /* AEAlertTools.swift in Sources */,
 				DA50121F44C4CFB055E850DEE1FBD782 /* AEAlertAction.swift in Sources */,
 				F6DB5738208CEA2CB721A643E503EC09 /* AEAlertView.swift in Sources */,
 				194CFECF861491BF1118BBCE76D3A737 /* AEAlertView-dummy.m in Sources */,
 				13C9D650097D9F2327C3E0C626D313A2 /* AEBaseAlertView.swift in Sources */,
-				CB75D549E3F6319FF0B98F9A324F2C25 /* AEPathAnimation.swift in Sources */,
 				D6ECAAC64A6122442A2A7DB1A7B7C1D7 /* AETextFieldAlertView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

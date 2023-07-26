@@ -2,7 +2,7 @@
 //  AlertView.swift
 //  AlertViewDemo
 //
-//  Created by 锋 on 2020/12/28.
+//  Created by allen0828 on 2020/12/28.
 //  Copyright © 2020 张其锋. All rights reserved.
 //
 
@@ -66,12 +66,13 @@ final class AlertView: AEAlertView {
 //        titleTopMargin = title?.count ?? 0 > 0 ? 6 : 0
 //        messageTopMargin = message?.count ?? 0 > 0 ? 6 : 0
 //    }
-    override init(style: AEAlertViewStyle, title: String?, message: String?, maximumWidth: CGFloat = 320) {
-        super.init(style: style, title: title, message: message, maximumWidth: maximumWidth)
+    
+    override init(frame: CGRect = CGRect.zero, style: AEAlertViewStyle, title: String?, message: String?, maximumWidth: CGFloat) {
+        super.init(frame: frame, style: style, title: title, message: message, maximumWidth: maximumWidth)
         titleTopMargin = title?.count ?? 0 > 0 ? 6 : 0
         messageTopMargin = message?.count ?? 0 > 0 ? 6 : 0
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

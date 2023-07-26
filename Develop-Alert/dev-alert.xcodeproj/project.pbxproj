@@ -75,8 +75,8 @@
 			isa = PBXGroup;
 			children = (
 				DB4EC6A22A6D612900378955 /* Classes */,
-				269E8E8B27A1480D00ACE3C0 /* 003.gif */,
 				269E8E8A27A1480D00ACE3C0 /* gif004.gif */,
+				269E8E8B27A1480D00ACE3C0 /* 003.gif */,
 				26BF7D2A2746454A0016469E /* AppDelegate.swift */,
 				DB4EC6A62A6D612900378955 /* AEWebAlertView.swift */,
 				26BF7D2C2746454A0016469E /* SceneDelegate.swift */,

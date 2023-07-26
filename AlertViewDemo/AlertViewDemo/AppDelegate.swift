@@ -1,8 +1,8 @@
 //
 //  AppDelegate.swift
-//  转场动画
+//  AlertViewDemo
 //
-//  Created by 张其锋 on 2019/8/14.
+//  Created by allen0828 on 2019/8/14.
 //  Copyright © 2019 张其锋. All rights reserved.
 //
 

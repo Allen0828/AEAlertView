@@ -248,27 +248,30 @@ open class AEAlertView: UIView {
     
     /// init
     public override convenience init(frame: CGRect) {
-        self.init(style: .defaulted, title: nil, message: nil)
+        self.init(frame: frame, style: .defaulted, title: nil, message: nil)
     }
-    public convenience init(style: AEAlertViewStyle) {
-        self.init(style: style, title: nil, message: nil)
+    public convenience init(frame:CGRect=CGRect.zero, style: AEAlertViewStyle) {
+        self.init(frame: frame, style: style, title: nil, message: nil)
     }
-    public convenience init(style: AEAlertViewStyle, maximumWidth: CGFloat) {
-        self.init(style: style, title: nil, message: nil, maximumWidth: maximumWidth)
+    public convenience init(frame:CGRect=CGRect.zero, style: AEAlertViewStyle, maximumWidth: CGFloat) {
+        self.init(frame: frame, style: style, title: nil, message: nil, maximumWidth: maximumWidth)
     }
-    public convenience init(style: AEAlertViewStyle, title: String?, message: String?) {
+    public convenience init(frame:CGRect=CGRect.zero, style: AEAlertViewStyle, title: String?, message: String?) {
         if UIScreen.main.bounds.size.width-48 > 320 {
-            self.init(style: style, title: title, message: message, maximumWidth: 320)
+            self.init(frame: frame, style: style, title: title, message: message, maximumWidth: 320)
         } else {
-            self.init(style: style, title: title, message: message, maximumWidth: UIScreen.main.bounds.size.width-48)
+            self.init(frame: frame, style: style, title: title, message: message, maximumWidth: UIScreen.main.bounds.size.width-48)
         }
     }
-    public init(style: AEAlertViewStyle, title: String?, message: String?, maximumWidth: CGFloat) {
-        let frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
-        super.init(frame: frame)
+    public init(frame:CGRect=CGRect.zero, style: AEAlertViewStyle, title: String?, message: String?, maximumWidth: CGFloat) {
+        var defFrame = frame
+        if defFrame == CGRect.zero {
+            defFrame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
+        }
+        super.init(frame: defFrame)
         backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
         alertStyle = style
-        alertView = AEBaseAlertView(frame: frame, maximumWidth: maximumWidth)
+        alertView = AEBaseAlertView(frame: defFrame, maximumWidth: maximumWidth)
         alertView.titleLabel.text = title
         alertView.messageTextView.text = message ?? ""
         if style == .custom {
@@ -328,7 +331,7 @@ extension AEAlertView {
             }
             self.alertView.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
             self.alertView.alpha = 0
-            if self.alertView.textViewIsScrollEnabled {
+            if self.alertView.textViewIsScrollEnabled && (self.alertView.messageTextView.text.count > 0 || self.alertView.messageTextView.attributedText.length > 0){
                 self.alertView.messageTextView.isScrollEnabled = true
             }
             

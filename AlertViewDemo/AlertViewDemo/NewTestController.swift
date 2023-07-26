@@ -1,14 +1,15 @@
 //
-//  ViewController.swift
-//  dev-alert
+//  NewTestController.swift
+//  AlertViewDemo
 //
-//  Created by gw_pro on 2021/11/18.
+//  Created by Allen0828 on 2023/7/26.
+//  Copyright © 2023 张其锋. All rights reserved.
 //
 
 import UIKit
+import AEAlertView
 
-
-extension ViewController {
+extension NewTestController {
     
     /// 最快的方式调用
     func callAlert() {
@@ -314,7 +315,7 @@ extension ViewController {
 
 
 
-class ViewController: UIViewController {
+class NewTestController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -333,7 +334,7 @@ class ViewController: UIViewController {
 
 }
 
-extension ViewController: UITableViewDataSource, UITableViewDelegate {
+extension NewTestController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return arr.count
@@ -382,4 +383,3 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     
     
 }
-
