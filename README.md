@@ -14,26 +14,17 @@
      <p>It is recommended to download AlertViewDemo first, and check the specific usage method.</p>
 </font>
 
+# AEAlertView currently offers two basic boxes
+1. You can manually set two custom views when using the basic `AEAlertview`<br />
+2. With UITextField, `AETextFieldAlertView` can only add one custom view call `set (custom: UIView, width: CGFloat, height: CGFloat)` when in use<br />
+3. `AEWebAlertView` with WKWebView is not included in the AEAlertView library due to app auditing issues. You can find it in the demo AEWebAlertView.swift<br />
 
-# Version 2.3 is updated
+# Development Plan
+add 3D model with Metal to AlertView
 
+# Version update information at the bottom
 
-<font color=#ff6666>
-     <p>2.3 Updates</p>
-     <p>Multiple lines of text can be used for buttons, pictures can be set, and pictures can be arranged left and right (Tips: If the height of the button is not set, it will be used uniformly according to the maximum height of the text)</p>
-     <p>The previous button attribute setting on alertView is abolished, please use `AEAlertAction` directly for button attribute. </p>
-     <p>Add 'public func create() {}' if you don't need to display on UIWindow you can call 'create()' after configuration to add alert to the view you need to add.
-     <p>`AEAlertAction` currently only supports 2 display modes `defaulted, cancel`.</p> 
-     <p>All setting properties are done in action. If you don't want to use cancel, you can set all action to defaulted.</p>
-</font>
-     
-     v2.3.2- Support setting the maximum width
-     v2.3.4- Fix the problem that the title does not wrap lines by default. The number of Title lines can be set use.
-     v2.3.5- Fix if target init OS > 12, get window error 
-                                                                         
-  
-感谢大家反馈 如果你在使用中遇到任何问题、bug、建议等欢迎提交 [点击进入讨论区](https://github.com/Allen0828/AEAlertView/discussions) 
-
+感谢大家反馈 如果你在使用中遇到任何问题、bug、建议等欢迎提交 [点击进入讨论区](https://github.com/Allen0828/AEAlertView/discussions) <br />
 Thank you for your feedback. If you encounter any problems, bugs, suggestions, etc. in use, you are welcome to submit them [discussions](https://github.com/Allen0828/AEAlertView/discussions) 
 
 
@@ -65,7 +56,28 @@ src="https://github.com/Allen0828/AEAlertView/blob/master/img-folder/new7.jpeg" 
 
 # 如果有 你有任何问题 或者 好的建议 欢迎联系我  - email: allen.zhang0828@gmail.com -
 
-# 简单使用
+# Call method and control description
+1. title uses UILabel as the basic control, and can only display two rows by default. If multiple rows need to be displayed, please set the titleNumberOfLines property<br />
+
+2. messages use UITextView as the basic control, and the default display without height will automatically refresh the height based on the content, and it can be selected by long pressing.
+Turning off automatic refresh height `alertView.textViewIsScrollEnabled` does not recommend setting this property.<br /> 
+If it is set, please remember to set `messageHeight` Turn off the long press to select mode `messageIsSelectable`<br />
+
+3. Customized View call set for contentView `set(content: UIView, width: CGFloat, height: CGFloat)`
+If you want the width of the view to be the same as that of the alert during setup, pass in -1 width when calling
+The default upper spacing between contentView and message is 0<br />
+
+4. CustomView custom view2 calls `set (custom: UIView, width: CGFloat, height: CGFloat)`
+If you want the width of the view to be the same as that of the alert during setup, pass in -1 width when calling
+The default upper spacing between customView and contentView is 0<br />
+
+5. `ActionContainerView` is a control used to place buttons. Currently, this control cannot set its own properties and can only set the spacing between the top and bottom.
+The default distance between actionContainerView and customView is 10, which can be set by calling `actionViewTopMargin`
+The default distance between actionContainerView and the bottom of alert is 0, which can be set by calling `actionViewBottomMargin`<br />
+
+
+call demo code<br />
+The simplest example of calling method, no matter how many buttons there are, the pop-up window will disappear after clicking the button
 ```swift
 func test() {
     AEAlertView.show(title: "title", message: "fastest", actions: ["ok"]) { action in
@@ -78,10 +90,11 @@ func test() {
 }
 ```
 
-# 添加到自定义的view上
+If no frame is selected during init when adding to a custom view, it defaults to the same screen size. Therefore, if you want to add to a custom view, you should pass in the frame during initialization
 ```swift
 func test() {
-     let alert = AEAlertView.init(style: .defaulted, title: "title", message: "set gif height Add alert to the current view")
+      // frame 使用了当前view的大小 具体请查看demo
+     let alert = AEAlertView.init(frame: view.bounds, style: .defaulted, title: "title", message: "set gif height Add alert to the current view")
      alert.setBackgroundImage(contentsOf: Bundle.main.path(forResource: "003", ofType: "gif"))
 
      alert.backgroundImageHeight = 300
@@ -99,7 +112,7 @@ func test() {
 }
 ```
 
-# 自定义按钮主题
+Custom Button Theme Due to the presence of custom buttons in iOS15, if AEAction cannot meet your needs, you can create your own button and add it to alertView
 ```swift
 func test() {
         let alert = AEAlertView(style: .defaulted, title: "custom action", message: "Please check the default values before using")
@@ -120,7 +133,8 @@ func test() {
         alert.show()
 }
 ```
-# 设置最大宽度
+
+Setting the maximum width for the iPad, AlertView will appear larger if you continue to use the screen width for calculation. Therefore, if you use it on the iPad, you should set its maximum width.
 ```swift
 private func alertType3() {
   let alert = AEAlertView.init(style: .defaulted, title: "title", message: "set gif height Add alert to the current view", maximumWidth: 600)
@@ -141,8 +155,23 @@ private func alertType3() {
 }
 ```
 
--------------------
-*** 控件支持 设置左右 上下间距  本来想提供 类方法来一句话调用, 但是每个项目的主题色不同 所有需要你 自己设置自己的主题色***
+# Version Updated Record
+v2.3.6-<br />
+1: If alertView is set to custom style, action will add stroke and rounded corners by default. Setting action.adapterCustom can be canceled<br />
+2: The added content can be set as unselectable. The default is selectable, messageIsSelectable<br />
+3: When alertView is initialized, an optional parameter of frame is added. If you need to add alert to a custom view, it is best to pass in a custom size. If not, use the default screen width and height<br />
+4: When setting a custom View, the width can be consistent with the width of the parent container, and the width can be read by -1<br />
+5: Added some debug log printing<br />
+
+v2.3.5-<br />
+Fix the error of getting window if target init OS>12<br />
+
+v2.3.4-<br />
+Fixed title not wrapping by default. The number of added title lines can be set.
+
+v2.3.2-<br />
+Support setting the maximum width
+
 
 
 
