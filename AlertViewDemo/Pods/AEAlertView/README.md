@@ -1,6 +1,6 @@
 # AEAlertView 
 ## AEAlertView does not depend on any third-party library
-[中文文档](https://blog.csdn.net/weixin_40085372/article/details/82623978)
+[中文文档](https://github.com/Allen0828/AEAlertView/blob/master/README_CN.md)
 
 | Swift        |     range       | use  |
 | ------------- |:-------------:| -----|
@@ -29,6 +29,7 @@
      
      v2.3.2- Support setting the maximum width
      v2.3.4- Fix the problem that the title does not wrap lines by default. The number of Title lines can be set use.
+     v2.3.5- Fix if target init OS > 12, get window error 
                                                                          
   
 感谢大家反馈 如果你在使用中遇到任何问题、bug、建议等欢迎提交 [点击进入讨论区](https://github.com/Allen0828/AEAlertView/discussions) 
@@ -45,13 +46,21 @@ src="https://github.com/Allen0828/AEAlertView/blob/master/img-folder/2.3-003.jpg
 </view>
 
 # 2.2
-<view><img src="https://github.com/Allen0828/AEAlertView/blob/master/img-folder/new3.jpeg" width="100"></img><img
+<view>
+
+<img src="https://github.com/Allen0828/AEAlertView/blob/master/img-folder/new3.jpeg" width="100"></img><img
 src="https://github.com/Allen0828/AEAlertView/blob/master/img-folder/gif003.gif" width="100"></img> <img
 src="https://github.com/Allen0828/AEAlertView/blob/master/img-folder/new7.jpeg" width="100"></img>
+
 </view>
 
-# 2.1 
-<view><img src="https://github.com/Allen0828/AEAlertView/blob/master/img-folder/succees2.1.gif" width="100"></img><img src="https://github.com/Allen0828/AEAlertView/blob/master/img-folder/error2.1.gif" width="100"></img>
+# other 
+<view>
+
+<img src="https://github.com/Allen0828/AEAlertView/blob/master/img-folder/new1.jpeg" width="150"></img>
+<img src="https://github.com/Allen0828/AEAlertView/blob/master/img-folder/succees2.1.gif" width="150"></img>
+<img src="https://github.com/Allen0828/AEAlertView/blob/master/img-folder/uiAlertView_GIF.gif" width="150"></img>
+
 </view>
 
 # 如果有 你有任何问题 或者 好的建议 欢迎联系我  - email: allen.zhang0828@gmail.com -
