@@ -73,7 +73,7 @@ Pod::Spec.new do |s|
 
 
   s.source       = { :git => "https://github.com/Allen0828/AEAlertView.git", :tag => "#{s.version}" }
-  s.source_files  = "AEAlertView/Sources/AEAlertView/**/*"
+  s.source_files  = "Sources/AEAlertView/**/*"
 
   s.framework  = "UIKit"
   # s.frameworks = "SomeFramework", "AnotherFramework"
