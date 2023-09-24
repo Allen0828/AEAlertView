@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		90DA9F73F17B71498C7D9BFE /* Pods_AlertViewDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46F12E5B25033AB7B2824A7 /* Pods_AlertViewDemo.framework */; };
-		9FF6129D2AC01DDE0041AE1A /* AEAlertView in Frameworks */ = {isa = PBXBuildFile; productRef = 9FF6129C2AC01DDE0041AE1A /* AEAlertView */; };
 		A89BC57024BC5F1100E6E127 /* gif004.gif in Resources */ = {isa = PBXBuildFile; fileRef = A89BC56F24BC5F1100E6E127 /* gif004.gif */; };
 		A89BC57224BC5F1600E6E127 /* 003.gif in Resources */ = {isa = PBXBuildFile; fileRef = A89BC57124BC5F1600E6E127 /* 003.gif */; };
 		A8BD44E0230405B800C610BC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BD44DF230405B800C610BC /* AppDelegate.swift */; };
@@ -22,7 +21,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		9FF6129B2AC01DBC0041AE1A /* AEAlertView */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = AEAlertView; path = ../../AEAlertView; sourceTree = "<group>"; };
 		A46F12E5B25033AB7B2824A7 /* Pods_AlertViewDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AlertViewDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A89BC56F24BC5F1100E6E127 /* gif004.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = gif004.gif; sourceTree = "<group>"; };
 		A89BC57124BC5F1600E6E127 /* 003.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 003.gif; sourceTree = "<group>"; };
@@ -45,7 +43,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9FF6129D2AC01DDE0041AE1A /* AEAlertView in Frameworks */,
 				90DA9F73F17B71498C7D9BFE /* Pods_AlertViewDemo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -91,7 +88,6 @@
 		A8BD44DE230405B800C610BC /* AlertViewDemo */ = {
 			isa = PBXGroup;
 			children = (
-				9FF6129B2AC01DBC0041AE1A /* AEAlertView */,
 				DB4EC6B32A70EF1000378955 /* PastController */,
 				A89BC57124BC5F1600E6E127 /* 003.gif */,
 				A89BC56F24BC5F1100E6E127 /* gif004.gif */,
@@ -141,7 +137,6 @@
 			);
 			name = AlertViewDemo;
 			packageProductDependencies = (
-				9FF6129C2AC01DDE0041AE1A /* AEAlertView */,
 			);
 			productName = "转场动画";
 			productReference = A8BD44DC230405B800C610BC /* AlertViewDemo.app */;
@@ -171,6 +166,9 @@
 				Base,
 			);
 			mainGroup = A8BD44D3230405B800C610BC;
+			packageReferences = (
+				9FF6129E2AC02F720041AE1A /* XCRemoteSwiftPackageReference "AEAlertView" */,
+			);
 			productRefGroup = A8BD44DD230405B800C610BC /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -434,12 +432,16 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCSwiftPackageProductDependency section */
-		9FF6129C2AC01DDE0041AE1A /* AEAlertView */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = AEAlertView;
+/* Begin XCRemoteSwiftPackageReference section */
+		9FF6129E2AC02F720041AE1A /* XCRemoteSwiftPackageReference "AEAlertView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Allen0828/AEAlertView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.3.7;
+			};
 		};
-/* End XCSwiftPackageProductDependency section */
+/* End XCRemoteSwiftPackageReference section */
 	};
 	rootObject = A8BD44D4230405B800C610BC /* Project object */;
 }

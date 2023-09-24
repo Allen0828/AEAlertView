@@ -16,8 +16,8 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "AEAlertView"
-  s.version      = "2.3.7"
-  s.summary      = "update 2.3.7 support spm"
+  s.version      = "2.3.8"
+  s.summary      = "update 2.3.8 support spm"
 
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
@@ -72,7 +72,7 @@ Pod::Spec.new do |s|
   # s.tvos.deployment_target = "9.0"
 
 
-  s.source       = { :git => "https://github.com/Allen0828/AEAlertView.git", :tag => "v#{s.version}" }
+  s.source       = { :git => "https://github.com/Allen0828/AEAlertView.git", :tag => "#{s.version}" }
   s.source_files  = "AEAlertView/Sources/AEAlertView/**/*"
 
   s.framework  = "UIKit"
