@@ -22,7 +22,7 @@ struct AEIndexView: View {
             Rectangle().foregroundColor(.white)
             VStack {
                 Button("alert") {
-                    AEAlertView.show(title: "test", actions: ["cancel", "submit"], message: nil) { (action) in
+                    AEAlertView.show(title: "test", message: nil, actions: ["cancel", "submit"]) { (action) in
                         print("1111")
                     }
                 }
@@ -33,27 +33,6 @@ struct AEIndexView: View {
                 .hidden()
                 
                 
-                Text("管理员").font(Font.system(size: 8))
-                    if showSheet {
-                        .hidden()
-                    }
-                
-                
-                Button("sheet") {
-//                    self.alertBtn.frame(width: 100, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, alignment: .top)
-//                    self.alertBtn.padding(.leading)
-
-                    self.subviewOffset = 100
-                    self.showSheet = true
-
-                }
-                HStack {
-                    subView.padding(.leading, subviewOffset)
-                    Spacer()
-                    alertBtn
-                }.padding()
-                    
-
 
                 .actionSheet(isPresented: $showSheet, content: {sheet})
             }

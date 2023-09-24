@@ -3,11 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		90DA9F73F17B71498C7D9BFE /* Pods_AlertViewDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46F12E5B25033AB7B2824A7 /* Pods_AlertViewDemo.framework */; };
+		9FF6129D2AC01DDE0041AE1A /* AEAlertView in Frameworks */ = {isa = PBXBuildFile; productRef = 9FF6129C2AC01DDE0041AE1A /* AEAlertView */; };
 		A89BC57024BC5F1100E6E127 /* gif004.gif in Resources */ = {isa = PBXBuildFile; fileRef = A89BC56F24BC5F1100E6E127 /* gif004.gif */; };
 		A89BC57224BC5F1600E6E127 /* 003.gif in Resources */ = {isa = PBXBuildFile; fileRef = A89BC57124BC5F1600E6E127 /* 003.gif */; };
 		A8BD44E0230405B800C610BC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BD44DF230405B800C610BC /* AppDelegate.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9FF6129B2AC01DBC0041AE1A /* AEAlertView */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = AEAlertView; path = ../../AEAlertView; sourceTree = "<group>"; };
 		A46F12E5B25033AB7B2824A7 /* Pods_AlertViewDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AlertViewDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A89BC56F24BC5F1100E6E127 /* gif004.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = gif004.gif; sourceTree = "<group>"; };
 		A89BC57124BC5F1600E6E127 /* 003.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 003.gif; sourceTree = "<group>"; };
@@ -43,6 +45,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9FF6129D2AC01DDE0041AE1A /* AEAlertView in Frameworks */,
 				90DA9F73F17B71498C7D9BFE /* Pods_AlertViewDemo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -88,6 +91,7 @@
 		A8BD44DE230405B800C610BC /* AlertViewDemo */ = {
 			isa = PBXGroup;
 			children = (
+				9FF6129B2AC01DBC0041AE1A /* AEAlertView */,
 				DB4EC6B32A70EF1000378955 /* PastController */,
 				A89BC57124BC5F1600E6E127 /* 003.gif */,
 				A89BC56F24BC5F1100E6E127 /* gif004.gif */,
@@ -130,13 +134,15 @@
 				A8BD44D8230405B800C610BC /* Sources */,
 				A8BD44D9230405B800C610BC /* Frameworks */,
 				A8BD44DA230405B800C610BC /* Resources */,
-				5907929592216DF04BE383D9 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = AlertViewDemo;
+			packageProductDependencies = (
+				9FF6129C2AC01DDE0041AE1A /* AEAlertView */,
+			);
 			productName = "转场动画";
 			productReference = A8BD44DC230405B800C610BC /* AlertViewDemo.app */;
 			productType = "com.apple.product-type.application";
@@ -210,23 +216,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5907929592216DF04BE383D9 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AlertViewDemo/Pods-AlertViewDemo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AlertViewDemo/Pods-AlertViewDemo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AlertViewDemo/Pods-AlertViewDemo-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -317,7 +306,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -372,7 +361,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -390,7 +379,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D5M8CJ9NDR;
 				INFOPLIST_FILE = AlertViewDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -410,7 +399,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D5M8CJ9NDR;
 				INFOPLIST_FILE = AlertViewDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -444,6 +433,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9FF6129C2AC01DDE0041AE1A /* AEAlertView */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AEAlertView;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A8BD44D4230405B800C610BC /* Project object */;
 }
