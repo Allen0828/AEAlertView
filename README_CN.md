@@ -1,11 +1,34 @@
 # AEAlertView 
 ## AEAlertView 目前没有使用到任何第三方库
 
-| Swift        |     版本       | 使用版本  |
-| ------------- |:-------------:| -----|
-| version      | 4.0 and below  | Pod `'AEAlertView','1.0'` |
-| version      | 4.0-5.0        | Pod `'AEAlertView','1.7'` |
-| version      | 5.0+           | Pod `'AEAlertView'` |
+## 安装指南
+
+- 从Xcode15.0 开始，要求库的最低版本为iOS12.0，因此AEAlertView在2.3.8中最低支持的版本为iOS12.0， 如果你的项目中兼容12以下，请使用2.3.6
+
+>
+> | UIKit | SwiftUI | Xcode | AEAlertView |
+> |---|---|---|---|
+> | iOS 8+ | iOS 13+ | 12.0 | ~> 1.0 |
+> | iOS 11+ | iOS 13+ | 13.0 | ~> 1.7 |
+> | iOS 12+ | iOS 14+ | 13.0 | ~> 2.0 |
+> | iOS 12+ | iOS 12+ | 15.0 | ~> 2.3.8 |
+
+#### Swift Package Manager
+
+- File > Swift Packages > Add Package Dependency
+- Add `https://github.com/Allen0828/AEAlertView.git`
+- Select "Up to Next Major" with "2.3.8"
+
+#### CocoaPods
+```ruby
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '12.0'
+use_frameworks!
+
+target 'MyApp' do
+  pod 'AEAlertView', '~> 2.3.8'
+end
+```
 
 <font>
      <p>在使用前请先阅读本文档</p>

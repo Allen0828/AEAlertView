@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -130,14 +130,13 @@
 				A8BD44D8230405B800C610BC /* Sources */,
 				A8BD44D9230405B800C610BC /* Frameworks */,
 				A8BD44DA230405B800C610BC /* Resources */,
+				F72D55A1EF5B43591547C7D6 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = AlertViewDemo;
-			packageProductDependencies = (
-			);
 			productName = "转场动画";
 			productReference = A8BD44DC230405B800C610BC /* AlertViewDemo.app */;
 			productType = "com.apple.product-type.application";
@@ -166,9 +165,6 @@
 				Base,
 			);
 			mainGroup = A8BD44D3230405B800C610BC;
-			packageReferences = (
-				9FF6129E2AC02F720041AE1A /* XCRemoteSwiftPackageReference "AEAlertView" */,
-			);
 			productRefGroup = A8BD44DD230405B800C610BC /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -214,6 +210,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F72D55A1EF5B43591547C7D6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AlertViewDemo/Pods-AlertViewDemo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AlertViewDemo/Pods-AlertViewDemo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AlertViewDemo/Pods-AlertViewDemo-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -431,17 +444,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		9FF6129E2AC02F720041AE1A /* XCRemoteSwiftPackageReference "AEAlertView" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Allen0828/AEAlertView";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.3.7;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
 	};
 	rootObject = A8BD44D4230405B800C610BC /* Project object */;
 }
