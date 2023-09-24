@@ -27,7 +27,7 @@ platform :ios, '12.0'
 use_frameworks!
 
 target 'MyApp' do
-  pod 'AEAlertView', '~> 2.3.7'
+  pod 'AEAlertView', '~> 2.3.8'
 end
 ```
 
