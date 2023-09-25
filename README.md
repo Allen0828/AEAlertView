@@ -2,11 +2,34 @@
 ## AEAlertView does not depend on any third-party library
 [中文文档](https://github.com/Allen0828/AEAlertView/blob/master/README_CN.md)
 
-| Swift        |     range       | use  |
-| ------------- |:-------------:| -----|
-| version      | 4.0 and below  | Pod `'AEAlertView','1.0'` |
-| version      | 4.0-5.0        | Pod `'AEAlertView','1.7'` |
-| version      | 5.0+           | Pod `'AEAlertView'` |
+## Requirements
+
+- After xcode 15.0+, only iOS12.0 can be supported, so the latest version 2.3.7 currently supports iOS12.0 as the minimum. If your project is lower than iOS12.0, please use pod 2.3.6
+
+>
+> | UIKit | SwiftUI | Xcode | AEAlertView |
+> |---|---|---|---|
+> | iOS 8+ | iOS 13+ | 12.0 | ~> 1.0 |
+> | iOS 11+ | iOS 13+ | 13.0 | ~> 1.7 |
+> | iOS 12+ | iOS 14+ | 13.0 | ~> 2.0 |
+> | iOS 12+ | iOS 12+ | 15.0 | ~> 2.3.8 |
+
+#### Swift Package Manager
+
+- File > Swift Packages > Add Package Dependency
+- Add `https://github.com/Allen0828/AEAlertView.git`
+- Select "Up to Next Major" with "2.3.8"
+
+#### CocoaPods
+```ruby
+source 'https://cdn.cocoapods.org/'
+platform :ios, '12.0'
+use_frameworks!
+
+target 'MyApp' do
+  pod 'AEAlertView', '~> 2.3.8'
+end
+```
 
 <font>
      <p>Please read the instructions before using it.</p>
@@ -156,6 +179,9 @@ private func alertType3() {
 ```
 
 # Version Updated Record
+2.3.8-<br />
+1: support Swift Package Manager
+2: change tag vx.x to x.x
 v2.3.6-<br />
 1: If alertView is set to custom style, action will add stroke and rounded corners by default. Setting action.adapterCustom can be canceled<br />
 2: The added content can be set as unselectable. The default is selectable, messageIsSelectable<br />
