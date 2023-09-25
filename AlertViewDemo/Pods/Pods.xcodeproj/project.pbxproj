@@ -9,16 +9,16 @@
 /* Begin PBXBuildFile section */
 		0D2BFFCEC38C64513735FEA596BFCF73 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D245E0514AAC1A2B9A6D5EA2F383E90F /* UIKit.framework */; };
 		367A8D3EDABCEE423530F1C50A17FFED /* Pods-AlertViewDemo-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = EE1A14FAE4EA8EBFC6569AAF3947CF5E /* Pods-AlertViewDemo-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3775D4B63DA8624FF63DAD34CC29F316 /* AEBaseAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDED804201DDCF1324E0E4C199B3B14 /* AEBaseAlertView.swift */; };
-		500EDE94D39177BDE92E8F766F53399F /* AEAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9E55359B3C7B50F936B8FE5C72A482 /* AEAlertView.swift */; };
-		84452CCF894FD0E99331A3085A5B70D6 /* AEAlertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8609BAC1A8512418902E3FC89A4B113 /* AEAlertAction.swift */; };
+		8002F5014F187EB3DA649DB787420D70 /* AEAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7649DD08C87ED3EEAAD2EE45289AD9 /* AEAlertView.swift */; };
+		936AB4738A355F62C390773100C064B8 /* AETextFieldAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC89E2F0746B172F9D047A67BC9A44F3 /* AETextFieldAlertView.swift */; };
 		A9DC7A21BB55583C679FA83BC2DA1415 /* Pods-AlertViewDemo-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DA8265E68122A074541EFA31EC208D5 /* Pods-AlertViewDemo-dummy.m */; };
-		B8DEBD91261F7EE6F527C6D043AA8D07 /* AETextFieldAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395737AD885BDEE46845AFF1DDA738C1 /* AETextFieldAlertView.swift */; };
-		BCF04786D1A3A6C5E1CF9DD3109CA199 /* AEAlertView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = EE5666DDB9DE9E8EB6E0A90B5F22B0C6 /* AEAlertView-dummy.m */; };
-		E1EDCA9456BD3FB5AE66F778A376B1F5 /* AEAlertTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A0EB5E024ECD5B367537E85A94EE76 /* AEAlertTools.swift */; };
+		AC17A56F2E87F4FB1F42BA4F00991324 /* AEAlertTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE923E51271E936599F0B32AF9C8D241 /* AEAlertTools.swift */; };
+		BCF04786D1A3A6C5E1CF9DD3109CA199 /* AEAlertView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A461E26E7040E951A4F5A45A1FD4369 /* AEAlertView-dummy.m */; };
+		C264F7CBDE4EE1F936A9E75D95FBD4F2 /* AEBaseAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7910FEBB3AACC90402D6FB5D25EBD9FA /* AEBaseAlertView.swift */; };
 		E7F4B79980F7331B1BFFD36427B50604 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAB6F611E86A4758835A715E4B4184F6 /* Foundation.framework */; };
+		E9F69013754CA3E18FA1DC709E7EA4C9 /* AEAlertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBFF9A71F38014C5DD3ACEAA31A30CF /* AEAlertAction.swift */; };
 		FB7621A63B468B5E1AD2F896793FDFD8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAB6F611E86A4758835A715E4B4184F6 /* Foundation.framework */; };
-		FD3FB175AB0D7FB44BDE5A3DC206B767 /* AEAlertView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 757EDC19DFA328BE743E479D4FDD1FDF /* AEAlertView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FD3FB175AB0D7FB44BDE5A3DC206B767 /* AEAlertView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 21B661994D35EEBE62CF3AF758B7F31E /* AEAlertView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,32 +32,32 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0195C1B6D404886D5811592452F92CE2 /* AEAlertView-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "AEAlertView-Info.plist"; sourceTree = "<group>"; };
 		0C2A7EDB72C8C4DA36E8E461B6CE87DB /* AEAlertView */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = AEAlertView; path = AEAlertView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2B0AD73A6CAEE010EB653BBAE18A9631 /* AEAlertView.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AEAlertView.release.xcconfig; sourceTree = "<group>"; };
+		21B661994D35EEBE62CF3AF758B7F31E /* AEAlertView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AEAlertView-umbrella.h"; sourceTree = "<group>"; };
+		2A461E26E7040E951A4F5A45A1FD4369 /* AEAlertView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "AEAlertView-dummy.m"; sourceTree = "<group>"; };
 		2DA8265E68122A074541EFA31EC208D5 /* Pods-AlertViewDemo-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-AlertViewDemo-dummy.m"; sourceTree = "<group>"; };
-		395737AD885BDEE46845AFF1DDA738C1 /* AETextFieldAlertView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AETextFieldAlertView.swift; path = AEAlertView/Classes/AETextFieldAlertView.swift; sourceTree = "<group>"; };
 		4503ABCC7E46892F79C507DB737109C4 /* Pods-AlertViewDemo-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-AlertViewDemo-acknowledgements.markdown"; sourceTree = "<group>"; };
 		4E8D8CA9E463D2718342AE4F12628C36 /* Pods-AlertViewDemo-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-AlertViewDemo-Info.plist"; sourceTree = "<group>"; };
-		757EDC19DFA328BE743E479D4FDD1FDF /* AEAlertView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AEAlertView-umbrella.h"; sourceTree = "<group>"; };
-		83A0EB5E024ECD5B367537E85A94EE76 /* AEAlertTools.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AEAlertTools.swift; path = AEAlertView/Classes/AEAlertTools.swift; sourceTree = "<group>"; };
+		5BBFF9A71F38014C5DD3ACEAA31A30CF /* AEAlertAction.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AEAlertAction.swift; path = Sources/AEAlertView/AEAlertAction.swift; sourceTree = "<group>"; };
+		6D7649DD08C87ED3EEAAD2EE45289AD9 /* AEAlertView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AEAlertView.swift; path = Sources/AEAlertView/AEAlertView.swift; sourceTree = "<group>"; };
+		7910FEBB3AACC90402D6FB5D25EBD9FA /* AEBaseAlertView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AEBaseAlertView.swift; path = Sources/AEAlertView/AEBaseAlertView.swift; sourceTree = "<group>"; };
+		843E9396FC70EADDA33E1321F8E09BF8 /* AEAlertView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AEAlertView.debug.xcconfig; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A381EE091CA778507A71C896FD70B5ED /* Pods-AlertViewDemo-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-AlertViewDemo-frameworks.sh"; sourceTree = "<group>"; };
-		BA9E55359B3C7B50F936B8FE5C72A482 /* AEAlertView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AEAlertView.swift; path = AEAlertView/Classes/AEAlertView.swift; sourceTree = "<group>"; };
+		A6A826BFC2C800B5F0AB9042BFD600C0 /* AEAlertView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = AEAlertView.modulemap; sourceTree = "<group>"; };
 		CAB5A91F40B968E68258E25629062DD9 /* Pods-AlertViewDemo-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-AlertViewDemo-acknowledgements.plist"; sourceTree = "<group>"; };
-		CD3286F8B1B2DC1D4D4631815CA2CED3 /* AEAlertView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = AEAlertView.modulemap; sourceTree = "<group>"; };
 		D245E0514AAC1A2B9A6D5EA2F383E90F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		D8A8C47609DEE5007EA2E6A6958DA71A /* Pods-AlertViewDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-AlertViewDemo.debug.xcconfig"; sourceTree = "<group>"; };
-		DA755B0F37144B363C6D98249E81D0C5 /* AEAlertView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AEAlertView.debug.xcconfig; sourceTree = "<group>"; };
+		DBB43C0B78763DB179B8EAE7524AEAB2 /* AEAlertView-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "AEAlertView-Info.plist"; sourceTree = "<group>"; };
 		E3D2F6CADE081507D25AD68BD6DA9008 /* Pods-AlertViewDemo.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-AlertViewDemo.modulemap"; sourceTree = "<group>"; };
 		EAB6F611E86A4758835A715E4B4184F6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		EE1A14FAE4EA8EBFC6569AAF3947CF5E /* Pods-AlertViewDemo-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-AlertViewDemo-umbrella.h"; sourceTree = "<group>"; };
-		EE5666DDB9DE9E8EB6E0A90B5F22B0C6 /* AEAlertView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "AEAlertView-dummy.m"; sourceTree = "<group>"; };
-		EFDED804201DDCF1324E0E4C199B3B14 /* AEBaseAlertView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AEBaseAlertView.swift; path = AEAlertView/Classes/AEBaseAlertView.swift; sourceTree = "<group>"; };
-		F5A5CF3626F55650147C94E00AB8E49B /* AEAlertView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AEAlertView-prefix.pch"; sourceTree = "<group>"; };
 		F7115B91A34E82B33E66FF55FDBC804B /* Pods-AlertViewDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-AlertViewDemo.release.xcconfig"; sourceTree = "<group>"; };
 		F7D53707147A344B4F96F3FB0F07E05D /* Pods-AlertViewDemo */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-AlertViewDemo"; path = Pods_AlertViewDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F8609BAC1A8512418902E3FC89A4B113 /* AEAlertAction.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AEAlertAction.swift; path = AEAlertView/Classes/AEAlertAction.swift; sourceTree = "<group>"; };
+		FB2C1EEC813BC8571E72D93D4E775EC0 /* AEAlertView.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AEAlertView.release.xcconfig; sourceTree = "<group>"; };
+		FC89E2F0746B172F9D047A67BC9A44F3 /* AETextFieldAlertView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AETextFieldAlertView.swift; path = Sources/AEAlertView/AETextFieldAlertView.swift; sourceTree = "<group>"; };
+		FCF09906CD57FF9D0519C67804E330B7 /* AEAlertView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AEAlertView-prefix.pch"; sourceTree = "<group>"; };
+		FE923E51271E936599F0B32AF9C8D241 /* AEAlertTools.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AEAlertTools.swift; path = Sources/AEAlertView/AEAlertTools.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +89,21 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		19E4013EE534CED0D56BD455993B8781 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				A6A826BFC2C800B5F0AB9042BFD600C0 /* AEAlertView.modulemap */,
+				2A461E26E7040E951A4F5A45A1FD4369 /* AEAlertView-dummy.m */,
+				DBB43C0B78763DB179B8EAE7524AEAB2 /* AEAlertView-Info.plist */,
+				FCF09906CD57FF9D0519C67804E330B7 /* AEAlertView-prefix.pch */,
+				21B661994D35EEBE62CF3AF758B7F31E /* AEAlertView-umbrella.h */,
+				843E9396FC70EADDA33E1321F8E09BF8 /* AEAlertView.debug.xcconfig */,
+				FB2C1EEC813BC8571E72D93D4E775EC0 /* AEAlertView.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/AEAlertView";
+			sourceTree = "<group>";
+		};
 		59DA5C1F72E1D5BABC43EACBA672C3BA /* iOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -98,26 +113,26 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
+		6247AB2CFFE111E51E5E1C2071AB0818 /* AEAlertView */ = {
+			isa = PBXGroup;
+			children = (
+				5BBFF9A71F38014C5DD3ACEAA31A30CF /* AEAlertAction.swift */,
+				FE923E51271E936599F0B32AF9C8D241 /* AEAlertTools.swift */,
+				6D7649DD08C87ED3EEAAD2EE45289AD9 /* AEAlertView.swift */,
+				7910FEBB3AACC90402D6FB5D25EBD9FA /* AEBaseAlertView.swift */,
+				FC89E2F0746B172F9D047A67BC9A44F3 /* AETextFieldAlertView.swift */,
+				19E4013EE534CED0D56BD455993B8781 /* Support Files */,
+			);
+			name = AEAlertView;
+			path = AEAlertView;
+			sourceTree = "<group>";
+		};
 		6DD14410F8ED7B80BBBB92AD32923B5B /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
 				8B62CA9CBA2B25E921963E3E7F220094 /* Pods-AlertViewDemo */,
 			);
 			name = "Targets Support Files";
-			sourceTree = "<group>";
-		};
-		720B35BCDDD99FD827A4DA10181A8855 /* AEAlertView */ = {
-			isa = PBXGroup;
-			children = (
-				F8609BAC1A8512418902E3FC89A4B113 /* AEAlertAction.swift */,
-				83A0EB5E024ECD5B367537E85A94EE76 /* AEAlertTools.swift */,
-				BA9E55359B3C7B50F936B8FE5C72A482 /* AEAlertView.swift */,
-				EFDED804201DDCF1324E0E4C199B3B14 /* AEBaseAlertView.swift */,
-				395737AD885BDEE46845AFF1DDA738C1 /* AETextFieldAlertView.swift */,
-				F22465294257E776066CA312711C8439 /* Support Files */,
-			);
-			name = AEAlertView;
-			path = AEAlertView;
 			sourceTree = "<group>";
 		};
 		8B62CA9CBA2B25E921963E3E7F220094 /* Pods-AlertViewDemo */ = {
@@ -160,24 +175,9 @@
 		EB92FA6A20C3B8496027A619A260AC33 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				720B35BCDDD99FD827A4DA10181A8855 /* AEAlertView */,
+				6247AB2CFFE111E51E5E1C2071AB0818 /* AEAlertView */,
 			);
 			name = Pods;
-			sourceTree = "<group>";
-		};
-		F22465294257E776066CA312711C8439 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				CD3286F8B1B2DC1D4D4631815CA2CED3 /* AEAlertView.modulemap */,
-				EE5666DDB9DE9E8EB6E0A90B5F22B0C6 /* AEAlertView-dummy.m */,
-				0195C1B6D404886D5811592452F92CE2 /* AEAlertView-Info.plist */,
-				F5A5CF3626F55650147C94E00AB8E49B /* AEAlertView-prefix.pch */,
-				757EDC19DFA328BE743E479D4FDD1FDF /* AEAlertView-umbrella.h */,
-				DA755B0F37144B363C6D98249E81D0C5 /* AEAlertView.debug.xcconfig */,
-				2B0AD73A6CAEE010EB653BBAE18A9631 /* AEAlertView.release.xcconfig */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/AEAlertView";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -297,12 +297,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84452CCF894FD0E99331A3085A5B70D6 /* AEAlertAction.swift in Sources */,
-				E1EDCA9456BD3FB5AE66F778A376B1F5 /* AEAlertTools.swift in Sources */,
-				500EDE94D39177BDE92E8F766F53399F /* AEAlertView.swift in Sources */,
+				E9F69013754CA3E18FA1DC709E7EA4C9 /* AEAlertAction.swift in Sources */,
+				AC17A56F2E87F4FB1F42BA4F00991324 /* AEAlertTools.swift in Sources */,
+				8002F5014F187EB3DA649DB787420D70 /* AEAlertView.swift in Sources */,
 				BCF04786D1A3A6C5E1CF9DD3109CA199 /* AEAlertView-dummy.m in Sources */,
-				3775D4B63DA8624FF63DAD34CC29F316 /* AEBaseAlertView.swift in Sources */,
-				B8DEBD91261F7EE6F527C6D043AA8D07 /* AETextFieldAlertView.swift in Sources */,
+				C264F7CBDE4EE1F936A9E75D95FBD4F2 /* AEBaseAlertView.swift in Sources */,
+				936AB4738A355F62C390773100C064B8 /* AETextFieldAlertView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -318,41 +318,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		1C96E91073A8D187C41CC26902EBEA2C /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2B0AD73A6CAEE010EB653BBAE18A9631 /* AEAlertView.release.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/AEAlertView/AEAlertView-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/AEAlertView/AEAlertView-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MODULEMAP_FILE = "Target Support Files/AEAlertView/AEAlertView.modulemap";
-				PRODUCT_MODULE_NAME = AEAlertView;
-				PRODUCT_NAME = AEAlertView;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 		2B9E26EAE2CD392AD762421F663075A1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -416,40 +381,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
-			};
-			name = Debug;
-		};
-		4C5A557FE01DBEE94356E0D4DB3700A1 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = DA755B0F37144B363C6D98249E81D0C5 /* AEAlertView.debug.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/AEAlertView/AEAlertView-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/AEAlertView/AEAlertView-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MODULEMAP_FILE = "Target Support Files/AEAlertView/AEAlertView.modulemap";
-				PRODUCT_MODULE_NAME = AEAlertView;
-				PRODUCT_NAME = AEAlertView;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
@@ -552,6 +483,42 @@
 			};
 			name = Debug;
 		};
+		71FB272A37BBCCDF87911BF19156445D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FB2C1EEC813BC8571E72D93D4E775EC0 /* AEAlertView.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/AEAlertView/AEAlertView-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/AEAlertView/AEAlertView-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/AEAlertView/AEAlertView.modulemap";
+				PRODUCT_MODULE_NAME = AEAlertView;
+				PRODUCT_NAME = AEAlertView;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		8DF520E069706EB7C4617AEE469CDC1A /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F7115B91A34E82B33E66FF55FDBC804B /* Pods-AlertViewDemo.release.xcconfig */;
@@ -590,6 +557,41 @@
 			};
 			name = Release;
 		};
+		CE6FAE1F0AF8AE97536689F3C7B81DB6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 843E9396FC70EADDA33E1321F8E09BF8 /* AEAlertView.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/AEAlertView/AEAlertView-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/AEAlertView/AEAlertView-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/AEAlertView/AEAlertView.modulemap";
+				PRODUCT_MODULE_NAME = AEAlertView;
+				PRODUCT_NAME = AEAlertView;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -605,8 +607,8 @@
 		7171F2D7B21959AA42F03D563EBCB003 /* Build configuration list for PBXNativeTarget "AEAlertView" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				4C5A557FE01DBEE94356E0D4DB3700A1 /* Debug */,
-				1C96E91073A8D187C41CC26902EBEA2C /* Release */,
+				CE6FAE1F0AF8AE97536689F3C7B81DB6 /* Debug */,
+				71FB272A37BBCCDF87911BF19156445D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

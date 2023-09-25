@@ -1,16 +1,16 @@
 PODS:
-  - AEAlertView (2.3.6)
+  - AEAlertView (2.3.8)
 
 DEPENDENCIES:
-  - AEAlertView (= 2.3.6)
+  - AEAlertView (= 2.3.8)
 
 SPEC REPOS:
   trunk:
     - AEAlertView
 
 SPEC CHECKSUMS:
-  AEAlertView: 2761cbb49de1494ebacc832c295730f61e579ded
+  AEAlertView: b401263d79da0b608f00207d0a47ee9b18eb4c28
 
-PODFILE CHECKSUM: 22654a0415c44ff39b54f7f58ba981438cfd3505
+PODFILE CHECKSUM: 0d3b3737e59d6c023d2c615abe8de0d8d2a1cec0
 
 COCOAPODS: 1.13.0
