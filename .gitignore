@@ -71,3 +71,6 @@ AEAlertViewDemo/Pods/AEAlertView/AEAlertView.swift
 AEAlertViewDemo/Pods/AEAlertView/AEBaseAlertView.swift
 AEAlertViewDemo/Pods/AEAlertView/AEPathAnimation.swift
 AEAlertViewDemo/Pods/AEAlertView/AEUIAlertView.swift
+
+
+.swiftpm

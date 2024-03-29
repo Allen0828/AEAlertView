@@ -274,6 +274,7 @@ open class AEAlertView: UIView {
         alertView = AEBaseAlertView(frame: defFrame, maximumWidth: maximumWidth)
         alertView.titleLabel.text = title
         alertView.messageTextView.text = message ?? ""
+
         if style == .custom {
             alertView.alertStyle = .custom
         } else {

@@ -41,7 +41,7 @@ open class AEBaseAlertView: UIView {
     
     /// 最大宽度 请在init中赋值 为了适配iPad 默认值改为320
     private(set) var maximumWidth: CGFloat = 320
-    /// 新版本中text view 如果isScrollEnabled为true 则不能自动刷新高度，因此为了解决这个功能特意在计算高度是isScrollEnabled设置为false  当高度计算完成后在修改为true 除非你设置了false
+    /// 新版本中text view 如果isScrollEnabled为true 则不能自动刷新高度，因此为了解决这个功能特意在计算高度时isScrollEnabled设置为false  当高度计算完成后在修改为true 除非你设置了false
     public var textViewIsScrollEnabled = true
 
     public func dismiss() {
@@ -217,6 +217,7 @@ extension AEBaseAlertView {
         backgroundView.addSubview(messageTextView)
         messageWidthConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-[messageTextView]-|", options: option, metrics: nil, views: ["messageTextView": messageTextView!])
         backgroundView.addConstraints(messageWidthConstraints)
+
         
         contentContainerView = UIView(frame: CGRect.zero)
         contentContainerView.translatesAutoresizingMaskIntoConstraints = false
